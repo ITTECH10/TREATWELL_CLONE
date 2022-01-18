@@ -1,27 +1,38 @@
 
-import React from 'react';
+import React, { useCallback, useState, useContext, createContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import useLocalStorage from './../hooks/useLocalStorage'
 import axios from 'axios'
 
-const AppContext = React.createContext()
+const AppContext = createContext()
 
 export const useApp = () => {
-    return React.useContext(AppContext)
+    return useContext(AppContext)
 }
 
 const AppContextProvider = ({ children }) => {
     const navigate = useNavigate()
     /////////////////////////////////////////
     const [token, setToken] = useLocalStorage('token', '')
-    const [authenticated, setAuthenticated] = React.useState(false)
-    const [appLoading, setAppLoading] = React.useState(false)
-    const [generalAlertOptions, setGeneralAlertOptions] = React.useState({
+    const [authenticated, setAuthenticated] = useState(false)
+    const [logedInPacient, setLogedInPacient] = useState()
+    const [appLoading, setAppLoading] = useState(false)
+    const [generalAlertOptions, setGeneralAlertOptions] = useState({
         open: false,
         message: '',
         severity: '',
         hideAfter: 5000
     })
+
+    const getCurrentPacient = useCallback(() => {
+        axios.get('/pacients/me')
+            .then(res => {
+                if (res.status === 200) {
+                    setLogedInPacient(res.data.pacient)
+                }
+            })
+            .catch(err => console.error(err))
+    }, [])
 
     // CONTINUE WORKING FROM HERE
     const logout = React.useCallback(() => {
@@ -47,7 +58,9 @@ const AppContextProvider = ({ children }) => {
         setGeneralAlertOptions,
         logout,
         token,
-        setToken
+        setToken,
+        getCurrentPacient,
+        logedInPacient
     }
 
     return (

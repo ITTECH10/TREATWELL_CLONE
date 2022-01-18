@@ -15,7 +15,7 @@ import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
 // ----------------------------------------------------------------------
 
 export default function App() {
-  const { setAuthenticated, token, logout, appLoading } = useApp()
+  const { setAuthenticated, token, logout, appLoading, getCurrentPacient } = useApp()
 
   // ONLY RUN IF WE ARE AUTHENTICATED, AND WE CAN ONLY
   // BECOME AUTHENTICATED WITH A VALID TOKEN
@@ -23,6 +23,7 @@ export default function App() {
   useEffect(() => {
     if (token) {
       // DO STUFF
+      getCurrentPacient()
     }
 
     if (token) {
@@ -38,7 +39,8 @@ export default function App() {
   }, [
     token,
     setAuthenticated,
-    logout
+    logout,
+    getCurrentPacient
   ])
 
   return (
