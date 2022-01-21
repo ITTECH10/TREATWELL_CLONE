@@ -28,14 +28,25 @@ const GREY = {
   500_80: alpha('#919EAB', 0.8)
 };
 
+// LEGACY
+// const PRIMARY = {
+//   lighter: '#C8FACD',
+//   light: '#5BE584',
+//   main: '#00AB55',
+//   dark: '#007B55',
+//   darker: '#005249',
+//   contrastText: '#fff'
+// };
+
 const PRIMARY = {
-  lighter: '#C8FACD',
-  light: '#5BE584',
-  main: '#00AB55',
-  dark: '#007B55',
-  darker: '#005249',
+  lighter: '#D0F2FF',
+  light: '#74CAFF',
+  main: '#1890FF',
+  dark: '#0C53B7',
+  darker: '#04297A',
   contrastText: '#fff'
-};
+}
+
 const SECONDARY = {
   lighter: '#D6E4FF',
   light: '#84A9FF',
@@ -44,14 +55,16 @@ const SECONDARY = {
   darker: '#091A7A',
   contrastText: '#fff'
 };
+
 const INFO = {
-  lighter: '#D0F2FF',
-  light: '#74CAFF',
-  main: '#1890FF',
-  dark: '#0C53B7',
-  darker: '#04297A',
-  contrastText: '#fff'
+  lighter: '#1890FF',
+  light: '#1684F1',
+  main: '#1378E2',
+  dark: '#116BD4',
+  darker: '#0E5FC5',
+  contrastText: '#0C53B7'
 };
+
 const SUCCESS = {
   lighter: '#E9FCD4',
   light: '#AAF27F',

@@ -12,9 +12,9 @@ import Logo from '../../components/Logo'
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
-    color: '#000',
-    backgroundColor: 'transparent',
-    position: 'static',
+    color: '#fff',
+    // backgroundColor: 'transparent',
+    position: 'fixed',
     // [theme.breakpoints.up('lg')]: {
     //     width: `calc(100% - ${DRAWER_WIDTH + 1}px)`
     // }
@@ -36,11 +36,13 @@ export default function ButtonAppBar() {
 
     const menuItems = !authenticated ? (
         <Box>
+            <Button color="inherit" onClick={() => navigate('/categories')}>Home</Button>
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
             <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
         </Box>
     ) : (
         <Box>
+            <Button color="inherit" onClick={() => navigate('/categories')}>Home</Button>
             <Button color="inherit" onClick={() => logout()}>Log out</Button>
         </Box>
     )

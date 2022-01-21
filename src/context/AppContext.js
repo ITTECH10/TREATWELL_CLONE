@@ -17,6 +17,8 @@ const AppContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false)
     const [logedInPacient, setLogedInPacient] = useState()
     const [appLoading, setAppLoading] = useState(false)
+    const [tempTherapeuts, setTempTherapeuts] = useState([])
+    const [selectedTherapeut, setSelectedTherapeut] = useState({})
     const [generalAlertOptions, setGeneralAlertOptions] = useState({
         open: false,
         message: '',
@@ -60,7 +62,11 @@ const AppContextProvider = ({ children }) => {
         token,
         setToken,
         getCurrentPacient,
-        logedInPacient
+        logedInPacient,
+        tempTherapeuts,
+        setTempTherapeuts,
+        selectedTherapeut,
+        setSelectedTherapeut
     }
 
     return (

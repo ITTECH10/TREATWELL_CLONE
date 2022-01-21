@@ -11,6 +11,8 @@ import DashboardLayout from './layouts/dashboard';
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
+const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
+const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
@@ -20,12 +22,16 @@ export default function Router() {
   const MAIN_ROLE_ROUTING = [
     { path: '/', element: <Navigate to="/categories" /> },
     { path: '/categories', element: <Home /> },
+    { path: '/therapeuts', element: <FilteredTherapeuts /> },
+    { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
   ]
 
   const SUB_ROLE_ROUTING = [
     { path: '/', element: <Navigate to="/categories" /> },
     { path: '/categories', element: <Home /> },
+    { path: '/therapeuts', element: <FilteredTherapeuts /> },
+    { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -49,6 +55,8 @@ export default function Router() {
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
       { path: '/categories', element: <Home /> },
+      { path: '/therapeuts', element: <FilteredTherapeuts /> },
+      { path: '/therapeuts/:id', element: <TherapeutDetails /> },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> }
     ]

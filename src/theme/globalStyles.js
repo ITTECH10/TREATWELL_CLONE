@@ -15,6 +15,10 @@ export default function GlobalStyles() {
           padding: 0,
           boxSizing: 'border-box'
         },
+        '::selection': {
+          color: '#fff',
+          background: '#1890FF'
+        },
         html: {
           width: '100%',
           height: '100%',
@@ -27,6 +31,10 @@ export default function GlobalStyles() {
         '#root': {
           width: '100%',
           height: '100%'
+        },
+        '.map-container': {
+          height: '400px',
+          width: '100%'
         },
         input: {
           '&[type=number]': {

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 //////////////////////////
-import { TextField, Stack, Box, Button, Typography, Paper } from '@mui/material'
+import { TextField, Stack, Box, Button, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
+import { styled } from '@mui/material/styles'
 //////////////////////////
 import Page from '../components/Page'
 import { actions } from '../utils/DataProviders/ActionButtonItems'
@@ -16,25 +18,130 @@ const mockTherapeuts = [
         id: 0,
         name: 'Emir Salihovic',
         offers: 'ultrazvuk srca',
-        specializedIn: 'kardiolog',
-        location: 'Berlin'
+        specializedIn: 'kardiologija',
+        formatedSpecialization: 'Kardiologe',
+        location: 'Berlin',
+        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+        website: 'https://google.com',
+        biography: "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.",
+        availableInNextWeek: true
     },
     {
         id: 1,
         name: 'Jane Doe',
         offers: 'magnetna rezonanca',
-        specializedIn: 'radiolog',
-        location: 'Munich'
+        specializedIn: 'radiologija',
+        formatedSpecialization: 'Radiologe',
+        location: 'Munich',
+        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461&q=80',
+        website: 'https://google.com',
+        biography: "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+        availableInNextWeek: true
     },
+    {
+        id: 3,
+        name: 'Lukas Nicolaus',
+        offers: 'pregled koze',
+        specializedIn: 'dermatologija',
+        formatedSpecialization: 'Dermatologe',
+        location: 'Essen',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+        website: 'https://google.com',
+        biography: "Vivamus nunc neque, molestie quis dolor vitae, efficitur pellentesque felis. Donec sit amet fringilla neque, a convallis ante.",
+        availableInNextWeek: false
+    },
+    {
+        id: 4,
+        name: 'Daniel Jones',
+        offers: 'operacija',
+        specializedIn: 'hirurgija',
+        formatedSpecialization: 'Chirurg',
+        location: 'Dortmund',
+        image: 'https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+        website: 'https://google.com',
+        biography: "Morbi sagittis dignissim est quis fringilla. In volutpat tellus non fringilla ultrices.",
+        availableInNextWeek: true
+    }
 ]
 
+const MainStyle = styled(Stack)(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+        flexDirection: 'row'
+    }
+}));
+
+const ContentBox = styled(Stack)(({ theme }) => ({
+    padding: '2rem',
+    [theme.breakpoints.up('md')]: {
+        width: '50%',
+        marginLeft: '4rem',
+        marginBottom: '3rem',
+        padding: 0
+    }
+}));
+
+const FormGroupBox = styled(Stack)(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+        flexDirection: 'row'
+    }
+}));
+
+const ImageBox = styled(Stack)(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+        width: '50%'
+    }
+}));
+
+const LocationQueryTextField = styled(TextField)(({ theme }) => ({
+    margin: '1rem 0',
+    [theme.breakpoints.up('md')]: {
+        margin: '0 1rem'
+    }
+}))
+
+const SearchButton = styled(Button)(({ theme }) => ({
+    marginTop: '1rem',
+    [theme.breakpoints.up('md')]: {
+        marginTop: 0,
+        width: '17%'
+    }
+}))
+
+const AdaptedList = styled(List)(({ theme }) => ({
+    maxHeight: 250,
+    overflowY: 'scroll',
+    bgcolor: 'background.paper',
+    position: 'relative',
+    [theme.breakpoints.up('md')]: {
+        maxWidth: 360,
+        position: 'absolute',
+        top: '24.5rem',
+        left: '2rem'
+    }
+}))
+
 const Home = () => {
-    const { logedInPacient } = useApp()
-    const [fields, setFields] = React.useState({
-        query: ''
+    const navigate = useNavigate()
+    const { logedInPacient, setTempTherapeuts } = useApp()
+    const [fields, setFields] = useState({
+        query: '',
+        locationQuery: ''
     })
 
+    const match = useMediaQuery('(min-width:600px)');
     const roleMatch = isAdmin(logedInPacient)
+
+    const filteredTherapeuts = mockTherapeuts.filter(therapeut => {
+        return (therapeut.name.toLowerCase().includes(fields.query.toLowerCase())
+            || therapeut.offers.toLowerCase().includes(fields.query.toLowerCase())
+            || therapeut.specializedIn.toLowerCase().includes(fields.query.toLowerCase())
+            || therapeut.location.toLowerCase().includes(fields.query.toLowerCase()))
+            && therapeut.location.toLowerCase().includes(fields.locationQuery.toLowerCase())
+    })
+
+    useEffect(() => {
+        setTempTherapeuts(filteredTherapeuts)
+    }, [fields])
 
     const handleChange = e => {
         setFields({
@@ -43,42 +150,46 @@ const Home = () => {
         })
     }
 
-    const filteredTherapeuts = mockTherapeuts.filter(therapeut => {
-        return therapeut.name.toLowerCase().includes(fields.query.toLowerCase())
-            || therapeut.offers.toLowerCase().includes(fields.query.toLowerCase())
-            || therapeut.specializedIn.toLowerCase().includes(fields.query.toLowerCase())
-    })
+    console.log()
 
     return (
         <Page title="Home">
-            <Stack direction="row" spacing={2} alignItems="center">
-                <Box sx={{ width: '45%', ml: '4rem', mb: '3rem' }}>
+            <MainStyle spacing={2} alignItems="center">
+                <ContentBox>
                     <Typography variant="h3">
-                        Feel free to book an appointment
+                        Buchen Sie gerne einen Termin
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#888' }}>
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here'.
+                        Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
                     </Typography>
-                    <Stack mt={2} direction="row" spacing={2}>
+                    <FormGroupBox mt={2}>
                         <TextField
                             name="query"
-                            placeholder="Ime, simptom, usluga"
+                            placeholder="Name, Symptom, Dienst"
                             onChange={handleChange}
                         />
-                        <TextField
-                            name="query"
+                        <LocationQueryTextField
+                            name="locationQuery"
                             onChange={handleChange}
-                            placeholder={`Lokacija: Berlin`}
+                            placeholder={`Standort: Berlin`}
                         />
-                        <Button variant="contained" sx={{ width: '17%' }} color="error">
-                            Search
-                        </Button>
-                    </Stack>
-                </Box>
-                <Box sx={{ width: '55%' }}>
-                    <img style={{ width: '100%' }} src={Logo} />
-                </Box>
-            </Stack>
+                        {(fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 &&
+                            <TherapeutItem
+                                navigate={navigate}
+                                fields={fields}
+                                filteredTherapeuts={filteredTherapeuts}
+                            />
+                        }
+                        <SearchButton variant="contained" onClick={() => navigate('/therapeuts')}>
+                            Zuchen
+                        </SearchButton>
+                    </FormGroupBox>
+                </ContentBox>
+                {match &&
+                    <ImageBox>
+                        <img style={{ width: '100%' }} src={Logo} />
+                    </ImageBox>}
+            </MainStyle>
             {
                 roleMatch && <ActionButton
                     actions={actions}
@@ -91,28 +202,53 @@ const Home = () => {
 
 export default Home
 
-{/* <Box component="form" p={2}>
-<Stack direction="row" spacing={2}>
-    <TextField
-        name="query"
-        placeholder="Ime, simptom, usluga"
-        onChange={handleChange}
-    />
-    <TextField
-        name="query"
-        onChange={handleChange}
-        placeholder={`Lokacija: Berlin`}
-    />
-</Stack>
-<Button sx={{ mt: 1 }} variant="contained">
-    Submit
-</Button>
-</Box>
+const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
+    const { setSelectedTherapeut } = useApp()
+    // const match = useMediaQuery('(minWidth: 600px)')
 
-<Box p={2}>
-{
-    fields.query !== '' && filteredTherapeuts.map(therapeut => {
-        return <Typography key={therapeut.id}>{therapeut.name}</Typography>
-    })
+    const therapeutSelectionHandler = (therapeut) => {
+        if (therapeut) {
+            setSelectedTherapeut(therapeut)
+            navigate(`/therapeuts/${therapeut.id}`)
+        }
+    }
+
+    return (
+        <AdaptedList>
+            {
+                filteredTherapeuts.map(therapeut => {
+                    return <>
+                        <ListItem
+                            key={therapeut.id}
+                            alignItems="flex-start"
+                            sx={{ cursor: 'pointer' }}
+                            onClick={() => therapeutSelectionHandler(therapeut)}
+                        >
+                            <ListItemAvatar>
+                                <Avatar alt="Remy Sharp" src={therapeut.image} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={fields.query || fields.locationQuery}
+                                primaryTypographyProps={{ sx: { textDecoration: 'underline', color: 'red' } }}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography
+                                            sx={{ display: 'inline' }}
+                                            component="span"
+                                            variant="body2"
+                                            color="text.primary"
+                                        >
+                                            {therapeut.name}
+                                        </Typography>
+                                        {`—${therapeut.biography}…"`}
+                                    </React.Fragment>
+                                }
+                            />
+                        </ListItem>
+                        <Divider variant="inset" component="li" />
+                    </>
+                })
+            }
+        </AdaptedList>
+    );
 }
-</Box> */}
