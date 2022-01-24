@@ -2,20 +2,14 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-// import { useApp } from './../../context/AppContext'
+import { useApp } from './../../context/AppContext'
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 export default function Alerts() {
-    // const { generalAlertOptions, setGeneralAlertOptions } = useApp()
-    const [generalAlertOptions, setGeneralAlertOptions] = React.useState({
-        message: 'Uspjesno ste dodali terapeuta!',
-        severity: 'success',
-        hideAfter: 5000,
-        open: false
-    })
+    const { generalAlertOptions, setGeneralAlertOptions } = useApp()
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {

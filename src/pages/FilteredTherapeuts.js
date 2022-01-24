@@ -1,47 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import Page from '../components/Page'
+///////////////////////// material
 import isWeekend from 'date-fns/isWeekend';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
-///////////////////////// material
 import { Typography, Box, Stack, Card, Button, Grid, Container, Avatar } from '@mui/material'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+//////////////////////////
+import BookTherapyDialog from '../components/THERAPIES/BookTherapyDialog'
+import AddTherapyDialog from '../components/THERAPIES/AddTherapyDialog'
 
 const FilteredTherapeuts = () => {
-    const { tempTherapeuts } = useApp()
+    const { therapeuts, setSelectedTherapeut } = useApp()
+    const navigate = useNavigate()
+    // FIX LATER
+    const [preventMultipleComponentDateChange, setPreventMultipleComponentChange] = useState(new Date())
+
+    const therapeutSelectionHandler = (therapeut) => {
+        if (therapeut) {
+            setSelectedTherapeut(therapeut)
+            navigate(`/therapeuts/${therapeut._id}`)
+        }
+    }
+
     return (
         <Page title="Rezultati Pretrage">
             <Container maxWidth="lg" p={2}>
                 <Typography my={2} variant="h5" align="center">Kardio-MRT (Herz-MRT) in Deutschland : Buchen Sie den passenden Spezialisten online.</Typography>
                 {
-                    tempTherapeuts.map(therapeut => {
+                    therapeuts.map(therapeut => {
                         return <Card sx={{ p: 2, mb: 2, height: 400 }}>
                             <Grid container>
                                 <Grid item xs={4} sx={{ pt: 2 }}>
-                                    <Stack direction="row" alignItems="center" spacing={1}>
+                                    <Stack onClick={() => therapeutSelectionHandler(therapeut)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
                                         <Avatar alt="therapeut name" src={therapeut.image} sx={{ height: 50, width: 50 }} />
                                         <Typography variant="h6">
                                             {therapeut.name}
                                         </Typography>
                                     </Stack>
                                     <Box>
-                                        <Button startIcon={<WorkOutlineIcon />}>{therapeut.formatedSpecialization}</Button>
+                                        <Button startIcon={<WorkOutlineIcon />}>{therapeut.specializedIn}</Button>
                                         <Typography variant="subtitle2">
                                             {therapeut.location}
                                         </Typography>
                                         <Typography variant="subtitle2">
                                             82211 Herrsching am Ammersee
                                         </Typography>
-                                        <Button sx={{ mt: 1 }} variant="contained" href={therapeut.website} target="_blank">
-                                            Termin Vereinbaren
-                                        </Button>
+                                        <BookTherapyDialog therapeut={therapeut} date={preventMultipleComponentDateChange} />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={8}>
-                                    {therapeut.availableInNextWeek ? <StaticDatePickerLandscape /> : <Typography variant="subtitle1">Keine Verfügbarkeit in dieser Woche | Nächster Termin am 24. Februar 2022</Typography>}
+                                    {therapeut.available ?
+                                        <StaticDatePickerLandscape
+                                            setPreventMultipleComponentChange={setPreventMultipleComponentChange}
+                                        /> :
+                                        <Typography variant="subtitle1">Keine Verfügbarkeit...</Typography>}
                                 </Grid>
                             </Grid>
                         </Card>
@@ -54,7 +71,7 @@ const FilteredTherapeuts = () => {
 
 export default FilteredTherapeuts
 
-function StaticDatePickerLandscape() {
+function StaticDatePickerLandscape({ setPreventMultipleComponentChange }) {
     const [value, setValue] = React.useState(new Date());
 
     return (
@@ -63,9 +80,11 @@ function StaticDatePickerLandscape() {
                 orientation="landscape"
                 openTo="day"
                 value={value}
+                disablePast
                 shouldDisableDate={isWeekend}
                 onChange={(newValue) => {
                     setValue(newValue);
+                    setPreventMultipleComponentChange(newValue)
                 }}
                 renderInput={(params) => <TextField {...params} />}
             />

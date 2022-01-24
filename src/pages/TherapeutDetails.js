@@ -24,7 +24,7 @@ const TherapeutDetails = () => {
             <Box px={30} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
                 <Header direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
                     <Box sx={{ height: 135, width: 135, overflow: 'hidden' }}>
-                        <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={image} />
+                        <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" />
                     </Box>
                     <Box>
                         <Typography variant="h4">{name}</Typography>

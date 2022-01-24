@@ -18,6 +18,7 @@ const AppContextProvider = ({ children }) => {
     const [logedInPacient, setLogedInPacient] = useState()
     const [appLoading, setAppLoading] = useState(false)
     const [tempTherapeuts, setTempTherapeuts] = useState([])
+    const [therapeuts, setTherapeuts] = useState([])
     const [selectedTherapeut, setSelectedTherapeut] = useState({})
     const [generalAlertOptions, setGeneralAlertOptions] = useState({
         open: false,
@@ -26,6 +27,14 @@ const AppContextProvider = ({ children }) => {
         hideAfter: 5000
     })
 
+    const getAvailableTherapeuts = useCallback(() => {
+        axios.get('/therapeuts').then(res => {
+            if (res.status === 200) {
+                setTherapeuts(res.data.therapeuts)
+            }
+        }).catch(err => console.log(err))
+    }, [])
+
     const getCurrentPacient = useCallback(() => {
         axios.get('/pacients/me')
             .then(res => {
@@ -33,12 +42,16 @@ const AppContextProvider = ({ children }) => {
                     setLogedInPacient(res.data.pacient)
                 }
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
     // CONTINUE WORKING FROM HERE
     const logout = React.useCallback(() => {
         setAppLoading(true)
+        // FIND BETTER SOLUTION
+        setLogedInPacient()
         axios.post('/pacients/logout')
             .then(res => {
                 if (res.status === 200) {
@@ -65,8 +78,11 @@ const AppContextProvider = ({ children }) => {
         logedInPacient,
         tempTherapeuts,
         setTempTherapeuts,
+        therapeuts,
+        setTherapeuts,
         selectedTherapeut,
-        setSelectedTherapeut
+        setSelectedTherapeut,
+        getAvailableTherapeuts
     }
 
     return (

@@ -1,7 +1,9 @@
-import AddPacientDialog from '../../components/PACIENTS/AddPacientDialog';
+import AddTherapeutDialog from '../../components/THERAPEUTS/AddTherapeutDialog';
+// import AddTherapyDialog from '../../components/THERAPIES/AddTherapyDialog';
 
 export const actions = [
-    { icon: <AddPacientDialog onlyIcon />, name: 'Novi Pacijent' }
+    { icon: <AddTherapeutDialog onlyIcon />, name: 'Novi Terapeut' },
+    // { icon: <AddTherapyDialog onlyIcon />, name: 'Novi Termin' },
 ];
 
 // export const nonAdminActions = [

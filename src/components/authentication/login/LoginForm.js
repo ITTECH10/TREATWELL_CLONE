@@ -1,34 +1,42 @@
 import { useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { useApp } from '../../../context/AppContext'
 import * as Yup from 'yup';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
+import { Icon } from '@iconify/react';
+import eyeFill from '@iconify/icons-eva/eye-fill';
+import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // material
 import {
   Stack,
   TextField,
-  CircularProgress
+  CircularProgress,
+  IconButton,
+  InputAdornment,
+  Link
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
   const { setToken, setAuthenticated } = useApp()
   const navigate = useNavigate()
   const [btnLoading, setBtnLoading] = useState(false)
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('E-Mail muss eine gültige E-Mail-Adresse sein').required('E-Mail ist benötigt'),
-    // password: Yup.string().required('Passwort ist benötigt')
+    password: Yup.string().required('Passwort ist benötigt')
   });
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      // password: '',
-      // remember: true
+      password: '',
+      remember: true
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
@@ -48,9 +56,9 @@ export default function LoginForm() {
 
   const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
 
-  // const handleShowPassword = () => {
-  //   setShowPassword((show) => !show);
-  // };
+  const handleShowPassword = () => {
+    setShowPassword((show) => !show);
+  };
 
   return (
     <FormikProvider value={formik}>
@@ -66,7 +74,7 @@ export default function LoginForm() {
             helperText={touched.email && errors.email}
           />
 
-          {/* <TextField
+          <TextField
             fullWidth
             autoComplete="current-password"
             type={showPassword ? 'text' : 'password'}
@@ -83,14 +91,14 @@ export default function LoginForm() {
             }}
             error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
-          /> */}
+          />
         </Stack>
-        {/* 
+
         <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
           <Link component={RouterLink} variant="subtitle2" to="#">
             Passwort vergessen?
           </Link>
-        </Stack> */}
+        </Stack>
 
         <LoadingButton
           fullWidth

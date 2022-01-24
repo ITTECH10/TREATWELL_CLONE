@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 //////////////////////////
@@ -13,56 +13,60 @@ import { isAdmin } from '../utils/DataProviders/ROLES/permissions'
 
 const Logo = '/static/illustrations/home-alt.jpg'
 
-const mockTherapeuts = [
-    {
-        id: 0,
-        name: 'Emir Salihovic',
-        offers: 'ultrazvuk srca',
-        specializedIn: 'kardiologija',
-        formatedSpecialization: 'Kardiologe',
-        location: 'Berlin',
-        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-        website: 'https://google.com',
-        biography: "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.",
-        availableInNextWeek: true
-    },
-    {
-        id: 1,
-        name: 'Jane Doe',
-        offers: 'magnetna rezonanca',
-        specializedIn: 'radiologija',
-        formatedSpecialization: 'Radiologe',
-        location: 'Munich',
-        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461&q=80',
-        website: 'https://google.com',
-        biography: "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
-        availableInNextWeek: true
-    },
-    {
-        id: 3,
-        name: 'Lukas Nicolaus',
-        offers: 'pregled koze',
-        specializedIn: 'dermatologija',
-        formatedSpecialization: 'Dermatologe',
-        location: 'Essen',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-        website: 'https://google.com',
-        biography: "Vivamus nunc neque, molestie quis dolor vitae, efficitur pellentesque felis. Donec sit amet fringilla neque, a convallis ante.",
-        availableInNextWeek: false
-    },
-    {
-        id: 4,
-        name: 'Daniel Jones',
-        offers: 'operacija',
-        specializedIn: 'hirurgija',
-        formatedSpecialization: 'Chirurg',
-        location: 'Dortmund',
-        image: 'https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
-        website: 'https://google.com',
-        biography: "Morbi sagittis dignissim est quis fringilla. In volutpat tellus non fringilla ultrices.",
-        availableInNextWeek: true
-    }
-]
+// const mockTherapeuts = [
+//     {
+//         id: 0,
+//         name: 'Karl Fischer',
+//         specializedServices: 'ultrazvuk srca herz ekg',
+//         specializedIn: 'kardiologija',
+//         formatedSpecialization: 'Kardiologe',
+//         location: 'Berlin',
+//         image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+//         website: 'https://google.com',
+//         biography: "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.",
+//         availableInNextWeek: true,
+//         availableBookingDates: ['2022-01-25T00:00', '2022-02-01T00:00', '2022-03-03T00:00']
+//     },
+//     {
+//         id: 1,
+//         name: 'Jane Doe',
+//         specializedServices: 'magnetna rezonanca',
+//         specializedIn: 'radiologija',
+//         formatedSpecialization: 'Radiologe',
+//         location: 'Munich',
+//         image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461&q=80',
+//         website: 'https://google.com',
+//         biography: "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.",
+//         availableInNextWeek: true,
+//         availableBookingDates: ['2022-01-25T00:00', '2022-02-01T00:00', '2022-03-03T00:00']
+//     },
+//     {
+//         id: 3,
+//         name: 'Lukas Nicolaus',
+//         specializedServices: 'pregled koze',
+//         specializedIn: 'dermatologija',
+//         formatedSpecialization: 'Dermatologe',
+//         location: 'Essen',
+//         image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+//         website: 'https://google.com',
+//         biography: "Vivamus nunc neque, molestie quis dolor vitae, efficitur pellentesque felis. Donec sit amet fringilla neque, a convallis ante.",
+//         availableInNextWeek: false,
+//         availableBookingDates: ['2022-01-25T00:00', '2022-02-01T00:00', '2022-03-03T00:00']
+//     },
+//     {
+//         id: 4,
+//         name: 'Daniel Jones',
+//         specializedServices: 'operacija',
+//         specializedIn: 'hirurgija',
+//         formatedSpecialization: 'Chirurg',
+//         location: 'Dortmund',
+//         image: 'https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+//         website: 'https://google.com',
+//         biography: "Morbi sagittis dignissim est quis fringilla. In volutpat tellus non fringilla ultrices.",
+//         availableInNextWeek: true,
+//         availableBookingDates: ['2022-01-25T00:00', '2022-02-01T00:00', '2022-03-03T00:00']
+//     }
+// ]
 
 const MainStyle = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
@@ -108,12 +112,14 @@ const SearchButton = styled(Button)(({ theme }) => ({
 }))
 
 const AdaptedList = styled(List)(({ theme }) => ({
+    width: 340,
+    maxWidth: 360,
     maxHeight: 250,
     overflowY: 'scroll',
     bgcolor: 'background.paper',
     position: 'relative',
     [theme.breakpoints.up('md')]: {
-        maxWidth: 360,
+        // maxWidth: 360,
         position: 'absolute',
         top: '24.5rem',
         left: '2rem'
@@ -122,26 +128,24 @@ const AdaptedList = styled(List)(({ theme }) => ({
 
 const Home = () => {
     const navigate = useNavigate()
-    const { logedInPacient, setTempTherapeuts } = useApp()
+    const { logedInPacient, therapeuts } = useApp()
     const [fields, setFields] = useState({
         query: '',
         locationQuery: ''
     })
 
+    console.log(therapeuts)
+
     const match = useMediaQuery('(min-width:600px)');
     const roleMatch = isAdmin(logedInPacient)
 
-    const filteredTherapeuts = mockTherapeuts.filter(therapeut => {
+    const filteredTherapeuts = therapeuts.filter(therapeut => {
         return (therapeut.name.toLowerCase().includes(fields.query.toLowerCase())
-            || therapeut.offers.toLowerCase().includes(fields.query.toLowerCase())
+            || therapeut.specializedServices.toLowerCase().includes(fields.query.toLowerCase())
             || therapeut.specializedIn.toLowerCase().includes(fields.query.toLowerCase())
             || therapeut.location.toLowerCase().includes(fields.query.toLowerCase()))
             && therapeut.location.toLowerCase().includes(fields.locationQuery.toLowerCase())
     })
-
-    useEffect(() => {
-        setTempTherapeuts(filteredTherapeuts)
-    }, [fields])
 
     const handleChange = e => {
         setFields({
@@ -149,8 +153,6 @@ const Home = () => {
             [e.target.name]: e.target.value
         })
     }
-
-    console.log()
 
     return (
         <Page title="Home">
@@ -209,7 +211,7 @@ const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
     const therapeutSelectionHandler = (therapeut) => {
         if (therapeut) {
             setSelectedTherapeut(therapeut)
-            navigate(`/therapeuts/${therapeut.id}`)
+            navigate(`/therapeuts/${therapeut._id}`)
         }
     }
 
@@ -217,9 +219,9 @@ const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
         <AdaptedList>
             {
                 filteredTherapeuts.map(therapeut => {
-                    return <>
+                    return <div key={therapeut._id}>
                         <ListItem
-                            key={therapeut.id}
+                            // key={therapeut._id}
                             alignItems="flex-start"
                             sx={{ cursor: 'pointer' }}
                             onClick={() => therapeutSelectionHandler(therapeut)}
@@ -246,7 +248,7 @@ const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
                             />
                         </ListItem>
                         <Divider variant="inset" component="li" />
-                    </>
+                    </div>
                 })
             }
         </AdaptedList>

@@ -16,22 +16,19 @@ const TherapeutDetailsBookForm = () => {
             </Stack>
             <Box p={2}>
                 <TextField
-                    placeholder="Ime"
+                    placeholder="Vorname"
                     fullWidth
                     sx={{ mb: 1 }}
-
                 />
                 <TextField
-                    placeholder="Prezime"
+                    placeholder="Nachname"
                     fullWidth
                     sx={{ mb: 1 }}
-
                 />
                 <TextField
-                    placeholder="Lokacija"
+                    placeholder="Standort"
                     fullWidth
                     sx={{ mb: 1 }}
-
                 />
                 <StaticDatePickerLandscape />
                 <Button
@@ -57,7 +54,7 @@ function StaticDatePickerLandscape() {
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
-                orientation="landscape"
+                orientation="portrait"
                 openTo="day"
                 value={value}
                 shouldDisableDate={isWeekend}
