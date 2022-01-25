@@ -63,7 +63,7 @@ export default function LoginForm() {
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <Stack spacing={3}>
+        <Stack>
           <TextField
             fullWidth
             type="email"
@@ -95,7 +95,7 @@ export default function LoginForm() {
         </Stack>
 
         <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
-          <Link component={RouterLink} variant="subtitle2" to="#">
+          <Link component={RouterLink} variant="subtitle2" to="/forgotPassword">
             Passwort vergessen?
           </Link>
         </Stack>
@@ -107,7 +107,7 @@ export default function LoginForm() {
           variant="contained"
           loading={isSubmitting}
         >
-          Fortsetzen
+          {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortzetzen'}
         </LoadingButton>
       </Form>
     </FormikProvider>

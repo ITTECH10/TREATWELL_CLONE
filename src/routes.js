@@ -13,6 +13,8 @@ const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
+const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
@@ -54,6 +56,8 @@ export default function Router() {
       { path: '/', element: <Navigate to="/categories" /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+      { path: '/forgotPassword', element: <ForgotPassword /> },
+      { path: '/resetPassword/:token', element: <ResetPassword /> },
       { path: '/categories', element: <Home /> },
       { path: '/therapeuts', element: <FilteredTherapeuts /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },

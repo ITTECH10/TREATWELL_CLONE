@@ -43,6 +43,7 @@ export default function ButtonAppBar() {
     ) : (
         <Box>
             <Button color="inherit" onClick={() => navigate('/categories')}>Home</Button>
+            <Button color="inherit" onClick={() => navigate('/categories')}>Meine Termine</Button>
             <Button color="inherit" onClick={() => logout()}>Log out</Button>
         </Box>
     )
