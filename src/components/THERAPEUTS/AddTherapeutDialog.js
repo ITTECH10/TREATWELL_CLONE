@@ -21,12 +21,16 @@ import plusFill from '@iconify/icons-eva/plus-fill';
 const initialFields = {
     name: '',
     email: '',
-    phone: '000-000-000',
+    phone: '',
+    address: '',
+    qualifications: '',
     biography: '',
     website: '',
     specializedIn: '',
     specializedServices: '',
     location: '',
+    latitude: '',
+    longitude: '',
     image: '',
     bulk: ''
 }
@@ -37,6 +41,8 @@ export default function AddPacientModal({ onlyIcon }) {
     const { setGeneralAlertOptions, therapeuts, setTherapeuts } = useApp()
     const [fields, setFields] = React.useState(initialFields)
 
+    console.log(fields)
+
     const formData = new FormData()
     formData.append('name', fields.name)
     formData.append('email', fields.email)
@@ -46,6 +52,10 @@ export default function AddPacientModal({ onlyIcon }) {
     formData.append('specializedIn', fields.specializedIn)
     formData.append('specializedServices', fields.specializedServices)
     formData.append('location', fields.location)
+    formData.append('longitude', fields.longitude)
+    formData.append('latitude', fields.latitude)
+    formData.append('qualifications', fields.qualifications)
+    formData.append('address', fields.address)
     formData.append('photo', fields.image)
 
     if (fields.bulk.length > 0) {
@@ -54,7 +64,7 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    for (var value of formData.values()) {
+    for (var value of formData.entries()) {
         console.log(value);
     }
 
@@ -214,10 +224,40 @@ export default function AddPacientModal({ onlyIcon }) {
                             />
                             <TextField
                                 margin="dense"
+                                name="latitude"
+                                required
+                                id="latitude-add-therapeut"
+                                label="Latitude"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="dense"
+                                name="longitude"
+                                required
+                                id="longitude-add-therapeut"
+                                label="Longitude"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="dense"
                                 name="phone"
                                 required
                                 id="phone"
                                 label="Telefon"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="dense"
+                                name="address"
+                                required
+                                id="address"
+                                label="Addresse"
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
@@ -248,6 +288,18 @@ export default function AddPacientModal({ onlyIcon }) {
                                 required
                                 id="specializedServices"
                                 label="Dienstleistungen"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                margin="dense"
+                                name="qualifications"
+                                required
+                                id="qualifications"
+                                label="Qualifications"
+                                multiline
+                                rows={5}
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}

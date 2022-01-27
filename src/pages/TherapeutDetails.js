@@ -17,7 +17,7 @@ const Header = styled(Stack)(({ theme }) => ({
 const TherapeutDetails = () => {
     const theme = useTheme()
     const { selectedTherapeut } = useApp()
-    const { image, name, specializedIn, phone } = selectedTherapeut
+    const { image, name, specializedIn, phone, location } = selectedTherapeut
 
     return (
         <Box sx={{ width: '100%', position: 'relative' }}>
@@ -29,7 +29,8 @@ const TherapeutDetails = () => {
                     <Box>
                         <Typography variant="h4">{name}</Typography>
                         <Typography variant="subtitle2">{specializedIn}</Typography>
-                        <Typography variant="subtitle2">{phone}</Typography>
+                        <Typography variant="subtitle2">Location: {location}</Typography>
+                        <Typography variant="subtitle2">Telefon: {phone}</Typography>
                     </Box>
                 </Header>
             </Box>

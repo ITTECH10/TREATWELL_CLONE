@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 //////////////////////////
 import { TextField, Stack, Box, Card, CardMedia, Button, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 //////////////////////////
 import Page from '../components/Page'
 import { actions } from '../utils/DataProviders/ActionButtonItems'
@@ -77,6 +77,7 @@ const AdaptedList = styled(List)(({ theme }) => ({
 }))
 
 const Home = () => {
+    const theme = useTheme()
     const navigate = useNavigate()
     const { logedInPacient, therapeuts } = useApp()
     const [fields, setFields] = useState({
@@ -140,11 +141,11 @@ const Home = () => {
                         <img style={{ width: '100%' }} src={Logo} />
                     </ImageBox>}
             </MainStyle>
-            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', my: 3, backgroundColor: '#1890FF', color: '#fff' }}>
+            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', my: 3, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">IHRE VORTEILE</Typography>
             </Stack>
             <AppHeroBoxes />
-            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', mt: 3, backgroundColor: '#1890FF', color: '#fff' }}>
+            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', mt: 3, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
             </Stack>
             <AppHowToVideo />

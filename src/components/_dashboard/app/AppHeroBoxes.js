@@ -13,7 +13,7 @@ const AppHeroBoxes = () => {
             <Stack direction="row" spacing={2} justifyContent="center">
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between" >
-                        <Typography variant="subtitle2">Geprüfte Therapeuten</Typography>
+                        <Typography variant="h5">Geprüfte Therapeuten</Typography>
                         <Box sx={{ width: 75 }}>
                             <img alt="hero-icon" src={Icon1} sx={{ height: '100%', width: '100%' }} />
                         </Box>
@@ -27,7 +27,7 @@ const AppHeroBoxes = () => {
                 </Card>
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between" >
-                        <Typography variant="subtitle2">Buche 24/7</Typography>
+                        <Typography variant="h5">Buche 24/7</Typography>
                         <Box sx={{ width: 75 }}>
                             <img alt="hero-icon" src={Icon2} sx={{ height: '100%', width: '100%' }} />
                         </Box>
@@ -41,7 +41,7 @@ const AppHeroBoxes = () => {
                 </Card>
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between"  >
-                        <Typography variant="subtitle2">Keine Vorkasse</Typography>
+                        <Typography variant="h5">Keine Vorkasse</Typography>
                         <Box sx={{ width: 75 }}>
                             <img alt="hero-icon" src={Icon3} sx={{ height: '100%', width: '100%' }} />
                         </Box>

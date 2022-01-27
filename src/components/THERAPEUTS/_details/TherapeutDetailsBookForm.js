@@ -15,21 +15,6 @@ const TherapeutDetailsBookForm = () => {
                 </Typography>
             </Stack>
             <Box p={2}>
-                <TextField
-                    placeholder="Vorname"
-                    fullWidth
-                    sx={{ mb: 1 }}
-                />
-                <TextField
-                    placeholder="Nachname"
-                    fullWidth
-                    sx={{ mb: 1 }}
-                />
-                <TextField
-                    placeholder="Standort"
-                    fullWidth
-                    sx={{ mb: 1 }}
-                />
                 <StaticDatePickerLandscape />
                 <Button
                     type="submit"
@@ -51,13 +36,23 @@ export default TherapeutDetailsBookForm;
 function StaticDatePickerLandscape() {
     const [value, setValue] = React.useState(new Date());
 
+    const myDates = [
+        '2022/01/29',
+        '2022/02/03',
+        '2022/03/15',
+    ]
+
+    const disabledDays = (date) => {
+        return !myDates.map((myDate) => new Date(myDate).getTime()).includes(date.getTime());
+    };
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
                 orientation="portrait"
                 openTo="day"
                 value={value}
-                shouldDisableDate={isWeekend}
+                shouldDisableDate={disabledDays}
                 onChange={(newValue) => {
                     setValue(newValue);
                 }}
