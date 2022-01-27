@@ -45,7 +45,7 @@ export default function RegisterForm() {
           if (res.status === 201) {
             setBtnLoading(false)
             setAuthenticated(true);
-            navigate('/categories')
+            navigate('/home')
             setToken(res.data.token)
           }
         })

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useApp } from '../../context/AppContext'
 import axios from 'axios';
+//mui
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -13,7 +14,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-/////////////////////////////////////
+//rest
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 
@@ -26,6 +27,8 @@ const initialFields = {
     specializedIn: '',
     specializedServices: '',
     location: '',
+    image: '',
+    bulk: ''
 }
 
 export default function AddPacientModal({ onlyIcon }) {
@@ -43,7 +46,17 @@ export default function AddPacientModal({ onlyIcon }) {
     formData.append('specializedIn', fields.specializedIn)
     formData.append('specializedServices', fields.specializedServices)
     formData.append('location', fields.location)
-    // formData.append('photo', fields.pacientImage)
+    formData.append('photo', fields.image)
+
+    if (fields.bulk.length > 0) {
+        fields.bulk.forEach(file => {
+            formData.append('multiplePhotos', file)
+        })
+    }
+
+    for (var value of formData.values()) {
+        console.log(value);
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -65,7 +78,12 @@ export default function AddPacientModal({ onlyIcon }) {
         e.preventDefault();
         setBtnLoading(true)
 
-        axios.post('/therapeuts', { ...fields }).then(res => {
+        axios({
+            method: 'POST',
+            headers: { "Content-Type": "multipart/form-data" },
+            url: '/therapeuts',
+            data: formData
+        }).then(res => {
             if (res.status === 201) {
                 const updatedTherapeuts = [...therapeuts, { ...res.data.newTherapeut }]
                 setTherapeuts(updatedTherapeuts)
@@ -79,22 +97,36 @@ export default function AddPacientModal({ onlyIcon }) {
                 })
             }
         }).catch(err => {
+            setBtnLoading(false)
             console.log(err)
         })
     }
 
-    // const openUploadHandler = () => {
-    //     const input = document.getElementById('photo-input-ref')
-    //     input.click()
-    // }
+    const openUploadHandler = () => {
+        const input = document.getElementById('photo-input-ref')
+        input.click()
+    }
 
-    // const handleImageChange = (e) => {
-    //     const photo = e.target.files[0]
-    //     setFields({
-    //         ...fields,
-    //         pacientImage: photo
-    //     })
-    // }
+    const openBulkUploadHandler = () => {
+        const input = document.getElementById('photo-input-bulk-ref')
+        input.click()
+    }
+
+    const handleImageChange = (e) => {
+        const photo = e.target.files[0]
+        setFields({
+            ...fields,
+            image: photo
+        })
+    }
+
+    const handleImageBulkChange = (e) => {
+        const photos = e.target.files
+        setFields({
+            ...fields,
+            bulk: [...photos]
+        })
+    }
 
     return (
         <>
@@ -120,20 +152,35 @@ export default function AddPacientModal({ onlyIcon }) {
                             component="form"
                             onSubmit={handleSubmit}
                         >
-                            {/* <input
+                            <input
                                 name="photo"
                                 id="photo-input-ref"
                                 type="file"
                                 hidden
                                 onChange={handleImageChange}
                             />
+                            <input
+                                name="bulk"
+                                id="photo-input-bulk-ref"
+                                type="file"
+                                multiple
+                                hidden
+                                onChange={handleImageBulkChange}
+                            />
+                            <Button
+                                variant="contained"
+                                sx={{ mt: 1, mr: 1 }}
+                                onClick={openUploadHandler}
+                            >
+                                {fields.image !== '' ? 'Ändere das Bild' : 'Foto hinzufügen'}
+                            </Button>
                             <Button
                                 variant="contained"
                                 sx={{ mt: 1 }}
-                                onClick={openUploadHandler}
+                                onClick={openBulkUploadHandler}
                             >
-                                {fields.pacientImage !== '' ? 'Promjeni sliku' : 'Dodaj sliku'}
-                            </Button> */}
+                                {fields.bulk !== '' ? 'Ändere Praxis Bilder' : 'Praxis Fotos hinzufügen'}
+                            </Button>
                             <TextField
                                 name="name"
                                 required
@@ -224,7 +271,7 @@ export default function AddPacientModal({ onlyIcon }) {
                                     variant="contained"
                                     color="primary"
                                     type="submit"
-                                    disabled={Object.values(fields).some(field => field === '')}
+                                // disabled={Object.values(fields).some(field => field === '')}
                                 >
                                     {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fertig'}
                                 </Button>

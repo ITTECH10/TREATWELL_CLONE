@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 //////////////////////////
-import { TextField, Stack, Box, Button, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
+import { TextField, Stack, Box, Card, CardMedia, Button, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
 import { styled } from '@mui/material/styles'
 //////////////////////////
 import Page from '../components/Page'
@@ -11,6 +11,8 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import ActionButton from '../components/_reusable/ActionButton'
 import { isAdmin } from '../utils/DataProviders/ROLES/permissions'
 import AppHeroBoxes from '../components/_dashboard/app/AppHeroBoxes'
+import AppHowToVideo from '../components/_dashboard/app/AppHowToVideo'
+import AppContactFooter from '../components/_dashboard/app/AppContactFooter'
 
 const Logo = '/static/illustrations/home-alt.jpg'
 
@@ -82,8 +84,6 @@ const Home = () => {
         locationQuery: ''
     })
 
-    console.log(therapeuts)
-
     const match = useMediaQuery('(min-width:600px)');
     const roleMatch = isAdmin(logedInPacient)
 
@@ -140,7 +140,15 @@ const Home = () => {
                         <img style={{ width: '100%' }} src={Logo} />
                     </ImageBox>}
             </MainStyle>
+            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', my: 3, backgroundColor: '#1890FF', color: '#fff' }}>
+                <Typography variant="h6">IHRE VORTEILE</Typography>
+            </Stack>
             <AppHeroBoxes />
+            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', mt: 3, backgroundColor: '#1890FF', color: '#fff' }}>
+                <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
+            </Stack>
+            <AppHowToVideo />
+            <AppContactFooter />
             {
                 roleMatch && <ActionButton
                     actions={actions}
@@ -188,9 +196,12 @@ const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            {therapeut.name}
+                                            <Typography variant="subtitle2">Name: <span>{therapeut.name}</span></Typography>
+                                            <Typography variant="subtitle2">Heilpraktiker: {therapeut.specializedIn}</Typography>
+                                            <Typography variant="subtitle2">Telefon: {therapeut.phone}</Typography>
+                                            <Typography variant="subtitle2">Schwerpunkt: Kardiologie ist mei...</Typography>
                                         </Typography>
-                                        {`—${therapeut.biography}…"`}
+                                        {<Button size="small">Mehr Uber Mich</Button>}
                                     </React.Fragment>
                                 }
                             />

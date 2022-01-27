@@ -1,27 +1,36 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom'
+import { useApp } from '../../../context/AppContext'
 // mui
 import { Card, Typography, Box, Stack, IconButton, Divider, Chip, Link, Button } from '@mui/material'
-import EuroIcon from '@mui/icons-material/Euro';
+import CollectionsIcon from '@mui/icons-material/Collections';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 // rest
 import Map from '../../Map'
 
 const TherapeutInfoTab = () => {
+    const { selectedTherapeut } = useApp()
+    const { images: practicePhotos } = selectedTherapeut
+
     return (
         <Card sx={{ p: 2 }}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-                <IconButton color="primary">
-                    <EuroIcon />
-                </IconButton>
-                <Typography variant="subtitle1">
-                    Abrechnungsarten
-                    <Typography variant="body2">
-                        Kassenpatienten, <br /> Privatpatienten und Selbstzahler
+            <Box>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                    <IconButton color="primary">
+                        <CollectionsIcon />
+                    </IconButton>
+                    <Typography variant="subtitle1">
+                        Praxis Photos
                     </Typography>
-                </Typography>
-            </Stack>
+                </Stack>
+                <Stack direction="row" spacing={2}>
+                    {practicePhotos.map(practicePhoto => {
+                        return <Box sx={{ height: 80, width: 80, borderRadius: 1, overflow: 'hidden' }}>
+                            <img src={practicePhoto} style={{ height: '100%', width: '100%' }} />
+                        </Box>
+                    })}
+                </Stack>
+            </Box>
             <Divider sx={{ my: 1 }} />
             <Box>
                 <Stack direction="row" alignItems="center" spacing={1}>

@@ -9,7 +9,7 @@ const Icon3 = '/static/illustrations/hormones.png'
 
 const AppHeroBoxes = () => {
     return (
-        <Box mb={5} sx={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translate(-50%, 0)' }}>
+        <Box>
             <Stack direction="row" spacing={2} justifyContent="center">
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between" >
@@ -18,12 +18,12 @@ const AppHeroBoxes = () => {
                             <img alt="hero-icon" src={Icon1} sx={{ height: '100%', width: '100%' }} />
                         </Box>
                     </Stack>
-                    <Button
+                    {/* <Button
                         variant="contained"
                         sx={{ width: '90%', mx: 'auto', position: 'absolute', bottom: '1rem' }}
                     >
                         Mehr
-                    </Button>
+                    </Button> */}
                 </Card>
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between" >
@@ -32,12 +32,12 @@ const AppHeroBoxes = () => {
                             <img alt="hero-icon" src={Icon2} sx={{ height: '100%', width: '100%' }} />
                         </Box>
                     </Stack>
-                    <Button
+                    {/* <Button
                         variant="contained"
                         sx={{ width: '90%', mx: 'auto', position: 'absolute', bottom: '1rem' }}
                     >
                         Mehr
-                    </Button>
+                    </Button> */}
                 </Card>
                 <Card sx={{ width: 400, height: 200, p: 2 }}>
                     <Stack direction="row" justifyContent="space-between"  >
@@ -46,12 +46,12 @@ const AppHeroBoxes = () => {
                             <img alt="hero-icon" src={Icon3} sx={{ height: '100%', width: '100%' }} />
                         </Box>
                     </Stack>
-                    <Button
+                    {/* <Button
                         variant="contained"
                         sx={{ width: '90%', mx: 'auto', position: 'absolute', bottom: '1rem' }}
                     >
                         Mehr
-                    </Button>
+                    </Button> */}
                 </Card>
             </Stack>
         </Box>

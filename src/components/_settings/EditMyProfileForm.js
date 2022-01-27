@@ -57,7 +57,7 @@ const EditMyProfileForm = () => {
                         />
                     </Stack>
                     <Box mt={3}>
-                        <Button variant="contained" color="error" onClick={() => navigate('/categories')}>Zurück</Button>
+                        <Button variant="contained" color="error" onClick={() => navigate('/home')}>Zurück</Button>
                     </Box>
                 </Box>
             </LocalizationProvider>

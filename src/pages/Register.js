@@ -43,7 +43,7 @@ export default function Register() {
   return (
     <RootStyle title="Register | Minimal-UI">
       <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/categories">
+        <Link underline="none" variant="subtitle2" component={RouterLink} to="/home">
           Home
         </Link>
       </AuthLayout>

@@ -22,16 +22,16 @@ export default function Router() {
   const match = true
 
   const MAIN_ROLE_ROUTING = [
-    { path: '/', element: <Navigate to="/categories" /> },
-    { path: '/categories', element: <Home /> },
+    { path: '/', element: <Navigate to="/home" /> },
+    { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
   ]
 
   const SUB_ROLE_ROUTING = [
-    { path: '/', element: <Navigate to="/categories" /> },
-    { path: '/categories', element: <Home /> },
+    { path: '/', element: <Navigate to="/home" /> },
+    { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
@@ -53,12 +53,12 @@ export default function Router() {
         <DashboardLayout />
       </Suspense>,
     children: [
-      { path: '/', element: <Navigate to="/categories" /> },
+      { path: '/', element: <Navigate to="/home" /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
       { path: '/forgotPassword', element: <ForgotPassword /> },
       { path: '/resetPassword/:token', element: <ResetPassword /> },
-      { path: '/categories', element: <Home /> },
+      { path: '/home', element: <Home /> },
       { path: '/therapeuts', element: <FilteredTherapeuts /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },
       { path: '404', element: <NotFound /> },

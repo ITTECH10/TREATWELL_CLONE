@@ -46,7 +46,7 @@ export default function LoginForm() {
           if (res.status === 200) {
             setBtnLoading(false)
             setAuthenticated(true);
-            navigate('/categories')
+            navigate('/home')
             setToken(res.data.token)
           }
         })

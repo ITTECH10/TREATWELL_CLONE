@@ -52,7 +52,7 @@ export default function ResetPasswordForm() {
                     if (res.status === 200) {
                         setBtnLoading(false)
                         setToken(res.data.token)
-                        navigate('/categories')
+                        navigate('/home')
                     }
                 }).catch(err => {
                     setBtnLoading(false)
