@@ -41,7 +41,7 @@ export default function AddPacientModal({ onlyIcon }) {
     const { setGeneralAlertOptions, therapeuts, setTherapeuts } = useApp()
     const [fields, setFields] = React.useState(initialFields)
 
-    console.log(fields)
+    // console.log(fields)
 
     const formData = new FormData()
     formData.append('name', fields.name)
@@ -64,9 +64,9 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    for (var value of formData.entries()) {
-        console.log(value);
-    }
+    // for (var value of formData.entries()) {
+    //     console.log(value);
+    // }
 
     const handleClickOpen = () => {
         setOpen(true);

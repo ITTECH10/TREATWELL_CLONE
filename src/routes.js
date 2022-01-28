@@ -12,6 +12,7 @@ const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
+const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
@@ -25,6 +26,7 @@ export default function Router() {
     { path: '/', element: <Navigate to="/home" /> },
     { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
+    { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -33,6 +35,7 @@ export default function Router() {
     { path: '/', element: <Navigate to="/home" /> },
     { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
+    { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -60,6 +63,7 @@ export default function Router() {
       { path: '/resetPassword/:token', element: <ResetPassword /> },
       { path: '/home', element: <Home /> },
       { path: '/therapeuts', element: <FilteredTherapeuts /> },
+      { path: '/therapeuts/near', element: <TherapeutsNear /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> }
