@@ -37,13 +37,14 @@ export default function ButtonAppBar() {
     const menuItems = !authenticated ? (
         <Box>
             <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
             <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
         </Box>
     ) : (
         <Box>
             <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
-            <Button color="inherit" onClick={() => navigate('/home')}>Meine Termine</Button>
+            <Button color="inherit" onClick={() => navigate('/profile/therapies')}>Meine Termine</Button>
             <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
             <Button color="inherit" onClick={() => logout()}>Log out</Button>
         </Box>

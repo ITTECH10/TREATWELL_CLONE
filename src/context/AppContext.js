@@ -19,6 +19,8 @@ const AppContextProvider = ({ children }) => {
     const [appLoading, setAppLoading] = useState(false)
     const [tempTherapeuts, setTempTherapeuts] = useState([])
     const [therapeuts, setTherapeuts] = useState([])
+    const [therapies, setTherapies] = useState([])
+    const [myTherapies, setMyTherapies] = useState([])
     const [selectedTherapeut, setSelectedTherapeut] = useState({})
     const [generalAlertOptions, setGeneralAlertOptions] = useState({
         open: false,
@@ -80,6 +82,10 @@ const AppContextProvider = ({ children }) => {
         setTempTherapeuts,
         therapeuts,
         setTherapeuts,
+        therapies,
+        setTherapies,
+        myTherapies,
+        setMyTherapies,
         selectedTherapeut,
         setSelectedTherapeut,
         getAvailableTherapeuts

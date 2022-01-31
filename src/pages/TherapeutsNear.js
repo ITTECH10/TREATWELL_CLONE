@@ -1,6 +1,6 @@
 import React from 'react';
 // mui
-import { Grid, Paper, Card, Typography, Button, Box, Stack, Container, TextField } from '@mui/material'
+import { Grid, Card, Typography, Box, Container, TextField } from '@mui/material'
 // rest
 import Page from '../components/Page'
 import NearTherapeutsMap from '../components/NearTherapeutsMap'

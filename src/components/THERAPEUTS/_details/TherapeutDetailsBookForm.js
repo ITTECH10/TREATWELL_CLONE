@@ -53,6 +53,8 @@ function StaticDatePickerLandscape() {
                 openTo="day"
                 value={value}
                 shouldDisableDate={disabledDays}
+                disablePast
+                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
                 onChange={(newValue) => {
                     setValue(newValue);
                 }}

@@ -15,9 +15,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function BookTherapyDialog({ therapeut, date }) {
     const [btnLoading, setBtnLoading] = useState(false)
-    const { authenticated, setGeneralAlertOptions } = useApp()
+    const { authenticated, setGeneralAlertOptions, getCurrentPacient, therapies, setTherapies } = useApp()
     const [open, setOpen] = useState(false);
     const theme = useTheme()
+
+    console.log(date)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,18 +33,25 @@ export default function BookTherapyDialog({ therapeut, date }) {
         e.preventDefault()
         setBtnLoading(true)
 
-        const newAppointment = {
+        const newTherapy = {
             name: therapeut.specializedServices,
             category: therapeut.specializedIn,
-            appointedAt: date,
+            date,
             therapeut: therapeut._id
         }
 
-        axios.post(`/therapies/${therapeut._id}`, { ...newAppointment })
+        axios.post(`/therapies/${therapeut._id}`, { ...newTherapy })
             .then(res => {
                 if (res.status === 201) {
                     setOpen(false)
                     setBtnLoading(false)
+
+                    setTherapies([...therapies, res.data.newTherapy])
+
+                    // CONSIDER LATER
+                    // const updatedLogedInPacient = {...logedInPacient, therapies: [...logedInPacient.therapies, res.data.newTherapy]}
+                    getCurrentPacient()
+
                     setGeneralAlertOptions({
                         open: true,
                         severity: 'success',

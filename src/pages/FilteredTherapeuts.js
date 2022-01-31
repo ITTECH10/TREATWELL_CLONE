@@ -12,7 +12,7 @@ import { Typography, Box, Stack, Card, Button, Grid, Container, Avatar } from '@
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 //////////////////////////
 import BookTherapyDialog from '../components/THERAPIES/BookTherapyDialog'
-import AddTherapyDialog from '../components/THERAPIES/AddTherapyDialog'
+// import AddTherapyDialog from '../components/THERAPIES/AddTherapyDialog'
 
 const FilteredTherapeuts = () => {
     const { therapeuts, setSelectedTherapeut } = useApp()
@@ -56,6 +56,7 @@ const FilteredTherapeuts = () => {
                                 <Grid item xs={8}>
                                     {therapeut.available ?
                                         <StaticDatePickerLandscape
+                                            therapeut={therapeut}
                                             setPreventMultipleComponentChange={setPreventMultipleComponentChange}
                                         /> :
                                         <Typography variant="subtitle1">Keine Verfügbarkeit...</Typography>}
@@ -71,8 +72,14 @@ const FilteredTherapeuts = () => {
 
 export default FilteredTherapeuts
 
-function StaticDatePickerLandscape({ setPreventMultipleComponentChange }) {
+function StaticDatePickerLandscape({ setPreventMultipleComponentChange, therapeut }) {
     const [value, setValue] = React.useState(new Date());
+
+    const myDates = therapeut.availableBookingDates[0].split(',')
+
+    const disabledDays = (date) => {
+        return !myDates.map((myDate) => new Date(myDate).getTime()).includes(date.getTime());
+    };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -81,7 +88,8 @@ function StaticDatePickerLandscape({ setPreventMultipleComponentChange }) {
                 openTo="day"
                 value={value}
                 disablePast
-                shouldDisableDate={isWeekend}
+                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
+                shouldDisableDate={disabledDays}
                 onChange={(newValue) => {
                     setValue(newValue);
                     setPreventMultipleComponentChange(newValue)

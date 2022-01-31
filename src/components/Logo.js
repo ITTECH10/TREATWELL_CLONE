@@ -12,5 +12,5 @@ Logo.propTypes = {
 export default function Logo({ sx }) {
   const navigate = useNavigate()
 
-  return <Box component="img" onClick={() => navigate('/home')} src="/static/logo.png" sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }} />;
+  return <Box component="img" onClick={() => navigate('/home')} src="/static/logo-white.svg" sx={{ width: 110, height: 40, cursor: 'pointer', ...sx }} />;
 }

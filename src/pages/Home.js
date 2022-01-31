@@ -148,7 +148,7 @@ const Home = () => {
             <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', mt: 3, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
             </Stack>
-            <AppHowToVideo />
+            {/* <AppHowToVideo /> */}
             <AppContactFooter />
             {
                 roleMatch && <ActionButton

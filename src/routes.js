@@ -14,6 +14,7 @@ const Home = lazy(() => import('./pages/Home'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
+const MyAppointedTherapies = lazy(() => import('./pages/MyAppointedTherapies'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const NotFound = lazy(() => import('./pages/Page404'))
@@ -27,7 +28,9 @@ export default function Router() {
     { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
+    { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
+    { path: '/profile/therapies', element: <MyAppointedTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -36,7 +39,9 @@ export default function Router() {
     { path: '/home', element: <Home /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
+    { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
+    { path: '/profile/therapies', element: <MyAppointedTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext'
 import axios from 'axios';
 //mui
@@ -14,12 +14,17 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+// import DatePicker from '@mui/lab/DatePicker';
+import DatePicker from "react-multi-date-picker";
+
 //rest
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 
 const initialFields = {
     name: '',
+    age: '',
+    availableBookingDates: '',
     email: '',
     phone: '',
     address: '',
@@ -36,15 +41,17 @@ const initialFields = {
 }
 
 export default function AddPacientModal({ onlyIcon }) {
-    const [open, setOpen] = React.useState(false)
-    const [btnLoading, setBtnLoading] = React.useState(false)
+    const [open, setOpen] = useState(false)
+    const [btnLoading, setBtnLoading] = useState(false)
     const { setGeneralAlertOptions, therapeuts, setTherapeuts } = useApp()
-    const [fields, setFields] = React.useState(initialFields)
-
-    // console.log(fields)
+    const [fields, setFields] = useState(initialFields)
+    const [value, setValue] = useState([]);
+    const availableBookingDates = value.map(el => `${el.year}/${el.month.number}/${el.day}`)
 
     const formData = new FormData()
     formData.append('name', fields.name)
+    formData.append('age', fields.age)
+    formData.append('availableBookingDates', availableBookingDates)
     formData.append('email', fields.email)
     formData.append('phone', fields.phone)
     formData.append('biography', fields.biography)
@@ -201,6 +208,25 @@ export default function AddPacientModal({ onlyIcon }) {
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
+                            />
+                            <TextField
+                                name="age"
+                                required
+                                margin="dense"
+                                id="age"
+                                label="Alter"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <DatePicker
+                                name="availableBookingDates"
+                                placeholder="Available booking dates"
+                                value={value}
+                                onChange={setValue}
+                                minDate={new Date()}
+                                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
+                                style={{}}
                             />
                             <TextField
                                 margin="dense"

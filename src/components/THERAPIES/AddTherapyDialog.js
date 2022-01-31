@@ -26,8 +26,7 @@ export default function AddAppointmentModal({ appointedAt }) {
     const [open, setOpen] = React.useState(false)
     const [btnLoading, setBtnLoading] = React.useState(false)
     const [fields, setFields] = React.useState(initialFields)
-    const { tempTherapeuts } = useApp()
-    const { setGeneralAlertOptions } = useApp()
+    const { therapeuts, setGeneralAlertOptions, therapies, setTherapies, setMyTherapies, myTherapies } = useApp()
     // const disabledSubmitCheck = (Object.values(fields).some(field => field === '') && !pacientId) || (Object.values(fields).slice(0, 2).some(field => field === '') && pacientId)
 
     let addAppointmentTimeout
@@ -37,7 +36,7 @@ export default function AddAppointmentModal({ appointedAt }) {
         }
     }, [])
 
-    const autoCompleteTherapeuts = tempTherapeuts.map(therapeut => {
+    const autoCompleteTherapeuts = therapeuts.map(therapeut => {
         return {
             id: therapeut._id,
             // label: `${therapeut.firstName} ${therapeut.lastName}`
@@ -68,6 +67,9 @@ export default function AddAppointmentModal({ appointedAt }) {
         axios.post(`/therapies`, { ...fields })
             .then(res => {
                 if (res.status === 201) {
+                    setTherapies([...therapies, res.data.newTherapy])
+                    setMyTherapies([...myTherapies, res.data.newTherapy])
+
                     setOpen(false)
                     setBtnLoading(false)
                     setGeneralAlertOptions({

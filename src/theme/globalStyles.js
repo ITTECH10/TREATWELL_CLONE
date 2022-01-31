@@ -36,6 +36,10 @@ export default function GlobalStyles() {
           height: '400px',
           width: '100%'
         },
+        '.mapboxgl-popup-close-button': {
+          right: '2px !important',
+          fontSize: 20
+        },
         input: {
           '&[type=number]': {
             MozAppearance: 'textfield',
