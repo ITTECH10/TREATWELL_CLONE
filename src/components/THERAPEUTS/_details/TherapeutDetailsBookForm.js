@@ -1,15 +1,17 @@
 import React from 'react';
 //mui
 import { Card, Box, TextField, Button, Typography, Stack } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import isWeekend from 'date-fns/isWeekend';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
 
 const TherapeutDetailsBookForm = () => {
+    const theme = useTheme()
     return (
         <Card sx={{ overflow: 'hidden' }}>
-            <Stack justifyContent="center" alignItems="center" sx={{ height: '3.5rem', backgroundColor: '#1890FF', color: '#fff', px: 1 }}>
+            <Stack justifyContent="center" alignItems="center" sx={{ height: '3.5rem', backgroundColor: theme.palette.primary.main, color: '#fff', px: 1 }}>
                 <Typography variant="h6">
                     Termin Online Verainbaren
                 </Typography>
