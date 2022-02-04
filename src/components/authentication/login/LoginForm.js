@@ -41,7 +41,7 @@ export default function LoginForm() {
     validationSchema: LoginSchema,
     onSubmit: () => {
       setBtnLoading(true)
-      axios.post('/pacients/login', { ...values })
+      axios.post('/users/login', { ...values })
         .then(res => {
           if (res.status === 200) {
             setBtnLoading(false)
@@ -50,7 +50,10 @@ export default function LoginForm() {
             setToken(res.data.token)
           }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err)
+          setBtnLoading(false)
+        })
     }
   });
 
@@ -105,7 +108,7 @@ export default function LoginForm() {
           size="large"
           type="submit"
           variant="contained"
-          loading={isSubmitting}
+          loading={btnLoading}
         >
           {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortzetzen'}
         </LoadingButton>

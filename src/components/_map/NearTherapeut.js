@@ -10,6 +10,7 @@ const NearTherapeut = ({ therapeut }) => {
     const [showPopup, togglePopup] = useState(false)
     const { coordinates } = therapeut.locationCoordinates
     const [long, lat] = coordinates
+    const name = `${therapeut.firstName} ${therapeut.lastName}`
 
     return (
         <Box onClick={() => togglePopup(true)}>
@@ -36,7 +37,7 @@ const NearTherapeut = ({ therapeut }) => {
                         </IconButton>
                     </Stack>
                     <Typography variant="subtitle2">{therapeut.specializedIn}</Typography>
-                    <Typography variant="subtitle2">Name: {therapeut.name}</Typography>
+                    <Typography variant="subtitle2">Name: {name}</Typography>
                     <Typography variant="subtitle2">Telefon: {therapeut.phone}</Typography>
                     <Stack>
                         <Button

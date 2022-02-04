@@ -88,8 +88,10 @@ const Home = () => {
     const match = useMediaQuery('(min-width:600px)');
     const roleMatch = isAdmin(logedInPacient)
 
-    const filteredTherapeuts = therapeuts.filter(therapeut => {
-        return (therapeut.name.toLowerCase().includes(fields.query.toLowerCase())
+    const filteredTherapeuts = therapeuts.length > 0 && therapeuts.filter(therapeut => {
+        const name = `${therapeut.firstName} ${therapeut.lastName}`
+
+        return (name.toLowerCase().includes(fields.query.toLowerCase())
             || therapeut.specializedServices.toLowerCase().includes(fields.query.toLowerCase())
             || therapeut.specializedIn.toLowerCase().includes(fields.query.toLowerCase())
             || therapeut.location.toLowerCase().includes(fields.query.toLowerCase()))
@@ -148,7 +150,7 @@ const Home = () => {
             <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '100%', mt: 3, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
             </Stack>
-            <AppHowToVideo />
+            {/* <AppHowToVideo /> */}
             <AppContactFooter />
             {
                 roleMatch && <ActionButton

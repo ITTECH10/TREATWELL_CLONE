@@ -15,7 +15,7 @@ import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
 // ----------------------------------------------------------------------
 
 export default function App() {
-  const { setAuthenticated, token, logout, appLoading, getAvailableTherapeuts, getCurrentPacient, authenticated } = useApp()
+  const { setAuthenticated, token, logout, getAvailableTherapeuts, getCurrentPacient } = useApp()
 
   // ONLY RUN IF WE ARE AUTHENTICATED, AND WE CAN ONLY
   // BECOME AUTHENTICATED WITH A VALID TOKEN
@@ -47,12 +47,11 @@ export default function App() {
   ])
 
   return (
-    !appLoading ?
-      <ThemeConfig>
-        <ScrollToTop />
-        <GlobalStyles />
-        <BaseOptionChartStyle />
-        <Router />
-      </ThemeConfig> : <Loader />
+    <ThemeConfig>
+      <ScrollToTop />
+      <GlobalStyles />
+      <BaseOptionChartStyle />
+      <Router />
+    </ThemeConfig>
   );
 }

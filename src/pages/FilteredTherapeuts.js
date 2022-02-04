@@ -1,31 +1,49 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import { useApp } from '../context/AppContext'
 import Page from '../components/Page'
 ///////////////////////// material
-import isWeekend from 'date-fns/isWeekend';
+// import isWeekend from 'date-fns/isWeekend';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import StaticDatePicker from '@mui/lab/StaticDatePicker';
+// import StaticDatePicker from '@mui/lab/StaticDatePicker';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 import { Typography, Box, Stack, Card, Button, Grid, Container, Avatar } from '@mui/material'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 //////////////////////////
 import BookTherapyDialog from '../components/THERAPIES/BookTherapyDialog'
 // import AddTherapyDialog from '../components/THERAPIES/AddTherapyDialog'
+import { Calendar } from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
 
 const FilteredTherapeuts = () => {
-    const { therapeuts, setSelectedTherapeut } = useApp()
+    const [value, setValue] = useState(new Date());
+    const { therapeuts, setSelectedTherapeut, setAppLoading, getOneTherapeut } = useApp()
     const navigate = useNavigate()
-    // FIX LATER
-    const [preventMultipleComponentDateChange, setPreventMultipleComponentChange] = useState(new Date())
 
-    const therapeutSelectionHandler = (therapeut) => {
-        if (therapeut) {
-            setSelectedTherapeut(therapeut)
-            navigate(`/therapeuts/${therapeut._id}`)
-        }
-    }
+    // const therapeutSelectionHandler = (therapeut) => {
+    //     if (therapeut) {
+    //         setSelectedTherapeut(therapeut)
+    //         navigate(`/therapeuts/${therapeut._id}`)
+    //     }
+    // }
+
+    // const therapeutSelectionHandler = id => {
+    //     setAppLoading(true)
+    //     axios.get(`/therapeuts/${id}`)
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 setAppLoading(false)
+    //                 setSelectedTherapeut(res.data.therapeut)
+    //                 navigate(`/therapeuts/${id}`)
+    //             }
+    //         }).catch(err => {
+    //             setAppLoading(false)
+    //             console.log(err)
+    //         })
+    // }
 
     return (
         <Page title="Rezultati Pretrage">
@@ -33,10 +51,13 @@ const FilteredTherapeuts = () => {
                 <Typography my={2} variant="h5" align="center">Kardio-MRT (Herz-MRT) in Deutschland : Buchen Sie den passenden Spezialisten online.</Typography>
                 {
                     therapeuts.map(therapeut => {
-                        return <Card sx={{ p: 2, mb: 2, height: 400 }}>
+                        // const myDates = therapeut.availableBookingDates[0].split(',')
+                        // const disableBookedHours = myDates.map(myDate => new Date(myDate).getHours()).includes(value.getHours())
+
+                        return <Card sx={{ p: 2, mb: 2 }} key={therapeut._id}>
                             <Grid container>
                                 <Grid item xs={4} sx={{ pt: 2 }}>
-                                    <Stack onClick={() => therapeutSelectionHandler(therapeut)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
+                                    <Stack onClick={() => getOneTherapeut(therapeut._id)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
                                         <Avatar alt="therapeut name" src={therapeut.image} sx={{ height: 50, width: 50 }} />
                                         <Typography variant="h6">
                                             {therapeut.name}
@@ -50,14 +71,18 @@ const FilteredTherapeuts = () => {
                                         <Typography variant="subtitle2">
                                             82211 Herrsching am Ammersee
                                         </Typography>
-                                        <BookTherapyDialog therapeut={therapeut} date={preventMultipleComponentDateChange} />
+                                        <BookTherapyDialog
+                                            therapeut={therapeut}
+                                        />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={8}>
                                     {therapeut.available ?
                                         <StaticDatePickerLandscape
-                                            therapeut={therapeut}
-                                            setPreventMultipleComponentChange={setPreventMultipleComponentChange}
+                                            value={value}
+                                            setValue={setValue}
+                                        // myDates={myDates}
+                                        // disableBookedHours={disableBookedHours}
                                         /> :
                                         <Typography variant="subtitle1">Keine Verfügbarkeit...</Typography>}
                                 </Grid>
@@ -72,31 +97,32 @@ const FilteredTherapeuts = () => {
 
 export default FilteredTherapeuts
 
-function StaticDatePickerLandscape({ setPreventMultipleComponentChange, therapeut }) {
-    const [value, setValue] = React.useState(new Date());
+function StaticDatePickerLandscape({ value, setValue, myDates, disableBookedHours }) {
+    const handleChange = (date) => {
+        const formatedDate = `${date.year}/${date.month}/${date.day} ${date.hour}:${date.minute}:${date.second}`
+        setValue(new Date(formatedDate))
+    }
 
-    const myDates = therapeut.availableBookingDates[0].split(',')
+    // const input = document.querySelector('.rmdp-time-picker div input')
 
-    const disabledDays = (date) => {
-        return !myDates.map((myDate) => new Date(myDate).getTime()).includes(date.getTime());
-    };
+    // if (input.value === '00') {
+    //     input.setAttribute('disabled', '')
+    // }
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <StaticDatePicker
-                orientation="landscape"
-                openTo="day"
-                value={value}
-                disablePast
-                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
-                shouldDisableDate={disabledDays}
-                onChange={(newValue) => {
-                    setValue(newValue);
-                    setPreventMultipleComponentChange(newValue)
-                }}
-                renderInput={(params) => <TextField {...params} />}
-            />
-        </LocalizationProvider>
+        <Calendar
+            value={value}
+            onChange={handleChange}
+            plugins={[<TimePicker />]}
+            maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
+            minDate={new Date()}
+        // mapDays={({ date }) => {
+        //     let props = {}
+        //     const adaptedDate = `${date.year}/${date.month}/${date.day}`
+
+        //     if (!myDates.map(myDate => new Date(myDate).getTime()).includes(new Date(adaptedDate).getTime())) props.disabled = true
+        //     return props
+        // }}
+        />
     );
 }
-

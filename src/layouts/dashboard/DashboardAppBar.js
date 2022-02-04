@@ -7,6 +7,8 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+// rest
+import { hasPermission, actions } from '../../utils/DataProviders/ROLES/permissions'
 
 import Logo from '../../components/Logo'
 
@@ -32,7 +34,10 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 export default function ButtonAppBar() {
     const navigate = useNavigate()
-    const { authenticated, logout } = useApp()
+    const { authenticated, logout, logedInPacient } = useApp()
+
+    // check if currently loged in user is a therapeut
+    const isTherapeut = hasPermission(logedInPacient, actions.IS_THERAPEUT)
 
     const menuItems = !authenticated ? (
         <Box>
@@ -41,10 +46,15 @@ export default function ButtonAppBar() {
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
             <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
         </Box>
+    ) : isTherapeut ? (
+        <Box>
+            <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="inherit" onClick={() => logout()}>Log out</Button>
+        </Box>
     ) : (
         <Box>
             <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
-            <Button color="inherit" onClick={() => navigate('/profile/therapies')}>Meine Termine</Button>
+            <Button color="inherit" onClick={() => navigate('/profile/appointments')}>Meine Termine</Button>
             <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
             <Button color="inherit" onClick={() => logout()}>Log out</Button>
         </Box>

@@ -14,8 +14,10 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 import Map from '../../Map'
 
 const TherapeutInfoTab = () => {
-    const { selectedTherapeut } = useApp()
-    const { images: practicePhotos, website, phone, email, address } = selectedTherapeut
+    const { selectedTherapeut, logedInPacient } = useApp()
+    const { images: practicePhotos, website, phone, email, address, locationCoordinates } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '' }
+    const lng = locationCoordinates && locationCoordinates.coordinates[0]
+    const lat = locationCoordinates && locationCoordinates.coordinates[1]
 
     return (
         <Card sx={{ p: 2 }}>
@@ -31,7 +33,7 @@ const TherapeutInfoTab = () => {
                 <Stack mx={2} direction="row" spacing={2}>
                     {practicePhotos.map(practicePhoto => {
                         return <Box sx={{ height: 100, width: 200, borderRadius: 1, overflow: 'hidden' }}>
-                            <img src={practicePhoto} style={{ height: '100%', width: '100%' }} />
+                            <img src={practicePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
                         </Box>
                     })}
                 </Stack>
@@ -132,7 +134,7 @@ const TherapeutInfoTab = () => {
                     <Typography variant="subtitle1" mb={1}>
                         Telefon: {phone}
                     </Typography>
-                    <Map />
+                    <Map lng={lng} lat={lat} />
                 </Box>
             </Box>
             <Divider sx={{ mt: 2, mb: 1 }} />

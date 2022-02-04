@@ -1,4 +1,5 @@
 import { Suspense, lazy } from 'react'
+import { hasPermission, actions } from './utils/DataProviders/ROLES/permissions'
 import Loader from './components/Loader'
 
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -8,20 +9,23 @@ import { useApp } from './context/AppContext'
 import DashboardLayout from './layouts/dashboard';
 // ---------------------------------------------------------------------
 
-const Login = lazy(() => import('./pages/Login'))
+// const Login = lazy(() => import('./pages/Login'))
+import Login from './pages/Login'
+const LoginTherapeuts = lazy(() => import('./pages/LoginTherapeuts'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
 const MyAppointedTherapies = lazy(() => import('./pages/MyAppointedTherapies'))
+const TherapeutMyTherapies = lazy(() => import('./pages/TherapeutMyTherapies'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
-  const { authenticated } = useApp()
-  const match = true
+  const { authenticated, logedInPacient } = useApp()
+  const mainRoleMatch = hasPermission(logedInPacient, actions.MAIN_ROLE_UI_VISIBILITY)
 
   const MAIN_ROLE_ROUTING = [
     { path: '/', element: <Navigate to="/home" /> },
@@ -30,18 +34,19 @@ export default function Router() {
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
-    { path: '/profile/therapies', element: <MyAppointedTherapies /> },
+    { path: '/profile/appointments', element: <MyAppointedTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
 
   const SUB_ROLE_ROUTING = [
     { path: '/', element: <Navigate to="/home" /> },
-    { path: '/home', element: <Home /> },
+    { path: '/home', element: <TherapeutDetails /> },
     { path: '/therapeuts', element: <FilteredTherapeuts /> },
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
-    { path: '/profile/therapies', element: <MyAppointedTherapies /> },
+    { path: '/profile/appointments', element: <MyAppointedTherapies /> },
+    // { path: '/profile/therapies', element: <TherapeutMyTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -51,7 +56,7 @@ export default function Router() {
       <Suspense fallback={<Loader />}>
         <DashboardLayout />
       </Suspense>,
-    children: match ? MAIN_ROLE_ROUTING : SUB_ROLE_ROUTING
+    children: mainRoleMatch ? MAIN_ROLE_ROUTING : SUB_ROLE_ROUTING
   }
 
   let nonAuthConfig = {
@@ -63,6 +68,7 @@ export default function Router() {
     children: [
       { path: '/', element: <Navigate to="/home" /> },
       { path: '/login', element: <Login /> },
+      { path: '/authenticate/therapeuts', element: <LoginTherapeuts /> },
       { path: '/register', element: <Register /> },
       { path: '/forgotPassword', element: <ForgotPassword /> },
       { path: '/resetPassword/:token', element: <ResetPassword /> },

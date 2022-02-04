@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 // mui
 import { Box, Stack, Typography, Button, Avatar, Container, Tabs, Tab, Card, Grid } from '@mui/material'
@@ -7,35 +8,42 @@ import { useTheme } from '@mui/material/styles';
 // rest
 import TherapeutInfoTab from '../components/THERAPEUTS/_details/TherapeutInfoTab'
 import TherapeutDetailsBookForm from '../components/THERAPEUTS/_details/TherapeutDetailsBookForm'
-
-const Header = styled(Stack)(({ theme }) => ({
-    // [theme.breakpoints.up('md')]: {
-    //     flexDirection: 'row'
-    // }
-}))
+import Page from '../components/Page'
+import { hasPermission, actions } from '../utils/DataProviders/ROLES/permissions'
 
 const TherapeutDetails = () => {
     const theme = useTheme()
-    const { selectedTherapeut } = useApp()
-    const { image, name, specializedIn, phone, location } = selectedTherapeut
+    const { pathname } = useLocation();
+    const { selectedTherapeut, logedInPacient, authenticated, getOneTherapeut } = useApp()
+    const { image, name, specializedIn, phone, location: therapeutLocation, role } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', role: '', location: '' }
+    const therapeutId = pathname.split('/')[2]
+    const roleMatch = hasPermission(logedInPacient, actions.MAIN_ROLE_UI_VISIBILITY)
+
+    React.useEffect(() => {
+        if (authenticated && roleMatch) {
+            getOneTherapeut(therapeutId)
+        }
+    }, [getOneTherapeut, role])
 
     return (
-        <Box sx={{ width: '100%', position: 'relative' }}>
-            <Box px={30} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
-                <Header direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
-                    <Box sx={{ height: 135, width: 135, overflow: 'hidden' }}>
-                        <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={image} />
-                    </Box>
-                    <Box>
-                        <Typography variant="h4">{name}</Typography>
-                        <Typography variant="subtitle2">{specializedIn}</Typography>
-                        <Typography variant="subtitle2">Location: {location}</Typography>
-                        <Typography variant="subtitle2">Telefon: {phone}</Typography>
-                    </Box>
-                </Header>
+        <Page title="Therapeut Profile">
+            <Box sx={{ width: '100%', position: 'relative' }}>
+                <Box px={30} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
+                    <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
+                        <Box sx={{ height: 135, width: 135, overflow: 'hidden' }}>
+                            <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={image} />
+                        </Box>
+                        <Box>
+                            <Typography variant="h4">{name}</Typography>
+                            <Typography variant="subtitle2">{specializedIn}</Typography>
+                            <Typography variant="subtitle2">Location: {therapeutLocation}</Typography>
+                            <Typography variant="subtitle2">Telefon: {phone}</Typography>
+                        </Box>
+                    </Stack>
+                </Box>
+                <NavTabs />
             </Box>
-            <NavTabs />
-        </Box>
+        </Page>
     )
 };
 

@@ -10,19 +10,25 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 // import DatePicker from '@mui/lab/DatePicker';
-import DatePicker from "react-multi-date-picker";
-
-//rest
+// rest
+import { Calendar } from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
+import { generatePassword } from '../../utils/helpers'
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 
 const initialFields = {
-    name: '',
+    firstName: '',
+    lastName: '',
     age: '',
     availableBookingDates: '',
     email: '',
@@ -40,19 +46,25 @@ const initialFields = {
     bulk: ''
 }
 
+const password = generatePassword()
+
 export default function AddPacientModal({ onlyIcon }) {
     const [open, setOpen] = useState(false)
     const [btnLoading, setBtnLoading] = useState(false)
     const { setGeneralAlertOptions, therapeuts, setTherapeuts } = useApp()
     const [fields, setFields] = useState(initialFields)
     const [value, setValue] = useState([]);
-    const availableBookingDates = value.map(el => `${el.year}/${el.month.number}/${el.day}`)
+    const [openCalendar, setOpenCalendar] = useState(false)
+    const availableBookingDates = value.map(el => new Date(`${el.year}/${el.month.number}/${el.day} ${el.hour}:${el.minute}:${el.second}`))
 
     const formData = new FormData()
-    formData.append('name', fields.name)
+    formData.append('firstName', fields.firstName)
+    formData.append('lastName', fields.lastName)
     formData.append('age', fields.age)
     formData.append('availableBookingDates', availableBookingDates)
     formData.append('email', fields.email)
+    formData.append('password', password)
+    formData.append('confirmPassword', password)
     formData.append('phone', fields.phone)
     formData.append('biography', fields.biography)
     formData.append('website', fields.website)
@@ -71,8 +83,8 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    // for (var value of formData.entries()) {
-    //     console.log(value);
+    // for (var values of formData.entries()) {
+    //     console.log(values);
     // }
 
     const handleClickOpen = () => {
@@ -145,6 +157,10 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
+    const calendarVisibilityHandler = () => {
+        setOpenCalendar(prevState => !prevState)
+    }
+
     return (
         <>
             {onlyIcon ?
@@ -157,7 +173,7 @@ export default function AddPacientModal({ onlyIcon }) {
                     Novi Terapeut
                 </Button>
             }
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} >
                 <DialogTitle>Neuer Therapeut</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -184,27 +200,57 @@ export default function AddPacientModal({ onlyIcon }) {
                                 hidden
                                 onChange={handleImageBulkChange}
                             />
-                            <Button
-                                variant="contained"
-                                sx={{ mt: 1, mr: 1 }}
-                                onClick={openUploadHandler}
-                            >
-                                {fields.image !== '' ? 'Ändere das Bild' : 'Foto hinzufügen'}
-                            </Button>
-                            <Button
-                                variant="contained"
-                                sx={{ mt: 1 }}
-                                onClick={openBulkUploadHandler}
-                            >
-                                {fields.bulk !== '' ? 'Ändere Praxis Bilder' : 'Praxis Fotos hinzufügen'}
-                            </Button>
+                            <Stack direction="row" align="center" mt={1}>
+                                <Button
+                                    variant="contained"
+                                    sx={{ mr: 1 }}
+                                    onClick={openUploadHandler}
+                                >
+                                    {fields.image !== '' ? 'Ändere das Bild' : 'Foto hinzufügen'}
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    onClick={openBulkUploadHandler}
+                                >
+                                    {fields.bulk !== '' ? 'Ändere Praxis Bilder' : 'Praxis Fotos hinzufügen'}
+                                </Button>
+                                {/* <Tooltip title="Dodaj slobodne termine...">
+                                    <IconButton color="primary" onClick={calendarVisibilityHandler}>
+                                        <EventAvailableIcon />
+                                    </IconButton>
+                                </Tooltip> */}
+                            </Stack>
+                            {openCalendar &&
+                                <Box sx={{ mt: 2, position: 'absolute', top: '10.5rem', right: '2rem', zIndex: 10000 }}>
+                                    <Calendar
+                                        name="availableBookingDates"
+                                        minDate={new Date()}
+                                        maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
+                                        format="MM/DD/YYYY HH:mm"
+                                        value={value}
+                                        onChange={setValue}
+                                        on
+                                        plugins={[<TimePicker />]}
+                                    />
+                                </Box>
+                            }
                             <TextField
-                                name="name"
+                                name="firstName"
                                 required
                                 autoFocus
                                 margin="dense"
-                                id="name"
-                                label="Name"
+                                id="firstName"
+                                label="Vorname"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                name="lastName"
+                                required
+                                margin="dense"
+                                id="lastName"
+                                label="Nachname"
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
@@ -218,15 +264,6 @@ export default function AddPacientModal({ onlyIcon }) {
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
-                            />
-                            <DatePicker
-                                name="availableBookingDates"
-                                placeholder="Available booking dates"
-                                value={value}
-                                onChange={setValue}
-                                minDate={new Date()}
-                                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
-                                style={{}}
                             />
                             <TextField
                                 margin="dense"

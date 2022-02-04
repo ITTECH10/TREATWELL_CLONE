@@ -1,7 +1,10 @@
 import { actions, roles } from "./constants.js";
 
 const mappings = new Map();
+mappings.set(actions.MAIN_ROLE_UI_VISIBILITY, [roles.PACIENT, roles.ADMIN])
 mappings.set(actions.IS_ADMIN, [roles.ADMIN])
+mappings.set(actions.IS_THERAPEUT, [roles.THERAPEUT])
+mappings.set(actions.ADD_BOOKING_DATES, [roles.THERAPEUT])
 
 export const hasPermission = (user, action) => {
     if (!user?.role) {

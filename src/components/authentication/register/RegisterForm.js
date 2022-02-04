@@ -40,7 +40,7 @@ export default function RegisterForm() {
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
-      axios.post('/pacients/signup', { ...values })
+      axios.post('/users/signup', { ...values })
         .then(res => {
           if (res.status === 201) {
             setBtnLoading(false)

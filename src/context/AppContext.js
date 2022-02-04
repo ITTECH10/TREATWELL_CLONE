@@ -21,13 +21,15 @@ const AppContextProvider = ({ children }) => {
     const [therapeuts, setTherapeuts] = useState([])
     const [therapies, setTherapies] = useState([])
     const [myTherapies, setMyTherapies] = useState([])
-    const [selectedTherapeut, setSelectedTherapeut] = useState({})
+    const [selectedTherapeut, setSelectedTherapeut] = useState()
     const [generalAlertOptions, setGeneralAlertOptions] = useState({
         open: false,
         message: '',
         severity: '',
         hideAfter: 5000
     })
+
+    // console.log(logedInPacient)
 
     const getAvailableTherapeuts = useCallback(() => {
         axios.get('/therapeuts').then(res => {
@@ -37,14 +39,32 @@ const AppContextProvider = ({ children }) => {
         }).catch(err => console.log(err))
     }, [])
 
-    const getCurrentPacient = useCallback(() => {
-        axios.get('/pacients/me')
+    const getOneTherapeut = useCallback((id) => {
+        setAppLoading(true)
+        axios.get(`/therapeuts/${id}`)
             .then(res => {
                 if (res.status === 200) {
-                    setLogedInPacient(res.data.pacient)
+                    setAppLoading(false)
+                    setSelectedTherapeut(res.data.therapeut)
+                    navigate(`/therapeuts/${id}`)
+                }
+            }).catch(err => {
+                setAppLoading(false)
+                console.log(err)
+            })
+    }, [])
+
+    const getCurrentPacient = useCallback(() => {
+        setAppLoading(true)
+        axios.get('/users/me')
+            .then(res => {
+                if (res.status === 200) {
+                    setAppLoading(false)
+                    setLogedInPacient(res.data.user)
                 }
             })
             .catch(err => {
+                setAppLoading(false)
                 console.log(err)
             })
     }, [])
@@ -52,9 +72,10 @@ const AppContextProvider = ({ children }) => {
     // CONTINUE WORKING FROM HERE
     const logout = React.useCallback(() => {
         setAppLoading(true)
-        // FIND BETTER SOLUTION
-        setLogedInPacient()
-        axios.post('/pacients/logout')
+        // FIND BETTER SOLUTION // THIS IS A QUICK FIX
+        // setLogedInPacient()
+        // setSelectedTherapeut()
+        axios.post('/users/logout')
             .then(res => {
                 if (res.status === 200) {
                     localStorage.removeItem('token')
@@ -62,6 +83,7 @@ const AppContextProvider = ({ children }) => {
                     setAuthenticated(false)
                     setAppLoading(false)
                     navigate('/login')
+                    window.location.reload()
                 }
             }).catch(err => console.error(err))
     }, [setToken])
@@ -78,6 +100,7 @@ const AppContextProvider = ({ children }) => {
         setToken,
         getCurrentPacient,
         logedInPacient,
+        setLogedInPacient,
         tempTherapeuts,
         setTempTherapeuts,
         therapeuts,
@@ -88,6 +111,7 @@ const AppContextProvider = ({ children }) => {
         setMyTherapies,
         selectedTherapeut,
         setSelectedTherapeut,
+        getOneTherapeut,
         getAvailableTherapeuts
     }
 

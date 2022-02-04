@@ -39,12 +39,12 @@ const MainStyle = styled('div')(({ theme }) => ({
 
 export default function DashboardLayout() {
   const location = useLocation()
-  // const { authenticated } = useApp()
-  const match = location.pathname !== '/register' && location.pathname !== '/login'
+  const { appLoading } = useApp()
+  const match = location.pathname !== '/register' && location.pathname !== '/login' && location.pathname !== '/authenticate/therapeuts'
 
   return (
     <RootStyle>
-      {match && <DashboardAppBar />}
+      {match && !appLoading && <DashboardAppBar />}
       {/* <DashboardNavbar /> */}
       {/* <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} /> */}
       <MainStyle>
