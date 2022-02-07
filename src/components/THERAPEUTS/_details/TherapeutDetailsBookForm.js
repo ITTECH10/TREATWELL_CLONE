@@ -159,7 +159,7 @@ const TherapeutDetailsBookForm = () => {
                         size="large"
                         variant="contained"
                         fullWidth
-                        disabled={logedInPacient && selectedBookingDates ? selectedBookingDates.length === 0 : true}
+                        disabled={logedInPacient && selectedBookingDates ? availableBookingDates.length === selectedBookingDates.length : true}
                         loading={btnLoading}
                         onClick={updateTherapeutData}
                     >

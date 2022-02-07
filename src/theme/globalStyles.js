@@ -81,8 +81,8 @@ export default function GlobalStyles() {
           }
         },
         '.MuiPickersDay-root.Mui-disabled': {
-          background: theme.palette.primary.light,
-          color: `${theme.palette.background.paper} !important`
+          // background: theme.palette.primary.light,
+          // color: `${theme.palette.background.paper} !important`
         },
         input: {
           '&[type=number]': {

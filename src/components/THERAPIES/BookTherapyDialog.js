@@ -19,8 +19,6 @@ export default function BookTherapyDialog({ therapeut, date }) {
     const [open, setOpen] = useState(false);
     const theme = useTheme()
 
-    console.log(date)
-
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -65,9 +63,9 @@ export default function BookTherapyDialog({ therapeut, date }) {
     return (
         <div>
             {!authenticated && <Typography variant="subtitle2" color="error">Melden Sie sich an um einen Termin zu vereinbaren...</Typography>}
-            <Button variant="contained" onClick={handleClickOpen} disabled={!authenticated || !therapeut.available}>
+            {/* <Button variant="contained" onClick={handleClickOpen} disabled={!authenticated || !therapeut.available}>
                 Termin Vereinbaren
-            </Button>
+            </Button> */}
             <Dialog
                 open={open}
                 onClose={handleClose}
