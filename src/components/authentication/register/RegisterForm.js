@@ -14,7 +14,7 @@ import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
-  const { setAuthenticated, setToken } = useApp()
+  const { setAuthenticated, setToken, setLogedInPacient } = useApp()
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState()
   const [btnLoading, setBtnLoading] = useState(false)
@@ -47,6 +47,7 @@ export default function RegisterForm() {
             setAuthenticated(true);
             navigate('/home')
             setToken(res.data.token)
+            setLogedInPacient(res.data.newUser)
           }
         })
         .catch(err => console.log(err))

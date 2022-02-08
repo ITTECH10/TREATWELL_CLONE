@@ -9,6 +9,9 @@ import Page from '../components/Page';
 import { MHidden } from '../components/@material-extend';
 import { LoginForm } from '../components/authentication/login';
 import AuthSocial from '../components/authentication/AuthSocial';
+import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
+
+const LoginImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644329310/login-illustration_g4zbpl.jpg', ['w_1024'])
 
 // ----------------------------------------------------------------------
 
@@ -53,7 +56,7 @@ export default function Login() {
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
             Hallo, willkommen zurück!
           </Typography>
-          <img src="/static/illustrations/login-illustration.jpg" alt="login" />
+          <img src={LoginImage} alt="login" />
         </SectionStyle>
       </MHidden>
 

@@ -4,12 +4,13 @@ import { Box, Card, CardMedia, Typography } from '@mui/material'
 
 const AppHowToVideo = () => {
     return (
-        <Box sx={{ p: 3 }}>
+        // fix later margin appropriatelly
+        <Box sx={{ p: 3, mt: 17 }}>
             <Card sx={{ display: 'flex' }}>
                 <Card sx={{ borderRadius: '0', width: '55%' }}>
                     <CardMedia
                         component="video"
-                        src="/static/videos/home-video-alt-2.mp4"
+                        src="/static/videos/home-video.mp4"
                         alt="Live from space album cover"
                         autoPlay
                         muted

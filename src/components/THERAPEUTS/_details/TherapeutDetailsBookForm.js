@@ -102,7 +102,7 @@ const TherapeutDetailsBookForm = () => {
         <Card sx={{ overflow: 'hidden' }}>
             <Stack justifyContent="center" alignItems="center" sx={{ height: '3.5rem', backgroundColor: theme.palette.primary.main, color: '#fff', px: 1 }}>
                 <Typography variant="h6">
-                    Termin Online Verainbaren
+                    Wann sind sie verfügbar?
                 </Typography>
             </Stack>
             <Box p={2}>

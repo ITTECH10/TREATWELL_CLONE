@@ -11,9 +11,10 @@ import DashboardLayout from './layouts/dashboard';
 
 // const Login = lazy(() => import('./pages/Login'))
 import Login from './pages/Login'
+import Home from './pages/Home'
+// const Home = lazy(() => import('./pages/Home'))
 const LoginTherapeuts = lazy(() => import('./pages/LoginTherapeuts'))
 const Register = lazy(() => import('./pages/Register'))
-const Home = lazy(() => import('./pages/Home'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
@@ -21,6 +22,7 @@ const MyAppointedTherapies = lazy(() => import('./pages/MyAppointedTherapies'))
 const TherapeutMyTherapies = lazy(() => import('./pages/TherapeutMyTherapies'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
@@ -35,6 +37,7 @@ export default function Router() {
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
+    { path: '/privacy-policy', element: <PrivacyPolicy /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -46,6 +49,7 @@ export default function Router() {
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
+    { path: '/privacy-policy', element: <PrivacyPolicy /> },
     // { path: '/profile/therapies', element: <TherapeutMyTherapies /> },
     { path: '*', element: <NotFound /> }
   ]

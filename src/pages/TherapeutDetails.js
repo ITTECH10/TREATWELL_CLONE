@@ -2,14 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 // mui
-import { Box, Stack, Typography, Button, Avatar, Container, Tabs, Tab, Card, Grid } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { Box, Stack, Typography, Container, Tabs, Tab, Grid } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 // rest
 import TherapeutInfoTab from '../components/THERAPEUTS/_details/TherapeutInfoTab'
 import TherapeutDetailsBookForm from '../components/THERAPEUTS/_details/TherapeutDetailsBookForm'
 import Page from '../components/Page'
 import { hasPermission, actions } from '../utils/DataProviders/ROLES/permissions'
+import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
 const TherapeutDetails = () => {
     const theme = useTheme()
@@ -18,6 +18,7 @@ const TherapeutDetails = () => {
     const { image, name, specializedIn, phone, location: therapeutLocation, role } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', role: '', location: '' }
     const therapeutId = pathname.split('/')[2]
     const roleMatch = hasPermission(logedInPacient, actions.MAIN_ROLE_UI_VISIBILITY)
+    const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
 
     React.useEffect(() => {
         if (authenticated && roleMatch) {
@@ -31,7 +32,7 @@ const TherapeutDetails = () => {
                 <Box px={30} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
                     <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
                         <Box sx={{ height: 135, width: 135, overflow: 'hidden' }}>
-                            <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={image} />
+                            <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} />
                         </Box>
                         <Box>
                             <Typography variant="h4">{name}</Typography>
@@ -48,8 +49,31 @@ const TherapeutDetails = () => {
 };
 
 function TabPanel(props) {
+    const { logedInPacient } = useApp()
     const { children, value, index, ...other } = props;
+    const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
     // const matches = useMediaQuery
+
+    const content = roleMatch ? (
+        <Container maxWidth="lg" sx={{ p: 2 }}>
+            <Grid container spacing={2}>
+                <Grid item xs={7}>
+                    {children}
+                </Grid>
+                <Grid item xs={5}>
+                    <TherapeutDetailsBookForm />
+                </Grid>
+            </Grid>
+        </Container>
+    ) : (
+        <Container maxWidth="lg" sx={{ p: 2 }}>
+            <Grid container>
+                <Grid item xs={12}>
+                    {children}
+                </Grid>
+            </Grid>
+        </Container>
+    )
 
     return (
         <div
@@ -60,16 +84,7 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Container maxWidth="lg" sx={{ p: 2 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={7}>
-                            {children}
-                        </Grid>
-                        <Grid item xs={5}>
-                            <TherapeutDetailsBookForm />
-                        </Grid>
-                    </Grid>
-                </Container>
+                content
             )}
         </div>
     );

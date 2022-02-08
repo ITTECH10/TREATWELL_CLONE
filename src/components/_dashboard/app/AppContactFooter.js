@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom'
 // mui
-import { Box, Stack, Typography, Button, TextField, IconButton } from '@mui/material'
+import { Box, Stack, Typography, IconButton, Link } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -21,7 +22,7 @@ const AppContactFooter = () => {
                     <Stack>
                         <Typography>Telefon: 0049-833-372</Typography>
                         <Typography>Adresse: Wiesbaden Strasse 38822 Elfman</Typography>
-                        <Typography>Impressum</Typography>
+                        <Link sx={{ color: '#fff' }} component={RouterLink} to="/privacy-policy">Impressum</Link>
                     </Stack>
                     {/* <TextField
                         placeholder="E-mail"

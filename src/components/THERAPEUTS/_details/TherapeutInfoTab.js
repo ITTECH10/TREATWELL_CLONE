@@ -1,23 +1,26 @@
 import React from 'react';
 import { useApp } from '../../../context/AppContext'
 // mui
-import { Card, Typography, Box, Stack, IconButton, Divider, List, ListItem, ListItemText, Button, Avatar } from '@mui/material'
+import { Card, Typography, Box, Stack, IconButton, Divider, List, ListItem, ListItemText, Button } from '@mui/material'
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ArticleIcon from '@mui/icons-material/Article';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SchoolIcon from '@mui/icons-material/School';
 import StarIcon from '@mui/icons-material/Star';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
+import Rating from '@mui/material/Rating';
+
 // rest
 import Map from '../../Map'
+import { hasPermission, actions } from '../../../utils/DataProviders/ROLES/permissions'
+import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 
 const TherapeutInfoTab = () => {
     const { selectedTherapeut, logedInPacient } = useApp()
-    const { images: practicePhotos, website, phone, email, address, locationCoordinates } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '' }
+    const { images: practicePhotos, website, phone, email, address, locationCoordinates, reviews } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '', reviews: [] }
     const lng = locationCoordinates && locationCoordinates.coordinates[0]
     const lat = locationCoordinates && locationCoordinates.coordinates[1]
+    const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
 
     return (
         <Card sx={{ p: 2 }}>
@@ -32,9 +35,17 @@ const TherapeutInfoTab = () => {
                 </Stack>
                 <Stack mx={2} direction="row" spacing={2}>
                     {practicePhotos.map(practicePhoto => {
-                        return <Box sx={{ height: 100, width: 200, borderRadius: 1, overflow: 'hidden' }}>
-                            <img src={practicePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
-                        </Box>
+                        const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto)
+
+                        return roleMatch ? (
+                            <Box sx={{ height: 100, width: 200, borderRadius: 1, overflow: 'hidden' }}>
+                                <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
+                            </Box>
+                        ) : (
+                            <Box sx={{ height: 200, width: 350, borderRadius: 1, overflow: 'hidden' }}>
+                                <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
+                            </Box>
+                        )
                     })}
                 </Stack>
             </Box>
@@ -134,7 +145,7 @@ const TherapeutInfoTab = () => {
                     <Typography variant="subtitle1" mb={1}>
                         Telefon: {phone}
                     </Typography>
-                    <Map lng={lng} lat={lat} />
+                    {/* <Map lng={lng} lat={lat} /> */}
                 </Box>
             </Box>
             <Divider sx={{ mt: 2, mb: 1 }} />
@@ -150,59 +161,29 @@ const TherapeutInfoTab = () => {
                     </Box>
                 </Stack>
                 <Box mx={2}>
-                    <Stack direction="row" spacing={2} alignItems="center">
-                        <Stack direction="row" spacing={2} alignItems="center">
-                            <Avatar src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" />
-                            <Typography variant="subtitle1">
-                                Alice: &nbsp; Die therapie ist OK!
-                            </Typography>
-                        </Stack>
-                        <Box>
-                            <IconButton color="primary">
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarOutlineIcon />
-                                <StarOutlineIcon />
-                            </IconButton>
-                        </Box>
-                    </Stack>
-                    <Divider sx={{ mt: 2, mb: 1 }} />
-                    <Stack direction="row" spacing={2} alignItems="center">
-                        <Stack direction="row" spacing={2} alignItems="center">
-                            <Avatar src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
-                            <Typography variant="subtitle1">
-                                Daniel: &nbsp; Excellente Therapie, ich fulle mich super!
-                            </Typography>
-                        </Stack>
-                        <Box>
-                            <IconButton color="primary">
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                            </IconButton>
-                        </Box>
-                    </Stack>
-                    <Divider sx={{ mt: 2, mb: 1 }} />
-                    <Stack direction="row" spacing={2} alignItems="center">
-                        <Stack direction="row" spacing={2} alignItems="center">
-                            <Avatar src="https://images.unsplash.com/photo-1563306406-e66174fa3787?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" />
-                            <Typography variant="subtitle1">
-                                Gabriela: &nbsp; Ich bin mit dieser Therapie nicht zufrieden!
-                            </Typography>
-                        </Stack>
-                        <Box>
-                            <IconButton color="primary">
-                                <StarIcon />
-                                <StarOutlineIcon />
-                                <StarOutlineIcon />
-                                <StarOutlineIcon />
-                                <StarOutlineIcon />
-                            </IconButton>
-                        </Box>
-                    </Stack>
+                    {reviews && reviews.map((review, index) => {
+                        return (
+                            <>
+                                <Stack direction="row" spacing={2} alignItems="center" key={review._id}>
+                                    <Stack alignItems="center">
+                                        <Typography variant="subtitle1" noWrap>
+                                            {`${review.pacient.firstName} ${review.pacient.lastName}`}
+                                        </Typography>
+                                        <Box>
+                                            <Rating
+                                                value={review.rating}
+                                                readOnly
+                                            />
+                                        </Box>
+                                    </Stack>
+                                    <Typography noWrap sx={{ textOverflow: 'ellipsis' }}>
+                                        {review.review}
+                                    </Typography>
+                                </Stack>
+                                {index !== reviews.length - 1 && <Divider sx={{ mt: 2, mb: 1 }} />}
+                            </>
+                        )
+                    })}
                 </Box>
             </Box>
         </Card>
