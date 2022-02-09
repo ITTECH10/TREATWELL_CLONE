@@ -20,6 +20,8 @@ import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 const notOptimizedLandingImage = '/static/illustrations/BildTitel1.jpg'
 
 const MainStyle = styled(Stack)(({ theme }) => ({
+    position: 'relative',
+    height: 'calc(100vh - 64px)',
     [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
         height: 'calc(75vh - 64px)'
@@ -29,10 +31,13 @@ const MainStyle = styled(Stack)(({ theme }) => ({
 const ContentBox = styled(Stack)(({ theme }) => ({
     padding: '2rem',
     color: theme.palette.background.paper,
+    zIndex: 2,
+    marginTop: '4rem',
     [theme.breakpoints.up('md')]: {
         width: '50%',
         marginLeft: '4rem',
         marginBottom: '3rem',
+        marginTop: 0,
         padding: 0,
         position: 'absolute',
         top: '29%',
@@ -47,9 +52,12 @@ const FormGroupBox = styled(Stack)(({ theme }) => ({
 }));
 
 const ImageBox = styled(Stack)(({ theme }) => ({
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    zIndex: 1,
     [theme.breakpoints.up('md')]: {
-        width: '100%',
-        height: '100%'
+        position: 'static'
     }
 }));
 
@@ -61,17 +69,16 @@ const LocationQueryTextField = styled(TextField)(({ theme }) => ({
 }))
 
 const SearchButton = styled(Button)(({ theme }) => ({
-    marginTop: '1rem',
     [theme.breakpoints.up('md')]: {
-        marginTop: 0,
         width: '17%'
     }
 }))
 
 const AdaptedList = styled(List)(({ theme }) => ({
-    width: 340,
-    maxWidth: 360,
-    maxHeight: 250,
+    width: 'auto',
+    // maxWidth: 360,
+    maxHeight: 230,
+    // borderRadius: 8,
     overflowY: 'scroll',
     bgcolor: 'background.paper',
     position: 'relative',
@@ -81,7 +88,8 @@ const AdaptedList = styled(List)(({ theme }) => ({
         // maxWidth: 360,
         position: 'absolute',
         top: '12rem',
-        left: '0'
+        left: '0',
+        maxHeight: 250
     }
 }))
 
@@ -127,10 +135,10 @@ const Home = () => {
         <Page title="Home">
             <MainStyle alignItems="center">
                 <ContentBox>
-                    <Typography variant="h2">
+                    <Typography variant="h3" sx={{ fontSize: !match && '2.1rem', lineHeight: !match && '1.1' }}>
                         Buchen Sie gerne einen Termin
                     </Typography>
-                    <Typography variant="body2" sx={{ color: '#fafafa' }}>
+                    <Typography variant="body2" sx={{ color: theme.palette.background.paper, fontSize: !match && '.6rem' }}>
                         Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
                     </Typography>
                     <FormGroupBox mt={2}>
@@ -138,11 +146,13 @@ const Home = () => {
                             name="query"
                             placeholder="Name, Symptom, Dienst"
                             onChange={handleChange}
+                            size={!match && 'small'}
                             sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1 }}
                         />
                         <LocationQueryTextField
                             name="locationQuery"
                             onChange={handleChange}
+                            size={!match && 'small'}
                             placeholder={`Standort: Berlin`}
                             sx={{ backgroundColor: theme.palette.background.paper, borderRadius: 1 }}
                         />
@@ -153,21 +163,20 @@ const Home = () => {
                                 filteredTherapeuts={filteredTherapeuts}
                             />
                         }
-                        <SearchButton variant="contained" onClick={() => filterTherapeutsHandler()}>
+                        <SearchButton sx={{ marginTop: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match && '1rem' }} variant="contained" onClick={() => filterTherapeutsHandler()}>
                             Zuchen
                         </SearchButton>
                     </FormGroupBox>
                 </ContentBox>
-                {match &&
-                    <ImageBox>
-                        <img style={{ width: '100%', opacity: .8 }} src={notOptimizedLandingImage} />
-                    </ImageBox>}
-            </MainStyle>
-            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', position: 'relative', zIndex: 999, opacity: .8, width: '81%', my: 3, mx: 'auto', borderRadius: 2, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
+                <ImageBox>
+                    <img style={{ width: '100%', opacity: .8, height: !match && '100%' }} src={notOptimizedLandingImage} />
+                </ImageBox>
+            </MainStyle >
+            <Stack alignItems="center" justifyContent="center" sx={{ height: match ? '3rem' : '2.5rem', position: 'relative', zIndex: 999, opacity: .8, width: '81%', my: 3, mx: 'auto', borderRadius: 2, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">IHRE VORTEILE</Typography>
             </Stack>
             <AppHeroBoxes />
-            <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '81%', position: 'relative', zIndex: 999, opacity: .8, my: 3, mx: 'auto', borderRadius: 2, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
+            <Stack alignItems="center" justifyContent="center" sx={{ height: match ? '3rem' : '2.5rem', width: '81%', position: 'relative', zIndex: 999, opacity: .8, mt: 3, mb: !match ? 0 : 3, mx: 'auto', borderRadius: 2, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
             </Stack>
             <AppHowToVideo />

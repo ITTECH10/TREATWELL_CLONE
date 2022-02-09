@@ -6,8 +6,6 @@ mappings.set(actions.IS_ADMIN, [roles.ADMIN])
 mappings.set(actions.IS_THERAPEUT, [roles.THERAPEUT])
 mappings.set(actions.ADD_BOOKING_DATES, [roles.THERAPEUT])
 
-console.log(mappings)
-
 export const hasPermission = (user, action) => {
     if (!user?.role) {
         return false;
