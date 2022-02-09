@@ -170,7 +170,7 @@ const Home = () => {
             <Stack alignItems="center" justifyContent="center" sx={{ height: '3rem', width: '81%', position: 'relative', zIndex: 999, opacity: .8, my: 3, mx: 'auto', borderRadius: 2, backgroundColor: theme.palette.primary.main, color: '#fff' }}>
                 <Typography variant="h6">WIE FUNKCIONIERT GESUNDO24</Typography>
             </Stack>
-            {/* <AppHowToVideo /> */}
+            <AppHowToVideo />
             <AppContactFooter />
             {
                 roleMatch && <ActionButton

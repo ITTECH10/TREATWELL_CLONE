@@ -21,7 +21,11 @@ const TherapeutDetails = () => {
     const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
 
     React.useEffect(() => {
-        if (authenticated && roleMatch) {
+        if (!roleMatch && !authenticated) {
+            getOneTherapeut(therapeutId)
+        }
+
+        if (roleMatch && authenticated) {
             getOneTherapeut(therapeutId)
         }
     }, [getOneTherapeut, role])

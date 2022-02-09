@@ -8,10 +8,8 @@ import NearTherapeutsMap from '../components/NearTherapeutsMap'
 const TherapeutsNear = () => {
     return (
         <Page title="Therapeuten Nahe">
-            <Container maxWidth="xxl" sx={{ my: 4 }}>
-                <Card p={2}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={5}>
+            <Grid container>
+                {/* <Grid item xs={5}>
                             <Box p={3}>
                                 <Typography variant="h3">Therapeuten Nahe</Typography>
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -24,13 +22,11 @@ const TherapeutsNear = () => {
                                     />
                                 </Box>
                             </Box>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <NearTherapeutsMap />
-                        </Grid>
-                    </Grid>
-                </Card>
-            </Container>
+                        </Grid> */}
+                <Grid item xs={12}>
+                    <NearTherapeutsMap />
+                </Grid>
+            </Grid>
         </Page>
     )
 };

@@ -11,10 +11,9 @@ const AppHowToVideo = () => {
                     <CardMedia
                         component="video"
                         src="/static/videos/home-video.mp4"
-                        alt="Live from space album cover"
-                        autoPlay
-                        muted
-                        loop
+                        controls
+                        // autoPlay
+                        // loop
                         sx={{ width: '100%' }}
                     />
                 </Card>

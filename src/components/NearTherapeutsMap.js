@@ -9,18 +9,18 @@ const NearTherapeutsMap = () => {
     const { therapeuts } = useApp()
 
     const [viewport, setViewport] = React.useState({
-        longitude: 13.38333,
-        latitude: 52.51667,
-        zoom: 12,
+        longitude: 10.0183432948567,
+        latitude: 51.1334813439932,
+        zoom: 6,
         mapboxApiAccessToken: token,
         width: "100%",
-        height: "calc(100vh - 128px)"
+        height: "calc(100vh - 64px)"
     });
 
     return (
         // MAP HEIGHT CALCULATED 100vh - (AppBar height = 64px + container top and bottom margin 32 + 32 = 64px)
         <ReactMapGL mapStyle="mapbox://styles/mapbox/streets-v11" {...viewport} onViewportChange={setViewport}>
-            {therapeuts.map(therapeut => {
+            {therapeuts && therapeuts.map(therapeut => {
                 return <NearTherapeut
                     therapeut={therapeut}
                 />

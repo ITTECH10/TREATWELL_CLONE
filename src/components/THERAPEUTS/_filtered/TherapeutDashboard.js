@@ -7,18 +7,21 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import BookTherapyDialog from '../../THERAPIES/BookTherapyDialog'
 import BookFreeDate from './BookFreeDate'
 import DateTimeTabsSwitcher from './DateTimeTabsSwitcher'
+import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 
 const TherapeutDashboard = ({ therapeut }) => {
     const { getOneTherapeut } = useApp()
     const [value, setValue] = React.useState(0);
     const [dateValue, setDateValue] = React.useState(new Date());
 
+    const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
+
     return (
         <Card sx={{ p: 2, mb: 2 }} key={therapeut._id}>
             <Grid container>
                 <Grid item xs={4} sx={{ pt: 2 }}>
                     <Stack onClick={() => getOneTherapeut(therapeut._id)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
-                        <Avatar alt="therapeut name" src={therapeut.image} sx={{ height: 50, width: 50 }} />
+                        <Avatar alt="therapeut name" src={optimizedTherapeutAvatarImage} sx={{ height: 50, width: 50 }} />
                         <Typography variant="h6">
                             {`${therapeut.firstName} ${therapeut.lastName}`}
                         </Typography>
