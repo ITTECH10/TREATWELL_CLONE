@@ -135,7 +135,7 @@ const Home = () => {
         <Page title="Home">
             <MainStyle alignItems="center">
                 <ContentBox sx={{ mt: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 0 : 8, md: 0 } }}>
-                    <Box sx={{ display: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && 'none' } }}>
+                    <Box sx={{ display: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match && 'none' } }}>
                         <Typography variant="h3" sx={{ fontSize: !match && '2.1rem', lineHeight: !match && '1.1' }}>
                             Buchen Sie gerne einen Termin
                         </Typography>
@@ -143,7 +143,7 @@ const Home = () => {
                             Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
                         </Typography>
                     </Box>
-                    <FormGroupBox mt={{ xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 0 : 2 }}>
+                    <FormGroupBox mt={{ xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match ? 0 : 2 }}>
                         <TextField
                             name="query"
                             placeholder="Name, Symptom, Dienst"
