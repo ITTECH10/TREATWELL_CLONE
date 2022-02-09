@@ -22,7 +22,7 @@ const CardBox = styled(Card)(({ theme }) => ({
 const AppHeroBoxes = () => {
     return (
         <Box>
-            <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 2 }} justifyContent="center">
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 2 }} justifyContent="center" alignItems={{ xs: 'center', md: 'stretch' }}>
                 <CardBox>
                     <Stack direction={{ xs: 'column', md: 'row' }} justifyContent="space-between" alignItems={{ xs: 'center', md: 'stretch' }} >
                         <Typography sx={{ mb: { xs: 2, md: 0 } }} variant="h5">Geprüfte Therapeuten</Typography>

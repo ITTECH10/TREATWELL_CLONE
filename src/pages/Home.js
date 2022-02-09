@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 //////////////////////////
-import { TextField, Stack, Button, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
+import { TextField, Stack, Button, Typography, Avatar, ListItemAvatar, Box, ListItemText, Divider, ListItem, List, useMediaQuery } from '@mui/material'
 import { styled, useTheme } from '@mui/material/styles'
 //////////////////////////
 import Page from '../components/Page'
@@ -32,7 +32,7 @@ const ContentBox = styled(Stack)(({ theme }) => ({
     padding: '2rem',
     color: theme.palette.background.paper,
     zIndex: 2,
-    marginTop: '4rem',
+    // marginTop: '4rem',
     [theme.breakpoints.up('md')]: {
         width: '50%',
         marginLeft: '4rem',
@@ -77,7 +77,7 @@ const SearchButton = styled(Button)(({ theme }) => ({
 const AdaptedList = styled(List)(({ theme }) => ({
     width: 'auto',
     // maxWidth: 360,
-    maxHeight: 230,
+    maxHeight: 210,
     // borderRadius: 8,
     overflowY: 'scroll',
     bgcolor: 'background.paper',
@@ -134,14 +134,16 @@ const Home = () => {
     return (
         <Page title="Home">
             <MainStyle alignItems="center">
-                <ContentBox>
-                    <Typography variant="h3" sx={{ fontSize: !match && '2.1rem', lineHeight: !match && '1.1' }}>
-                        Buchen Sie gerne einen Termin
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: theme.palette.background.paper, fontSize: !match && '.6rem' }}>
-                        Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
-                    </Typography>
-                    <FormGroupBox mt={2}>
+                <ContentBox sx={{ mt: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 0 : 8, md: 0 } }}>
+                    <Box sx={{ display: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && 'none' } }}>
+                        <Typography variant="h3" sx={{ fontSize: !match && '2.1rem', lineHeight: !match && '1.1' }}>
+                            Buchen Sie gerne einen Termin
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: theme.palette.background.paper, fontSize: !match && '.6rem' }}>
+                            Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
+                        </Typography>
+                    </Box>
+                    <FormGroupBox mt={{ xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 0 : 2 }}>
                         <TextField
                             name="query"
                             placeholder="Name, Symptom, Dienst"
