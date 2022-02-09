@@ -1,16 +1,28 @@
-import { Marker, Popup } from 'react-map-gl'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useApp } from '../../context/AppContext'
+import { Marker, Popup } from 'react-map-gl'
 //mui
 import { Box, Avatar, Typography, IconButton, Stack, Button } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
+import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
 
 const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
 const NearTherapeut = ({ therapeut }) => {
+    const navigate = useNavigate()
+    const { setTherapeuts } = useApp()
     const [showPopup, togglePopup] = useState(false)
     const { coordinates } = therapeut.locationCoordinates
     const [long, lat] = coordinates
     const name = `${therapeut.firstName} ${therapeut.lastName}`
+
+    const optimizedAvatarImage = manipulateCloudinaryImage(therapeut.image)
+
+    const bookTherapyHandler = () => {
+        setTherapeuts([therapeut])
+        navigate('/therapeuts')
+    }
 
     return (
         <Box onClick={() => togglePopup(true)}>
@@ -26,7 +38,7 @@ const NearTherapeut = ({ therapeut }) => {
                 anchor="bottom" >
                 <Box>
                     <Stack direction="row" mb={1} justifyContent="space-between">
-                        <Avatar src={therapeut.image} sx={{ height: 50, width: 50 }} />
+                        <Avatar src={optimizedAvatarImage} sx={{ height: 50, width: 50 }} />
                         <IconButton
                             style={{ backgroundColor: 'transparent' }}
                             size="small"
@@ -52,6 +64,7 @@ const NearTherapeut = ({ therapeut }) => {
                         <Button
                             variant="contained"
                             size="small"
+                            onClick={bookTherapyHandler}
                         >
                             Termin Vereinbaren
                         </Button>

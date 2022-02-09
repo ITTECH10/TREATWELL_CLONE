@@ -16,8 +16,8 @@ import AppContactFooter from '../components/_dashboard/app/AppContactFooter'
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
 // const optimizedLandingImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644307359/BildTitel1_1_sv4ifc.jpg', ['w_3500'])
-const notOptimizedLandingImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644307359/BildTitel1_1_sv4ifc.jpg', ['w_5000'])
-// const notOptimizedLandingImage = '/static/illustrations/BildTitel1.jpg'
+// const notOptimizedLandingImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644307359/BildTitel1_1_sv4ifc.jpg', ['w_5000'])
+const notOptimizedLandingImage = '/static/illustrations/BildTitel1.jpg'
 
 const MainStyle = styled(Stack)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {

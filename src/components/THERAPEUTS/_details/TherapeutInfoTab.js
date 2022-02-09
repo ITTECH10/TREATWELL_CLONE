@@ -145,7 +145,7 @@ const TherapeutInfoTab = () => {
                     <Typography variant="subtitle1" mb={1}>
                         Telefon: {phone}
                     </Typography>
-                    {/* <Map lng={lng} lat={lat} /> */}
+                    <Map lng={lng} lat={lat} />
                 </Box>
             </Box>
             <Divider sx={{ mt: 2, mb: 1 }} />
