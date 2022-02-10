@@ -2,10 +2,10 @@ import React from 'react';
 // mui
 import { Box, Card, CardMedia, Typography } from '@mui/material'
 
-const AppHowToVideo = () => {
+const HomeWelcomeVideo = () => {
     return (
         // fix later margin appropriatelly
-        <Box sx={{ p: 3, mt: { xs: 0, lg: 17 } }}>
+        <Box p={3}>
             <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
                 <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' } }}>
                     <CardMedia
@@ -28,4 +28,4 @@ const AppHowToVideo = () => {
     )
 };
 
-export default AppHowToVideo;
+export default HomeWelcomeVideo;

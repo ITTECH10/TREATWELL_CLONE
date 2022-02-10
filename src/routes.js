@@ -19,7 +19,7 @@ const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
 const MyAppointedTherapies = lazy(() => import('./pages/MyAppointedTherapies'))
-const TherapeutMyTherapies = lazy(() => import('./pages/TherapeutMyTherapies'))
+const BecomePartner = lazy(() => import('./pages/BecomePartner'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
@@ -80,6 +80,8 @@ export default function Router() {
       { path: '/therapeuts', element: <FilteredTherapeuts /> },
       { path: '/therapeuts/near', element: <TherapeutsNear /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },
+      { path: '/privacy-policy', element: <PrivacyPolicy /> },
+      { path: '/become-partner', element: <BecomePartner /> },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> }
     ]
