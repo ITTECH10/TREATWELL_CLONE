@@ -54,11 +54,11 @@ const HomeFooter = () => {
     return (
         <Box sx={{ color: theme.palette.background.paper, backgroundColor: theme.palette.primary.dark }}>
             <Stack
-                direction="row"
-                sx={{ height: 300, borderBottom: `1px solid ${theme.palette.background.paper}` }}
+                direction={{ xs: 'column', md: 'row' }}
+                sx={{ height: { xs: 'auto', md: 300 }, py: { xs: 2, md: 0 }, borderBottom: `1px solid ${theme.palette.background.paper}` }}
             >
                 <Stack
-                    sx={{ width: '50%', borderRight: `1px solid ${theme.palette.background.paper}` }}
+                    sx={{ width: { xs: '100%', md: '50%' }, borderRight: `1px solid ${theme.palette.background.paper}` }}
                     justifyContent="center"
                     alignItems="center"
                     spacing={2}
@@ -70,7 +70,7 @@ const HomeFooter = () => {
                     <Typography variant="h4">TELEFON</Typography>
                 </Stack>
                 <Stack
-                    sx={{ width: '50%' }}
+                    sx={{ width: { xs: '100%', md: '50%' } }}
                     justifyContent="center"
                     alignItems="center"
                     spacing={2}
@@ -83,12 +83,12 @@ const HomeFooter = () => {
                 </Stack>
             </Stack>
             <Stack
-                direction="row"
+                direction={{ xs: 'column', md: 'row' }}
                 justifyContent="space-around"
                 alignItems="center"
                 sx={{ height: 400, backgroundColor: theme.palette.info.dark, borderBottom: `1px solid ${theme.palette.background.paper}` }}
             >
-                <Box component="img" src={Logo} sx={{ width: 300 }} />
+                <Box component="img" src={Logo} sx={{ width: 300, mt: { xs: 2, md: 0 } }} />
                 <List>
                     {
                         generateListItems.map(listItem => {
