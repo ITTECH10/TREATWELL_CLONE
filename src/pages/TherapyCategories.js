@@ -10,8 +10,8 @@ const TherapyCategories = () => {
     return (
         <Page title="Therapie kategorien">
             <Container maxWidth="xl">
-                <Typography variant="h3" align="center">Therapien Kategorien</Typography>
-                <Grid container py={2} spacing={3}>
+                <Typography variant="h3" sx={{ mt: { xs: 3, md: 0 } }} align="center">Therapien Kategorien</Typography>
+                <Grid container direction={{ xs: 'column', md: 'row' }} py={2} spacing={3}>
                     {
                         categories.map(category => {
                             return <Grid item xs={3}>
