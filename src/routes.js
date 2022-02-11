@@ -19,6 +19,7 @@ const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
 const TherapeutDetails = lazy(() => import('./pages/TherapeutDetails'))
 const MyAppointedTherapies = lazy(() => import('./pages/MyAppointedTherapies'))
+const TherapyCategories = lazy(() => import('./pages/TherapyCategories'))
 const BecomePartner = lazy(() => import('./pages/BecomePartner'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
@@ -37,6 +38,7 @@ export default function Router() {
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
+    { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/privacy-policy', element: <PrivacyPolicy /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -49,6 +51,7 @@ export default function Router() {
     { path: '/therapeuts/near', element: <TherapeutsNear /> },
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
+    { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/privacy-policy', element: <PrivacyPolicy /> },
     // { path: '/profile/therapies', element: <TherapeutMyTherapies /> },
     { path: '*', element: <NotFound /> }
@@ -80,6 +83,7 @@ export default function Router() {
       { path: '/therapeuts', element: <FilteredTherapeuts /> },
       { path: '/therapeuts/near', element: <TherapeutsNear /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },
+      { path: '/therapies/categories', element: <TherapyCategories /> },
       { path: '/privacy-policy', element: <PrivacyPolicy /> },
       { path: '/become-partner', element: <BecomePartner /> },
       { path: '404', element: <NotFound /> },

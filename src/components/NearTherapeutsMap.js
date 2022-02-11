@@ -14,7 +14,7 @@ const NearTherapeutsMap = () => {
         zoom: 6,
         mapboxApiAccessToken: token,
         width: "100%",
-        height: "calc(100vh - 64px)"
+        height: 'calc(100vh + 64px)'
     });
 
     return (

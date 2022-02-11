@@ -16,12 +16,15 @@ const AdaptedList = styled(List)(({ theme }) => ({
     position: 'relative',
     zIndex: 30000,
     background: '#fff',
+    order: 1,
+    marginBottom: '1rem',
     [theme.breakpoints.up('md')]: {
         // maxWidth: 360,
         position: 'absolute',
         top: '12rem',
         left: '0',
-        maxHeight: 250
+        maxHeight: 250,
+        marginBottom: 0
     }
 }))
 

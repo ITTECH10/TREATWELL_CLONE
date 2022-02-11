@@ -4,10 +4,12 @@ import { useApp } from '../../context/AppContext'
 import { Outlet } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material'
 //
 // import DashboardNavbar from './DashboardNavbar';
 // import DashboardSidebar from './DashboardSidebar';
 import DashboardAppBar from './DashboardAppBar';
+import DashboardSwipeableDrawer from './DashboardSwipeableDrawer';
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +18,7 @@ const APP_BAR_MOBILE = 64;
 
 const RootStyle = styled('div')({
   // display: 'flex',
-  minHeight: 'calc(100% - 64px)',
+  // minHeight: 'calc(100% - 0px)',
   overflow: 'hidden',
   // marginTop: 64
 });
@@ -25,10 +27,11 @@ const MainStyle = styled('div')(({ theme }) => ({
   flexGrow: 1,
   overflow: 'auto',
   minHeight: '100%',
-  // paddingTop: APP_BAR_MOBILE + 24,
   paddingTop: APP_BAR_MOBILE,
+  // paddingTop: APP_BAR_MOBILE + 24,
   // paddingBottom: theme.spacing(10),
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.up('md')]: {
+    // paddingTop: APP_BAR_MOBILE,
     // paddingTop: APP_BAR_DESKTOP + 24,
     // paddingLeft: theme.spacing(2),
     // paddingRight: theme.spacing(2)
@@ -41,12 +44,11 @@ export default function DashboardLayout() {
   const location = useLocation()
   const { appLoading } = useApp()
   const match = location.pathname !== '/register' && location.pathname !== '/login' && location.pathname !== '/authenticate/therapeuts'
+  const dimensionsMatch = useMediaQuery('(min-width:600px)');
 
   return (
     <RootStyle>
-      {match && !appLoading && <DashboardAppBar />}
-      {/* <DashboardNavbar /> */}
-      {/* <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} /> */}
+      {!dimensionsMatch && !appLoading ? <DashboardSwipeableDrawer /> : <DashboardAppBar />}
       <MainStyle>
         <Outlet />
       </MainStyle>

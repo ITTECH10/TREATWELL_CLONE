@@ -43,6 +43,7 @@ export default function ButtonAppBar() {
         <Box>
             <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
             <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
+            <Button color="inherit" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
             <Button color="inherit" onClick={() => navigate('/register')}>Register</Button>
         </Box>
@@ -54,6 +55,7 @@ export default function ButtonAppBar() {
     ) : (
         <Box>
             <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="inherit" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
             <Button color="inherit" onClick={() => navigate('/profile/appointments')}>Meine Therapien</Button>
             <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
             <Button color="inherit" onClick={() => logout()}>Log out</Button>
