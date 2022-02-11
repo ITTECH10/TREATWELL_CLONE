@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function TherapyCategory({ category }) {
     return (
-        <Card sx={{ maxWidth: 345, height: 670 }}>
+        <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 height="140"
@@ -19,12 +19,12 @@ export default function TherapyCategory({ category }) {
                 <Typography gutterBottom variant="h5" component="div">
                     {category.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography sx={{ display: 'block', display: '-webkit-box', overflow: 'hidden', maxHeight: '8rem', '-webkit-box-orient': 'vertical', '-webkit-line-clamp': '4', textOverflow: 'ellipsis' }} variant="body2" color="text.secondary">
                     {category.description}
                 </Typography>
             </CardContent>
-            <CardActions sx={{ justifyContent: 'flex-end' }}>
-                <Button sx={{ position: 'absolute', bottom: '.5rem' }} href={category.link} target="_blank" variant="contained">
+            <CardActions>
+                <Button href={category.link} target="_blank" variant="contained">
                     Lern mehr
                 </Button>
             </CardActions>
