@@ -15,6 +15,7 @@ const AdaptedList = styled(List)(({ theme }) => ({
     bgcolor: 'background.paper',
     position: 'relative',
     zIndex: 30000,
+    borderRadius: 8,
     background: '#fff',
     order: 1,
     marginBottom: '1rem',
@@ -24,7 +25,8 @@ const AdaptedList = styled(List)(({ theme }) => ({
         top: '12rem',
         left: '0',
         maxHeight: 250,
-        marginBottom: 0
+        marginBottom: 0,
+        borderRadius: 0
     }
 }))
 
