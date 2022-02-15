@@ -22,7 +22,7 @@ const AdaptedList = styled(List)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
         // maxWidth: 360,
         position: 'absolute',
-        top: '12rem',
+        top: '9.5rem',
         left: '0',
         maxHeight: 250,
         marginBottom: 0,

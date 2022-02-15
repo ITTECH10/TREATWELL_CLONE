@@ -19,6 +19,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SpaIcon from '@mui/icons-material/Spa';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 // rest
 import { hasPermission, actions } from '../../utils/DataProviders/ROLES/permissions'
 
@@ -52,31 +53,37 @@ export default function DashboardSwipeableDrawer() {
         <List>
             <ListItem button onClick={() => navigate('/')}>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Home" />
             </ListItem>
+            <ListItem button onClick={() => navigate('/become-partner')}>
+                <ListItemIcon>
+                    <ContactMailIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText primary="Partner Werden" />
+            </ListItem>
             <ListItem button onClick={() => navigate('/therapeuts/near')}>
                 <ListItemIcon>
-                    <LocationOnIcon />
+                    <LocationOnIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Standorte" />
             </ListItem>
             <ListItem button onClick={() => navigate('/therapies/categories')}>
                 <ListItemIcon>
-                    <SpaIcon />
+                    <SpaIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Therapien" />
             </ListItem>
             <ListItem button onClick={() => navigate('/login')}>
                 <ListItemIcon>
-                    <LoginIcon />
+                    <LoginIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Login" />
             </ListItem>
             <ListItem button onClick={() => navigate('/register')}>
                 <ListItemIcon>
-                    <PersonAddIcon />
+                    <PersonAddIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Register" />
             </ListItem>
@@ -85,13 +92,19 @@ export default function DashboardSwipeableDrawer() {
         <List>
             <ListItem button onClick={() => navigate('/')}>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Home" />
             </ListItem>
+            <ListItem button onClick={() => navigate('/become-partner')}>
+                <ListItemIcon>
+                    <ContactMailIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText primary="Partner Werden" />
+            </ListItem>
             <ListItem button onClick={() => logout()}>
                 <ListItemIcon>
-                    <ExitToAppIcon />
+                    <ExitToAppIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Log out" />
             </ListItem>
@@ -100,31 +113,37 @@ export default function DashboardSwipeableDrawer() {
         <List>
             <ListItem button onClick={() => navigate('/')}>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Home" />
             </ListItem>
             <ListItem button onClick={() => navigate('/therapies/categories')}>
                 <ListItemIcon>
-                    <SpaIcon />
+                    <SpaIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Therapien" />
             </ListItem>
             <ListItem button onClick={() => navigate('/profile/appointments')}>
                 <ListItemIcon>
-                    <ListAltIcon />
+                    <ListAltIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Meine Therapien" />
             </ListItem>
+            <ListItem button onClick={() => navigate('/become-partner')}>
+                <ListItemIcon>
+                    <ContactMailIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText primary="Partner Werden" />
+            </ListItem>
             <ListItem button onClick={() => navigate('/therapeuts/near')}>
                 <ListItemIcon>
-                    <LocationOnIcon />
+                    <LocationOnIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Standorte" />
             </ListItem>
             <ListItem button onClick={() => logout()}>
                 <ListItemIcon>
-                    <ExitToAppIcon />
+                    <ExitToAppIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Log out" />
             </ListItem>

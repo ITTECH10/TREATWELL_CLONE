@@ -29,7 +29,7 @@ const ContentBox = styled(Stack)(({ theme }) => ({
         marginTop: 0,
         padding: 0,
         position: 'absolute',
-        top: '20%',
+        top: '24%',
         zIndex: 1000
     }
 }));
@@ -102,10 +102,10 @@ const HomeLandingPage = () => {
             <ContentBox sx={{ mt: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 0 : 8, md: 0 } }}>
                 <Box sx={{ display: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match && 'none' } }}>
                     <Typography variant="h3" sx={{ fontSize: !match && '2.1rem', lineHeight: !match && '1.1' }}>
-                        Buchen Sie gerne einen Termin
+                        Die besten Heilpraktiker in Ihrer Nähe!
                     </Typography>
                     <Typography variant="body2" sx={{ color: theme.palette.background.paper, fontSize: !match && '.6rem' }}>
-                        Es ist eine seit langem bekannte Tatsache, dass ein Leser beim Betrachten des Layouts durch den lesbaren Inhalt einer Seite abgelenkt wird. Der Punkt bei der Verwendung von Lorem Ipsum ist, dass es eine mehr oder weniger normale Verteilung von Buchstaben hat, im Gegensatz zur Verwendung von „Content here“.
+                        Suchen Sie nach Namen, Symptom, Therapie oder/und Ort
                     </Typography>
                 </Box>
                 <FormGroupBox mt={{ xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match ? 0 : 2 }}>
@@ -135,13 +135,20 @@ const HomeLandingPage = () => {
                         />
                     }
                     <SearchButton sx={{ order: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 2 : 3, md: 3 }, mb: { xs: 2, md: 0 } }} variant="contained" onClick={() => filterTherapeutsHandler()}>
-                        Zuchen
+                        Suchen
                     </SearchButton>
                 </FormGroupBox>
             </ContentBox>
-            <ImageBox>
-                <img style={{ width: '100%', opacity: .8, height: '100%' }} src={notOptimizedLandingImage} />
-            </ImageBox>
+            <ImageBox
+                sx={
+                    {
+                        backgroundImage: 'url("/static/illustrations/BildTitel1.jpg")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: { xs: 'right', md: 'top' },
+                        opacity: .8
+                    }
+                }
+            />
         </MainStyle >
     )
 }

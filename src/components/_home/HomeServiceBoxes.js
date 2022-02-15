@@ -1,8 +1,10 @@
 import React from 'react';
 // mui
 import { Box, Stack, Typography, Card } from '@mui/material'
-import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
+// import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
 import { styled } from '@mui/material/styles'
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 // const Icon1 = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644329808/heart_yghsut.png', ['q_80'])
 // const Icon2 = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644329808/iv_ijnjtk.png', ['q_80'])
@@ -34,7 +36,7 @@ const HomeServiceBoxes = () => {
                         <Box>
                             <Typography align="center" variant="h5">Geprüfte Therapeuten</Typography>
                             <Typography>
-                                But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.
+                                All unsere Mitglied-Therapeuten verfügen über einige Qualifikationen und ausreichend Erfahrung. Alle haben ihre Ausbildung wie auch Weiterbildungen in Deutschland absolviert.
                             </Typography>
                         </Box>
                     </Stack>
@@ -47,7 +49,7 @@ const HomeServiceBoxes = () => {
                         <Box>
                             <Typography align="center" variant="h5">Buche 24/7</Typography>
                             <Typography>
-                                But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.
+                                Wir erleichtern Ihnen die Suche nach einem passenden Therapeuten. Sie sehen das Profil, die Qualifikationen und Bewertungen auf einen Blick. So können Sie 24/7 und von überall einen Termin mit Ihrem ausgewählten Therapeuten buchen.
                             </Typography>
                         </Box>
                     </Stack>
@@ -60,7 +62,7 @@ const HomeServiceBoxes = () => {
                         <Box>
                             <Typography align="center" variant="h5">Keine Vorkasse</Typography>
                             <Typography>
-                                But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.
+                                Terminbuchung ist bei uns kostenlos, Sie zahlen lediglich die Behandlung vor Ort.
                             </Typography>
                         </Box>
                     </Stack>

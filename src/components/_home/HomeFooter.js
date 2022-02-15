@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 //rest
 const Icon1 = '/static/illustrations/lipoweg-icon-4.png'
 const Icon2 = '/static/illustrations/lipoweg-icon-5.png'
@@ -14,36 +15,31 @@ const Logo = '/static/logo-white.svg'
 const generateListItems = [
     {
         id: 0,
-        name: 'ERFOLGSGESCHICHTEN',
-        link: '/'
-    },
-    {
-        id: 1,
         name: 'STANDORTE',
         link: '/'
     },
     {
-        id: 2,
+        id: 1,
         name: 'BLOG',
         link: '/'
     },
     {
-        id: 3,
+        id: 2,
         name: 'PARTNER WERDEN',
         link: '/become-partner'
     },
     {
-        id: 4,
+        id: 3,
         name: 'KONTAKT',
         link: '/'
     },
     {
-        id: 5,
+        id: 4,
         name: 'IMPRESSUM',
         link: '/privacy-policy'
     },
     {
-        id: 6,
+        id: 5,
         name: 'DATENSCHUTZ',
         link: '/privacy-policy'
     }
@@ -63,9 +59,9 @@ const HomeFooter = () => {
                     alignItems="center"
                     spacing={2}
                 >
-                    <Box sx={{ width: 80 }}>
-                        <img style={{ width: '100%' }} src={Icon1} alt="phone" />
-                    </Box>
+                    <IconButton color="inherit" sx={{ cursor: 'auto' }}>
+                        <PhoneIcon sx={{ fontSize: "3rem" }} />
+                    </IconButton>
                     <Typography variant="h4">030 91531353</Typography>
                     <Typography variant="h4">TELEFON</Typography>
                 </Stack>
@@ -75,9 +71,9 @@ const HomeFooter = () => {
                     alignItems="center"
                     spacing={2}
                 >
-                    <Box sx={{ width: 80 }}>
-                        <img style={{ width: '100%' }} src={Icon2} alt="email" />
-                    </Box>
+                    <IconButton color="inherit" sx={{ cursor: 'auto' }}>
+                        <EmailIcon sx={{ fontSize: "3rem" }} />
+                    </IconButton>
                     <Typography variant="h4">info@gesundo24.de</Typography>
                     <Typography variant="h4">MAIL</Typography>
                 </Stack>

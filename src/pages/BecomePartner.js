@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import axios from 'axios'
 //mui
-import { Grid, Stack, Box, Button, TextField, Typography, Card, Checkbox, FormControlLabel, FormGroup, IconButton } from '@mui/material'
+import { Grid, Stack, Box, TextField, Typography, Card, Checkbox, FormControlLabel, FormGroup, IconButton } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import EmailIcon from '@mui/icons-material/Email';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -62,8 +62,8 @@ const BecomePartner = () => {
     }
 
     return (
-        <Page title="Partner Bekommen">
-            <Stack alignItems="center" mb={4} mx="auto" sx={{ width: 600 }}>
+        <Page title="Partner Bekommen" mx={2}>
+            <Stack alignItems="center" mb={4} mx="auto" sx={{ width: { xs: 'auto', md: 600 } }}>
                 <Typography variant="h3" align="center" mt={5}>
                     Senden Sie uns eine Nachricht!
                 </Typography>
@@ -72,12 +72,12 @@ const BecomePartner = () => {
                 </Typography>
             </Stack>
             <Grid container spacing={2}>
-                <Grid item xs={3} />
-                <Grid item xs={6}>
-                    <Card sx={{ py: 5, px: 10, mb: 4 }}>
+                <Grid item xs={0} md={3} />
+                <Grid item xs={12} md={6}>
+                    <Card sx={{ py: 5, px: { xs: 2, md: 10 }, mb: 4 }}>
                         <Box component="form" sx={{ mx: 'auto' }} onSubmit={handleSubmit}>
                             <Stack spacing={3}>
-                                <Stack spacing={2} direction='row'>
+                                <Stack spacing={2} direction={{ xs: 'column', md: 'row' }}>
                                     <TextField
                                         label="Vorname"
                                         onChange={handleChange}
@@ -100,7 +100,7 @@ const BecomePartner = () => {
                                     required
                                     fullWidth
                                 />
-                                <Stack spacing={2} direction='row'>
+                                <Stack spacing={2} direction={{ xs: 'column', md: 'row' }}>
                                     <TextField
                                         label="PLZ"
                                         onChange={handleChange}
@@ -165,8 +165,8 @@ const BecomePartner = () => {
                         </Box>
                     </Card>
                 </Grid>
-                <Grid item xs={3}>
-                    <Card sx={{ height: 'calc(100% - 32px)', p: 2 }}>
+                <Grid item xs={12} md={3}>
+                    <Card sx={{ height: { xs: 'calc(100% - 8px)', md: 'calc(100% - 32px)' }, p: 2 }}>
                         <Typography variant="h3">Kontakt Info</Typography>
                         <Typography>
                             Heerstraße 2, 14052 Berlin
