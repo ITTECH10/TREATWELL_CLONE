@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useApp } from '../context/AppContext'
 //mui
-import { Card, Stack, Box, Typography, CardContent, Button, CardActions } from '@mui/material'
+import { Card, Stack, Box, Typography, CardContent, CardActions } from '@mui/material'
 //rest
 import Page from '../components/Page'
 import AddReviewDialog from '../components/REVIEWS/AddReviewDialog'
+import CancelTherapyDialog from '../components/THERAPIES/CancelTherapyDialog'
 
 export default function MyAppointedTherapies() {
     const { logedInPacient } = useApp()
-    const { therapies: myTherapies } = logedInPacient
+    const { therapies: myTherapies } = (logedInPacient && logedInPacient) || []
 
     return (
         <Page title="Meine Therapien">
@@ -32,7 +33,7 @@ function AppointedTherapy({ therapy }) {
                     {`${therapy.therapeut.firstName} ${therapy.therapeut.lastName}`} / {therapy.therapeut.specializedIn}
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#999' }}>
-                    Datum / {new Date(therapy.appointedAt).toLocaleDateString('de-DE')}
+                    Datum / {new Date(therapy.appointedAt).toLocaleString('de-DE', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#999' }}>
                     Location / {therapy.therapeut.location}
@@ -46,9 +47,16 @@ function AppointedTherapy({ therapy }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <AddReviewDialog
-                    therapeutId={therapy.therapeut._id}
-                />
+                <Stack sx={{ width: '100%' }} direction="row" alignItems="center" justifyContent="space-between">
+                    <AddReviewDialog
+                        therapeutId={therapy.therapeut._id}
+                    />
+                    <CancelTherapyDialog
+                        therapyId={therapy._id}
+                        selectedTherapyDate={therapy.appointedAt}
+                        therapeutId={therapy.therapeut._id}
+                    />
+                </Stack>
             </CardActions>
         </Card>
     );

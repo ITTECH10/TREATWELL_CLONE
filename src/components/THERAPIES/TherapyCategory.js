@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function TherapyCategory({ category }) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: { xs: 'auto', md: 345 } }}>
             <CardMedia
                 component="img"
                 height="140"
