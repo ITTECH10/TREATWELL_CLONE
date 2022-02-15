@@ -9,7 +9,7 @@ import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryIm
 const AdaptedList = styled(List)(({ theme }) => ({
     width: 'auto',
     // maxWidth: 360,
-    maxHeight: 210,
+    maxHeight: 185,
     // borderRadius: 8,
     overflowY: 'scroll',
     bgcolor: 'background.paper',
