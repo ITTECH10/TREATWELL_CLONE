@@ -33,9 +33,9 @@ const TherapeutDetails = () => {
     return (
         <Page title="Therapeut Profile">
             <Box sx={{ width: '100%', position: 'relative' }}>
-                <Box px={30} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
+                <Box px={{ xs: 0, md: 30 }} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
                     <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
-                        <Box sx={{ height: 135, width: 135, overflow: 'hidden' }}>
+                        <Box sx={{ height: 135, width: 135, overflow: 'hidden', marginLeft: { xs: 2, md: 0 } }}>
                             <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} />
                         </Box>
                         <Box>
@@ -110,7 +110,7 @@ function NavTabs() {
 
     return (
         <>
-            <Stack direction="row" justifyContent="center" sx={{ marginRight: '25rem' }}>
+            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '25rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab label="Info" {...a11yProps(0)} />
                     <Tab label="Zugang" {...a11yProps(1)} />

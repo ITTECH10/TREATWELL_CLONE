@@ -33,9 +33,9 @@ const TherapeutInfoTab = () => {
                         Praxis Photos
                     </Typography>
                 </Stack>
-                <Stack mx={2} direction="row" spacing={2}>
+                <Stack mx={{ xs: 0, md: 2 }} direction={{ xs: 'column', md: 'row' }} spacing={2}>
                     {practicePhotos.map(practicePhoto => {
-                        const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto)
+                        const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_500'])
 
                         return roleMatch ? (
                             <Box sx={{ height: 100, width: 200, borderRadius: 1, overflow: 'hidden' }}>
