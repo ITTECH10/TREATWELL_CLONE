@@ -15,7 +15,7 @@ const BookFreeDate = ({ selectedBookingDates, visible, therapeutAvailable, setDa
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
                 allowSameDateSelection
-                orientation="landscape"
+                orientation={{ xs: 'portrait', md: 'landscape' }}
                 openTo="day"
                 value={dateValue}
                 shouldDisableDate={disabledDays}

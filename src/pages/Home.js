@@ -21,9 +21,9 @@ const Home = () => {
     const { logedInPacient, getAvailableTherapeuts } = useApp()
     const roleMatch = isAdmin(logedInPacient)
 
-    React.useEffect(() => {
-        getAvailableTherapeuts()
-    }, [getAvailableTherapeuts])
+    // React.useEffect(() => {
+    //     getAvailableTherapeuts()
+    // }, [getAvailableTherapeuts])
 
     return (
         <Page title="Home">

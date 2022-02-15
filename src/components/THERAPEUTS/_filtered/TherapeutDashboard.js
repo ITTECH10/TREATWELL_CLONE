@@ -17,9 +17,9 @@ const TherapeutDashboard = ({ therapeut }) => {
     const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
 
     return (
-        <Card sx={{ p: 2, mb: 2 }} key={therapeut._id}>
-            <Grid container>
-                <Grid item xs={4} sx={{ pt: 2 }}>
+        <Card sx={{ py: 2, mb: 2 }} key={therapeut._id}>
+            <Grid container direction={{ xs: 'column', md: 'row' }}>
+                <Grid item xs={12} md={4} sx={{ pt: 2, px: 2 }}>
                     <Stack onClick={() => getOneTherapeut(therapeut._id)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
                         <Avatar alt="therapeut name" src={optimizedTherapeutAvatarImage} sx={{ height: 50, width: 50 }} />
                         <Typography variant="h6">
@@ -39,7 +39,7 @@ const TherapeutDashboard = ({ therapeut }) => {
                         />
                     </Box>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12} md={8}>
                     {value === 0 &&
                         <BookFreeDate
                             selectedBookingDates={therapeut.availableBookingDates}

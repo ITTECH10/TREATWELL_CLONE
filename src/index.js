@@ -15,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 axios.defaults.withCredentials = true
 // axios.defaults.baseURL = 'http://localhost:8000/api/v1'
 axios.defaults.baseURL = 'https://gesundo24.herokuapp.com/api/v1'
-
+// axiosInstance.interceptors.request.use( async config => { config.baseURL=await getBaseUrl(); return config; }, error => Promise.reject(error) );
 // ----------------------------------------------------------------------
 
 ReactDOM.render(

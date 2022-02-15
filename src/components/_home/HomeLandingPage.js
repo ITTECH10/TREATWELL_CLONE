@@ -11,7 +11,7 @@ const notOptimizedLandingImage = '/static/illustrations/BildTitel1.jpg'
 
 const MainStyle = styled(Stack)(({ theme }) => ({
     position: 'relative',
-    height: '100vh',
+    height: 'calc(100vh - 64px)',
     [theme.breakpoints.up('md')]: {
         // height: 'calc(100vh - 64px)',
     }
