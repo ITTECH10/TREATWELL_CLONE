@@ -11,9 +11,9 @@ const notOptimizedLandingImage = '/static/illustrations/BildTitel1.jpg'
 
 const MainStyle = styled(Stack)(({ theme }) => ({
     position: 'relative',
-    height: 'calc(100vh - 64px)',
+    height: '100vh',
     [theme.breakpoints.up('md')]: {
-        // height: 'calc(100vh - 64px)',
+        height: 'calc(100vh - 64px)',
     }
 }));
 
@@ -43,10 +43,11 @@ const FormGroupBox = styled(Stack)(({ theme }) => ({
 const ImageBox = styled(Stack)(({ theme }) => ({
     position: 'absolute',
     width: '100%',
-    height: '100%',
+    height: '100vh',
     zIndex: 1,
     [theme.breakpoints.up('md')]: {
-        position: 'static'
+        position: 'static',
+        height: 'calc(100vh - 64px)',
     }
 }));
 
@@ -108,7 +109,7 @@ const HomeLandingPage = () => {
                     </Typography>
                 </Box>
                 <FormGroupBox mt={{ xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 && !match ? 0 : 2 }}>
-                    <Stack direction={{ xs: 'column', md: 'row' }} sx={{ width: '100%', order: { xs: 2, md: 1 } }}>
+                    <Stack direction={{ xs: 'column', md: 'row' }} sx={{ width: '100%', order: { xs: 3, md: 1 } }}>
                         <TextField
                             name="query"
                             placeholder="Name, Symptom, Dienst"
@@ -133,7 +134,7 @@ const HomeLandingPage = () => {
                             filteredTherapeuts={filteredTherapeuts}
                         />
                     }
-                    <SearchButton sx={{ order: { xs: 2, md: 3 } }} variant="contained" onClick={() => filterTherapeutsHandler()}>
+                    <SearchButton sx={{ order: { xs: (fields.query !== '' || fields.locationQuery !== '') && filteredTherapeuts.length > 0 ? 2 : 3 }, mb: { xs: 2, md: 0 } }} variant="contained" onClick={() => filterTherapeutsHandler()}>
                         Zuchen
                     </SearchButton>
                 </FormGroupBox>

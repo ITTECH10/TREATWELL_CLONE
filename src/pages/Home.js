@@ -7,7 +7,7 @@ import { actions } from '../utils/DataProviders/ActionButtonItems'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import ActionButton from '../components/_reusable/ActionButton'
 import { isAdmin } from '../utils/DataProviders/ROLES/permissions'
-import AppContactFooter from '../components/_dashboard/app/AppContactFooter'
+// import AppContactFooter from '../components/_dashboard/app/AppContactFooter'
 import HomeLandingPage from '../components/_home/HomeLandingPage'
 import HomeServiceBoxes from '../components/_home/HomeServiceBoxes'
 import HomeBanner from '../components/_home/HomeBanner'
@@ -21,9 +21,9 @@ const Home = () => {
     const { logedInPacient, getAvailableTherapeuts } = useApp()
     const roleMatch = isAdmin(logedInPacient)
 
-    // React.useEffect(() => {
-    //     getAvailableTherapeuts()
-    // }, [getAvailableTherapeuts])
+    React.useEffect(() => {
+        getAvailableTherapeuts()
+    }, [getAvailableTherapeuts])
 
     return (
         <Page title="Home">
