@@ -112,7 +112,7 @@ function NavTabs() {
 
     return (
         <>
-            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '50rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
+            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '25rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab label="Info" {...a11yProps(0)} />
                 </Tabs>
