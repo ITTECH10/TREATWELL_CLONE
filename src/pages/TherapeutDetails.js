@@ -10,6 +10,7 @@ import TherapeutDetailsBookForm from '../components/THERAPEUTS/_details/Therapeu
 import Page from '../components/Page'
 import { hasPermission, actions } from '../utils/DataProviders/ROLES/permissions'
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
+import UpdateTherapeutInfoDialog from '../components/THERAPEUTS/_details/UpdateTherapeutInfoDialog'
 
 const TherapeutDetails = () => {
     const theme = useTheme()
@@ -35,8 +36,9 @@ const TherapeutDetails = () => {
             <Box sx={{ width: '100%', position: 'relative' }}>
                 <Box px={{ xs: 0, md: 30 }} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
                     <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
-                        <Box sx={{ height: 135, width: 135, overflow: 'hidden', marginLeft: { xs: 2, md: 0 } }}>
+                        <Box sx={{ height: 135, width: 135, position: 'relative', marginLeft: { xs: 2, md: 0 } }}>
                             <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} />
+                            <UpdateTherapeutInfoDialog />
                         </Box>
                         <Box>
                             <Typography variant="h4">{name}</Typography>
@@ -110,21 +112,13 @@ function NavTabs() {
 
     return (
         <>
-            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '25rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
+            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '50rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
                 <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
                     <Tab label="Info" {...a11yProps(0)} />
-                    <Tab label="Zugang" {...a11yProps(1)} />
-                    <Tab label="Profile" {...a11yProps(2)} />
                 </Tabs>
             </Stack>
             <TabPanel value={value} index={0}>
                 <TherapeutInfoTab />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                Item Two
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                Item Three
             </TabPanel>
         </>
     );

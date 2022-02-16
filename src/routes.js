@@ -40,6 +40,7 @@ export default function Router() {
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
     { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/privacy-policy', element: <PrivacyPolicy /> },
+    { path: '/become-partner', element: <BecomePartner /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -53,6 +54,7 @@ export default function Router() {
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
     { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/privacy-policy', element: <PrivacyPolicy /> },
+    { path: '/become-partner', element: <BecomePartner /> },
     // { path: '/profile/therapies', element: <TherapeutMyTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
