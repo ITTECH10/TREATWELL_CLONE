@@ -58,6 +58,7 @@ const TherapeutDetails = () => {
 
 function TabPanel(props) {
     const { logedInPacient, selectedTherapeut } = useApp()
+    const therapeutPlaceholder = { availableBookingDates: [], available: true, firstName: '', lastName: '' }
     const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true }
     const { children, navTabValue, index, ...other } = props;
     const [value, setValue] = React.useState(0)
@@ -93,7 +94,7 @@ function TabPanel(props) {
                     <DateTimeTabsSwitcher
                         value={value}
                         setValue={setValue}
-                        therapeut={selectedTherapeut ? selectedTherapeut : {}}
+                        therapeut={selectedTherapeut ? selectedTherapeut : therapeutPlaceholder}
                         dateValue={dateValue}
                     />
                 </Grid>
