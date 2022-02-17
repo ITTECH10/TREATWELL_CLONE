@@ -152,7 +152,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue }) => {
                     <ConfirmBookingDialog
                         selectedHour={selectedHour}
                         bookingTimeSelectionHandler={bookingTimeSelectionHandler}
-                        therapeutName={therapeut ? `${therapeut.firstName} ${therapeut.lastName}` : ''}
+                        therapeutName={`${therapeut.firstName} ${therapeut.lastName}`}
                         loading={btnLoading}
                         setOpen={setDialogOpen}
                         open={dialogOpen}

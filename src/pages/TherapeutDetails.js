@@ -93,7 +93,7 @@ function TabPanel(props) {
                     <DateTimeTabsSwitcher
                         value={value}
                         setValue={setValue}
-                        therapeut={selectedTherapeut}
+                        therapeut={selectedTherapeut ? selectedTherapeut : {}}
                         dateValue={dateValue}
                     />
                 </Grid>
