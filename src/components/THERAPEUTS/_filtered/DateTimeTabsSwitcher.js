@@ -36,7 +36,7 @@ function TabPanel(props) {
 }
 
 const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue }) => {
-    const { therapeuts, setTherapeuts, setGeneralAlertOptions, getCurrentPacient, therapies, setTherapies } = useApp()
+    const { therapeuts, setTherapeuts, setGeneralAlertOptions, getCurrentPacient, therapies, setTherapies, setSelectedTherapeut } = useApp()
     const [selectedHour, setSelectedHour] = React.useState([])
     const [btnLoading, setBtnLoading] = React.useState(false)
     const [dialogOpen, setDialogOpen] = React.useState(false)
@@ -99,6 +99,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue }) => {
                     setBtnLoading(false)
                     setTherapeuts(therapeutsCopy)
                     setTherapies([...therapies, res.data.newTherapy])
+                    setSelectedTherapeut(foundTherapeut)
 
                     // CONSIDER LATER
                     // const updatedLogedInPacient = {...logedInPacient, therapies: [...logedInPacient.therapies, res.data.newTherapy]}
