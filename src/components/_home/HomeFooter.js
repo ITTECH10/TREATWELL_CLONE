@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 //mui
-import { Stack, Box, Typography, IconButton, List, ListItem, ListItemText, Link } from '@mui/material'
+import { Stack, Box, Typography, IconButton, List, ListItem, ListItemText, Link, Divider } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -16,7 +16,7 @@ const generateListItems = [
     {
         id: 0,
         name: 'STANDORTE',
-        link: '/'
+        link: '/therapeuts/near'
     },
     {
         id: 1,
@@ -30,16 +30,11 @@ const generateListItems = [
     },
     {
         id: 3,
-        name: 'KONTAKT',
-        link: '/'
-    },
-    {
-        id: 4,
         name: 'IMPRESSUM',
         link: '/privacy-policy'
     },
     {
-        id: 5,
+        id: 4,
         name: 'DATENSCHUTZ',
         link: '/privacy-policy'
     }
@@ -51,7 +46,7 @@ const HomeFooter = () => {
         <Box sx={{ color: theme.palette.background.paper, backgroundColor: theme.palette.primary.dark }}>
             <Stack
                 direction={{ xs: 'column', md: 'row' }}
-                sx={{ height: { xs: 'auto', md: 300 }, py: { xs: 2, md: 0 }, borderBottom: `1px solid ${theme.palette.background.paper}` }}
+                sx={{ height: { xs: 'auto', md: 300 }, py: { xs: 3, md: 0 }, borderBottom: `1px solid ${theme.palette.background.paper}` }}
             >
                 <Stack
                     sx={{ width: { xs: '100%', md: '50%' }, borderRight: `1px solid ${theme.palette.background.paper}` }}
@@ -63,7 +58,6 @@ const HomeFooter = () => {
                         <PhoneIcon sx={{ fontSize: "3rem" }} />
                     </IconButton>
                     <Typography variant="h4">030 91531353</Typography>
-                    <Typography variant="h4">TELEFON</Typography>
                 </Stack>
                 <Stack
                     sx={{ width: { xs: '100%', md: '50%' } }}
@@ -75,27 +69,35 @@ const HomeFooter = () => {
                         <EmailIcon sx={{ fontSize: "3rem" }} />
                     </IconButton>
                     <Typography variant="h4">info@gesundo24.de</Typography>
-                    <Typography variant="h4">MAIL</Typography>
                 </Stack>
             </Stack>
             <Stack
                 direction={{ xs: 'column', md: 'row' }}
                 justifyContent="space-around"
                 alignItems="center"
-                sx={{ height: 400, backgroundColor: theme.palette.info.dark, borderBottom: `1px solid ${theme.palette.background.paper}` }}
+                sx={{ height: 470, backgroundColor: theme.palette.info.dark, borderBottom: `1px solid ${theme.palette.background.paper}` }}
             >
                 <Box component="img" src={Logo} sx={{ width: 300, mt: { xs: 2, md: 0 } }} />
-                <List>
-                    {
-                        generateListItems.map(listItem => {
-                            return <ListItem key={listItem.id}>
-                                <ListItemText
-                                    primary={<Link color="inherit" component={RouterLink} to={listItem.link}>{listItem.name}</Link>}
-                                />
-                            </ListItem>
-                        })
-                    }
-                </List>
+                <Stack spacing={1}>
+                    <List>
+                        {
+                            generateListItems.map(listItem => {
+                                return <ListItem key={listItem.id}>
+                                    <ListItemText
+                                        primary={<Link color="inherit" component={RouterLink} to={listItem.link}>{listItem.name}</Link>}
+                                    />
+                                </ListItem>
+                            })
+                        }
+                    </List>
+                    <Box px={2}>
+                        <Typography variant="h5">Kontakt</Typography>
+                        <Divider sx={{ mb: 1 }} />
+                        <Typography>Adresse: Lichtenrader Damm 67 12305 Berlin</Typography>
+                        <Typography>Email: info@gesundo24.de</Typography>
+                        <Typography>Telefon: +49 30 22 38 98 38</Typography>
+                    </Box>
+                </Stack>
             </Stack>
             <Stack direction="row" justifyContent="space-around" alignItems="center" sx={{ backgroundColor: theme.palette.info.darker }}>
                 <Typography>&copy; Gesundo24 2022</Typography>

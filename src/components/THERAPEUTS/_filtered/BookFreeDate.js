@@ -18,6 +18,7 @@ const BookFreeDate = ({ selectedBookingDates, visible, therapeutAvailable, setDa
                 orientation={{ xs: 'portrait', md: 'landscape' }}
                 openTo="day"
                 value={dateValue}
+                disablePast
                 shouldDisableDate={disabledDays}
                 onChange={(newValue) => {
                     setDateValue(newValue);

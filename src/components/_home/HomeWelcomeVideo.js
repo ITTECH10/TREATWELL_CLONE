@@ -7,25 +7,25 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 const HomeWelcomeVideo = () => {
     return (
         // fix later margin appropriatelly
-        <Box p={3}>
+        <Box px={3} pb={3}>
             <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
-                <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' } }}>
+                <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' }, height: { xs: 300, md: 'auto' } }}>
                     <CardMedia
                         component="video"
                         src="/static/videos/home-video.mp4"
                         controls
                         // autoPlay
                         // loop
-                        sx={{ width: '100%' }}
+                        sx={{ width: '100%', height: '100%' }}
                     />
                 </Card>
                 <Box sx={{ width: { xs: '100%', md: '45%' }, ml: { xs: 0, md: 2 }, p: { xs: 2, md: 0 } }}>
-                    <Stack direction="row">
+                    <Stack direction="row" justifyContent="center" alignItems="center" sx={{ height: '100%' }}>
                         <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#3b5998' }}>
-                            <FacebookIcon sx={{ fontSize: '4rem' }} />
+                            <FacebookIcon sx={{ fontSize: '6rem' }} />
                         </IconButton>
                         <IconButton href="https://instagram.com" target="_blank" sx={{ color: '#8a3ab9' }}>
-                            <InstagramIcon sx={{ fontSize: '4rem' }} />
+                            <InstagramIcon sx={{ fontSize: '6rem' }} />
                         </IconButton>
                     </Stack>
                 </Box>

@@ -28,8 +28,6 @@ const AppContextProvider = ({ children }) => {
         hideAfter: 5000
     })
 
-    console.log(logedInPacient)
-
     const getAvailableTherapeuts = useCallback(() => {
         axios.get('/therapeuts').then(res => {
             if (res.status === 200) {

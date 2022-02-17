@@ -30,7 +30,7 @@ const Home = () => {
             <HomeLandingPage />
             <HomeBanner title="IHRE VORTEILE" />
             <HomeServiceBoxes />
-            <HomeBanner title="SO FUNKCIONIERT GESUNDO24" />
+            <HomeBanner title="SO FUNKTIONIERT GESUNDO24" />
             <HomeWelcomeVideo />
             <HomeFooter />
             {

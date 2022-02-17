@@ -85,7 +85,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <PersonAddIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Register" />
+                <ListItemText primary="Anmelden" />
             </ListItem>
         </List>
     ) : isTherapeut ? (
@@ -106,7 +106,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <ExitToAppIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Log out" />
+                <ListItemText primary="Abmelden" />
             </ListItem>
         </List>
     ) : (

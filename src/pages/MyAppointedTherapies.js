@@ -14,7 +14,7 @@ export default function MyAppointedTherapies() {
     return (
         <Page title="Meine Therapien">
             <Box sx={{ height: 'calc(100vh - 80px)', p: 2 }}>
-                {myTherapies && myTherapies.length === 0 ? <Typography align="center" variant="h3">Sie haben noch keine terapien...</Typography> :
+                {myTherapies && myTherapies.length === 0 ? <Typography align="center" variant="h5">Sie haben noch keine gebuchten Termine...</Typography> :
                     <Stack direction="row" sx={{ flexWrap: 'wrap' }}>
                         {myTherapies && myTherapies.map(myTherapy => {
                             return <AppointedTherapy key={myTherapy._id} therapy={myTherapy} />

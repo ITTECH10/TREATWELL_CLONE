@@ -161,7 +161,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue }) => {
             </TabPanel>
             <Tabs value={value} onChange={handleChange} >
                 <Tab sx={{ fontSize: '.65rem' }} icon={<EventAvailableIcon />} onClick={() => navigateBackUsingTab()} label="Datum" />
-                <Tab sx={{ fontSize: '.65rem' }} icon={<AccessAlarmsIcon />} label="Uhr" {...a11yProps(1)} />
+                <Tab sx={{ fontSize: '.65rem' }} icon={<AccessAlarmsIcon />} label="Uhr" {...a11yProps(1)} disabled={therapeut.availableBookingDates.length === 0} />
             </Tabs>
         </Stack>
     )

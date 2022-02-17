@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useApp } from '../../../context/AppContext'
+// mui
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,6 +11,7 @@ import { useTheme } from '@mui/material/styles'
 import { LoadingButton } from '@mui/lab';
 
 export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, selectedHour, therapeutName, loading, open, setOpen }) {
+    const { authenticated } = useApp()
     const theme = useTheme()
 
     const handleClickOpen = () => {
@@ -27,9 +30,9 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                 fullWidth
                 size="large"
                 onClick={handleClickOpen}
-                disabled={selectedHour.length === 0}
+                disabled={selectedHour.length === 0 || !authenticated}
             >
-                Termin Vereinbaren
+                {!authenticated ? "Sie mussen zueerst anmelden!" : "Termin Vereinbaren"}
             </Button>
             <Dialog
                 open={open}

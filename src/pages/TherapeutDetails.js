@@ -11,6 +11,8 @@ import Page from '../components/Page'
 import { hasPermission, actions } from '../utils/DataProviders/ROLES/permissions'
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 import UpdateTherapeutInfoDialog from '../components/THERAPEUTS/_details/UpdateTherapeutInfoDialog'
+import BookFreeDate from '../components/THERAPEUTS/_filtered/BookFreeDate'
+import DateTimeTabsSwitcher from '../components/THERAPEUTS/_filtered/DateTimeTabsSwitcher'
 
 const TherapeutDetails = () => {
     const theme = useTheme()
@@ -55,8 +57,11 @@ const TherapeutDetails = () => {
 };
 
 function TabPanel(props) {
-    const { logedInPacient } = useApp()
-    const { children, value, index, ...other } = props;
+    const { logedInPacient, selectedTherapeut } = useApp()
+    const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true }
+    const { children, navTabValue, index, ...other } = props;
+    const [value, setValue] = React.useState(0)
+    const [dateValue, setDateValue] = React.useState(availableBookingDates[0] ? new Date(availableBookingDates[availableBookingDates.length - 1].date) : new Date());
     const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
     // const matches = useMediaQuery
 
@@ -73,9 +78,24 @@ function TabPanel(props) {
         </Container>
     ) : (
         <Container maxWidth="lg" sx={{ p: 2 }}>
-            <Grid container>
-                <Grid item xs={12}>
+            <Grid container spacing={2}>
+                <Grid item xs={7}>
                     {children}
+                </Grid>
+                <Grid item xs={5}>
+                    <BookFreeDate
+                        selectedBookingDates={availableBookingDates}
+                        visible={value === 0}
+                        therapeutAvailable={available}
+                        setDateValue={setDateValue}
+                        dateValue={dateValue}
+                    />
+                    <DateTimeTabsSwitcher
+                        value={value}
+                        setValue={setValue}
+                        therapeut={selectedTherapeut}
+                        dateValue={dateValue}
+                    />
                 </Grid>
             </Grid>
         </Container>
@@ -84,12 +104,12 @@ function TabPanel(props) {
     return (
         <div
             role="tabpanel"
-            hidden={value !== index}
+            hidden={navTabValue !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && (
+            {navTabValue === index && (
                 content
             )}
         </div>
@@ -104,20 +124,20 @@ function a11yProps(index) {
 }
 
 function NavTabs() {
-    const [value, setValue] = React.useState(0);
+    const [navTabValue, setNavTabValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        setNavTabValue(newValue);
     };
 
     return (
         <>
             <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '25rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
-                <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
+                <Tabs navTabValue={navTabValue} onChange={handleChange} aria-label="nav tabs example">
                     <Tab label="Info" {...a11yProps(0)} />
                 </Tabs>
             </Stack>
-            <TabPanel value={value} index={0}>
+            <TabPanel navTabValue={navTabValue} index={0}>
                 <TherapeutInfoTab />
             </TabPanel>
         </>

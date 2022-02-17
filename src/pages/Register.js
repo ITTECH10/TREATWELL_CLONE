@@ -63,7 +63,7 @@ export default function Register() {
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Beginnen Sie mit der Erstellung eines Kontos!
+              Erstellen Sie kostenfrei Ihr persönliches Konto und verwalten Sie bequem Ihre Termine!
             </Typography>
             {/* <Typography sx={{ color: 'text.secondary' }}>
               Free forever. No credit card needed.

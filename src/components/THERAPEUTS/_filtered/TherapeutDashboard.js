@@ -2,6 +2,7 @@ import React from 'react';
 import { useApp } from '../../../context/AppContext'
 // mui
 import { Box, Stack, Card, Button, Grid, Avatar, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 //rest
 import BookTherapyDialog from '../../THERAPIES/BookTherapyDialog'
@@ -10,9 +11,10 @@ import DateTimeTabsSwitcher from './DateTimeTabsSwitcher'
 import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 
 const TherapeutDashboard = ({ therapeut }) => {
+    const theme = useTheme()
     const { getOneTherapeut } = useApp()
     const [value, setValue] = React.useState(0);
-    const [dateValue, setDateValue] = React.useState(new Date());
+    const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates[therapeut.availableBookingDates.length - 1].date) : new Date());
 
     const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
 
@@ -22,9 +24,24 @@ const TherapeutDashboard = ({ therapeut }) => {
                 <Grid item xs={12} md={4} sx={{ pt: 2, px: 2 }}>
                     <Stack onClick={() => getOneTherapeut(therapeut._id)} direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
                         <Avatar alt="therapeut name" src={optimizedTherapeutAvatarImage} sx={{ height: 50, width: 50 }} />
-                        <Typography variant="h6">
-                            {`${therapeut.firstName} ${therapeut.lastName}`}
-                        </Typography>
+                        <Stack>
+                            <Typography variant="h6">
+                                {`${therapeut.firstName} ${therapeut.lastName}`}
+                            </Typography>
+                            <Stack direction="row" alignItems="center" spacing={1}>
+                                <Typography
+                                    variant="subtitle1"
+                                    sx={{ display: 'inline' }}
+                                >
+                                    Bewertung
+                                </Typography>
+                                <Typography
+                                    variant="subtitle1"
+                                    sx={{ color: theme.palette.primary.main }}
+                                    noWrap>{Number(therapeut.ratingsAverage).toFixed(1)}
+                                </Typography>
+                            </Stack>
+                        </Stack>
                     </Stack>
                     <Box>
                         <Button startIcon={<WorkOutlineIcon />}>{therapeut.specializedIn}</Button>

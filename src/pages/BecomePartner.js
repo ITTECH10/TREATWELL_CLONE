@@ -68,7 +68,7 @@ const BecomePartner = () => {
                     Senden Sie uns eine Nachricht!
                 </Typography>
                 <Typography align="center">
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+                    Erstellen Sie kostenfrei Ihr persönliches Konto und verwalten Sie bequem Ihre Termine!
                 </Typography>
             </Stack>
             <Grid container spacing={2}>
@@ -169,13 +169,13 @@ const BecomePartner = () => {
                     <Card sx={{ height: { xs: 'calc(100% - 8px)', md: 'calc(100% - 32px)' }, p: 2 }}>
                         <Typography variant="h3">Kontakt Info</Typography>
                         <Typography>
-                            Heerstraße 2, 14052 Berlin
+                            Lichtenrader Damm 67 12305 Berlin
                         </Typography>
                         <Typography>
                             info@gesundo24.de
                         </Typography>
                         <Typography>
-                            030 91531353
+                            +49 30 22 38 98 38
                         </Typography>
                         <Typography variant="h3" mt={2}>Get Social</Typography>
                         <Stack direction="row">
