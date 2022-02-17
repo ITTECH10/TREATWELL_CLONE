@@ -58,7 +58,7 @@ const TherapeutDetails = () => {
 
 function TabPanel(props) {
     const { logedInPacient, selectedTherapeut } = useApp()
-    const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true, firstName: '', lastName: '' }
+    const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true }
     const { children, navTabValue, index, ...other } = props;
     const [value, setValue] = React.useState(0)
     const [dateValue, setDateValue] = React.useState(availableBookingDates[0] ? new Date(availableBookingDates[availableBookingDates.length - 1].date) : new Date());
