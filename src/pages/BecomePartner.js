@@ -65,10 +65,10 @@ const BecomePartner = () => {
         <Page title="Partner Bekommen" mx={2}>
             <Stack alignItems="center" mb={4} mx="auto" sx={{ width: { xs: 'auto', md: 600 } }}>
                 <Typography variant="h3" align="center" mt={5}>
-                    Senden Sie uns eine Nachricht!
+                    Werden Sie unser Partner!
                 </Typography>
                 <Typography align="center">
-                    Erstellen Sie kostenfrei Ihr persönliches Konto und verwalten Sie bequem Ihre Termine!
+                    Senden Sie uns eine Nachricht und erhalten Sie mehr Informationen.
                 </Typography>
             </Stack>
             <Grid container spacing={2}>
