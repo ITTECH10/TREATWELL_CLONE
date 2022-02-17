@@ -14,7 +14,7 @@ const TherapeutDashboard = ({ therapeut }) => {
     const theme = useTheme()
     const { getOneTherapeut } = useApp()
     const [value, setValue] = React.useState(0);
-    const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates[0].date) : new Date());
+    const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
 
     const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
 

@@ -63,9 +63,8 @@ function TabPanel(props) {
     const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true }
     const { children, navTabValue, index, ...other } = props;
     const [value, setValue] = React.useState(0)
-    const [dateValue, setDateValue] = React.useState(availableBookingDates[0] ? new Date(availableBookingDates[0].date) : new Date());
+    const [dateValue, setDateValue] = React.useState(availableBookingDates[0] ? new Date(availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
     const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
-    // const matches = useMediaQuery
 
     const content = roleMatch ? (
         <Container maxWidth="lg" sx={{ p: 2 }}>
