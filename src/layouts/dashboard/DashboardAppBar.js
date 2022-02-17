@@ -34,7 +34,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 export default function ButtonAppBar() {
     const navigate = useNavigate()
-    const { authenticated, logout, logedInPacient } = useApp()
+    const { authenticated, logout, logedInPacient, appLoading } = useApp()
 
     // check if currently loged in user is a therapeut
     const isTherapeut = hasPermission(logedInPacient, actions.IS_THERAPEUT)
@@ -66,6 +66,7 @@ export default function ButtonAppBar() {
     )
 
     return (
+        !appLoading &&
         <RootStyle>
             <ToolbarStyle>
                 <Logo />

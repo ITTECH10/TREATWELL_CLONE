@@ -37,15 +37,9 @@ const TherapeutInfoTab = () => {
                     {practicePhotos.map(practicePhoto => {
                         const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_500'])
 
-                        return roleMatch ? (
-                            <Box sx={{ height: 100, width: 200, borderRadius: 1, overflow: 'hidden' }}>
-                                <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
-                            </Box>
-                        ) : (
-                            <Box sx={{ height: 200, width: 350, borderRadius: 1, overflow: 'hidden' }}>
-                                <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%', transform: 'scale(1.1)' }} />
-                            </Box>
-                        )
+                        return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
+                            <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
+                        </Box>
                     })}
                 </Stack>
             </Box>

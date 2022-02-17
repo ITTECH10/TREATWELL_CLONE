@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 // mui
-import { Box, Stack, Typography, Container, Tabs, Tab, Grid } from '@mui/material'
+import { Box, Stack, Typography, Container, Tabs, Tab, Grid, Card } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 // rest
 import TherapeutInfoTab from '../components/THERAPEUTS/_details/TherapeutInfoTab'
@@ -18,7 +18,7 @@ const TherapeutDetails = () => {
     const theme = useTheme()
     const { pathname } = useLocation();
     const { selectedTherapeut, logedInPacient, authenticated, getOneTherapeut } = useApp()
-    const { image, name, specializedIn, phone, location: therapeutLocation, role } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', role: '', location: '' }
+    const { image, name, specializedIn, phone, location: therapeutLocation, role, ratingsAverage } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', role: '', location: '', ratingsAverage: 0 }
     const therapeutId = pathname.split('/')[2]
     const roleMatch = hasPermission(logedInPacient, actions.MAIN_ROLE_UI_VISIBILITY)
     const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
@@ -47,6 +47,7 @@ const TherapeutDetails = () => {
                             <Typography variant="subtitle2">{specializedIn}</Typography>
                             <Typography variant="subtitle2">Location: {therapeutLocation}</Typography>
                             <Typography variant="subtitle2">Telefon: {phone}</Typography>
+                            <Typography variant="subtitle2">Bewertung: {Number(ratingsAverage).toFixed(1)}</Typography>
                         </Box>
                     </Stack>
                 </Box>
@@ -68,35 +69,38 @@ function TabPanel(props) {
 
     const content = roleMatch ? (
         <Container maxWidth="lg" sx={{ p: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={7}>
+            <Grid container spacing={2} sx={{ flexDirection: { xs: 'column-reverse', md: 'row' } }}>
+                <Grid item xs={12} md={7}>
                     {children}
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} md={5}>
                     <TherapeutDetailsBookForm />
                 </Grid>
             </Grid>
         </Container>
     ) : (
         <Container maxWidth="lg" sx={{ p: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={7}>
+            <Grid container spacing={2} sx={{ flexDirection: { xs: 'column-reverse', md: 'row' } }}>
+                <Grid item xs={12} md={7}>
                     {children}
                 </Grid>
-                <Grid item xs={5}>
-                    <BookFreeDate
-                        selectedBookingDates={availableBookingDates}
-                        visible={value === 0}
-                        therapeutAvailable={available}
-                        setDateValue={setDateValue}
-                        dateValue={dateValue}
-                    />
-                    <DateTimeTabsSwitcher
-                        value={value}
-                        setValue={setValue}
-                        therapeut={selectedTherapeut ? selectedTherapeut : therapeutPlaceholder}
-                        dateValue={dateValue}
-                    />
+                <Grid item xs={12} md={5}>
+                    <Card py={2}>
+                        <BookFreeDate
+                            selectedBookingDates={availableBookingDates}
+                            visible={value === 0}
+                            therapeutAvailable={available}
+                            setDateValue={setDateValue}
+                            dateValue={dateValue}
+                        />
+                        <DateTimeTabsSwitcher
+                            style={{ alignItems: 'center', py: 2 }}
+                            value={value}
+                            setValue={setValue}
+                            therapeut={selectedTherapeut ? selectedTherapeut : therapeutPlaceholder}
+                            dateValue={dateValue}
+                        />
+                    </Card>
                 </Grid>
             </Grid>
         </Container>
@@ -133,9 +137,9 @@ function NavTabs() {
 
     return (
         <>
-            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '25rem' }, marginLeft: { xs: '8rem', md: 0 } }}>
-                <Tabs navTabValue={navTabValue} onChange={handleChange} aria-label="nav tabs example">
-                    <Tab label="Info" {...a11yProps(0)} />
+            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '50rem' }, marginLeft: { xs: 0, md: 0 } }}>
+                <Tabs sx={{ height: 0, width: 0 }} navTabValue={navTabValue} onChange={handleChange} aria-label="nav tabs example">
+                    <Tab label="Info"  {...a11yProps(0)} />
                 </Tabs>
             </Stack>
             <TabPanel navTabValue={navTabValue} index={0}>
