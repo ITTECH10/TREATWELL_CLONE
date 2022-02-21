@@ -11,7 +11,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Rating from '@mui/material/Rating';
 import { useTheme } from '@mui/material/styles'
 
@@ -26,7 +25,6 @@ export default function AddReviewDialog({ therapeutId }) {
     const [btnLoading, setBtnLoading] = React.useState(false);
     const [fields, setFields] = React.useState(initialFields)
     const [value, setValue] = React.useState(0);
-    const [shouldDisable, setShouldDisable] = React.useState(false)
 
     const rateTherapyHandler = (value) => {
         setOpen(true);
@@ -64,7 +62,6 @@ export default function AddReviewDialog({ therapeutId }) {
                 }
             }).catch(err => {
                 console.log(err.response)
-                setShouldDisable(true)
                 setBtnLoading(false)
                 setGeneralAlertOptions({
                     open: true,
@@ -83,7 +80,6 @@ export default function AddReviewDialog({ therapeutId }) {
                 onChange={(event, newValue) => {
                     rateTherapyHandler(newValue)
                 }}
-                disabled={shouldDisable}
             />
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Abstimmung</DialogTitle>

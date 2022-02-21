@@ -10,12 +10,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 // import DatePicker from '@mui/lab/DatePicker';
@@ -25,6 +24,51 @@ import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
 import { generatePassword } from '../../utils/helpers'
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
+
+const specializedMethodsOptions = [
+    {
+        label: 'Akupunktur',
+    },
+    {
+        label: 'Atemtherapie',
+    },
+    {
+        label: 'Autogenes Training',
+    },
+    {
+        label: 'Ayurveda',
+    },
+    {
+        label: 'Dorn-Breuß-Methode',
+    },
+    {
+        label: 'Eigenbluttherapie',
+    },
+    {
+        label: 'Fußreflexzonenmassage',
+    },
+    {
+        label: 'Homöopathie',
+    },
+    {
+        label: 'Massage',
+    },
+    {
+        label: 'Ohrakupunktur',
+    },
+    {
+        label: 'Pflanzenheilkunde',
+    },
+    {
+        label: 'Progressive Muskelentspannung nach Jacobson',
+    },
+    {
+        label: 'Rolfing',
+    },
+    {
+        label: 'Schröpfen',
+    },
+]
 
 const initialFields = {
     firstName: '',
@@ -39,6 +83,7 @@ const initialFields = {
     website: '',
     specializedIn: '',
     specializedServices: '',
+    specializedMethods: '',
     location: '',
     latitude: '',
     longitude: '',
@@ -83,7 +128,13 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    // for (var values of formData.entries()) {
+    if (fields.specializedMethods.length > 0) {
+        fields.specializedMethods.forEach((method, index) => {
+            formData.append('specializedMethods', method.label)
+        })
+    }
+
+    // for (var values of formData.values()) {
     //     console.log(values);
     // }
 
@@ -157,9 +208,9 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    const calendarVisibilityHandler = () => {
-        setOpenCalendar(prevState => !prevState)
-    }
+    // const calendarVisibilityHandler = () => {
+    //     setOpenCalendar(prevState => !prevState)
+    // }
 
     return (
         <>
@@ -354,6 +405,28 @@ export default function AddPacientModal({ onlyIcon }) {
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
+                            />
+                            <Autocomplete
+                                multiple
+                                id="add-therapeut-specialized-methods"
+                                options={specializedMethodsOptions}
+                                getOptionLabel={(option) => option.label}
+                                // defaultValue={[specializedMethodsOptions[13]]}
+                                onChange={(event, newValue) => {
+                                    setFields({
+                                        ...fields,
+                                        specializedMethods: newValue
+                                    })
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        name="specializedMethods"
+                                        variant="standard"
+                                        fullWidth
+                                        label="Specialized Methods"
+                                    />
+                                )}
                             />
                             <TextField
                                 margin="dense"

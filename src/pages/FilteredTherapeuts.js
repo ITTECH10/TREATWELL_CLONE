@@ -11,7 +11,7 @@ const FilteredTherapeuts = () => {
     return (
         <Page title="Rezultati Pretrage">
             <Container maxWidth="lg" p={2}>
-                <Typography my={2} variant="h5" align="center">Buchen Sie den passenden Spezialisten online.</Typography>
+                <Typography my={2} variant="h4" align="center">Buchen Sie den passenden Spezialisten online.</Typography>
                 {
                     therapeuts.map(therapeut => {
                         return <TherapeutDashboard
