@@ -1,27 +1,17 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
-// mui
-import { Box, Stack, Typography, Container, Tabs, Tab, Grid, Card } from '@mui/material'
-import { useTheme } from '@mui/material/styles';
 // rest
-import TherapeutInfoTab from '../components/THERAPEUTS/_details/TherapeutInfoTab'
-import TherapeutDetailsBookForm from '../components/THERAPEUTS/_details/TherapeutDetailsBookForm'
 import Page from '../components/Page'
 import { hasPermission, actions } from '../utils/DataProviders/ROLES/permissions'
-import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
-import UpdateTherapeutInfoDialog from '../components/THERAPEUTS/_details/UpdateTherapeutInfoDialog'
-import BookFreeDate from '../components/THERAPEUTS/_filtered/BookFreeDate'
-import DateTimeTabsSwitcher from '../components/THERAPEUTS/_filtered/DateTimeTabsSwitcher'
+import TherapeutHeader from '../components/THERAPEUTS/_details/TherapeutHeader'
 
 const TherapeutDetails = () => {
-    const theme = useTheme()
     const { pathname } = useLocation();
     const { selectedTherapeut, logedInPacient, authenticated, getOneTherapeut } = useApp()
-    const { image, name, specializedIn, phone, location: therapeutLocation, role, ratingsAverage } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', role: '', location: '', ratingsAverage: 0 }
+    const { role } = selectedTherapeut || logedInPacient || { role: '' }
     const therapeutId = pathname.split('/')[2]
     const roleMatch = hasPermission(logedInPacient, actions.MAIN_ROLE_UI_VISIBILITY)
-    const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
 
     React.useEffect(() => {
         if (!roleMatch && !authenticated) {
@@ -35,118 +25,9 @@ const TherapeutDetails = () => {
 
     return (
         <Page title="Therapeut Profile">
-            <Box sx={{ width: '100%', position: 'relative' }}>
-                <Box px={{ xs: 0, md: 30 }} sx={{ background: theme.palette.primary.main, color: '#fff' }}>
-                    <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
-                        <Box sx={{ height: 135, width: 135, position: 'relative', marginLeft: { xs: 2, md: 0 } }}>
-                            <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} />
-                            <UpdateTherapeutInfoDialog />
-                        </Box>
-                        <Box>
-                            <Typography variant="h4">{name}</Typography>
-                            <Typography variant="subtitle2">{specializedIn}</Typography>
-                            <Typography variant="subtitle2">Location: {therapeutLocation}</Typography>
-                            <Typography variant="subtitle2">Telefon: {phone}</Typography>
-                            <Typography variant="subtitle2">Bewertung: {Number(ratingsAverage).toFixed(1)}</Typography>
-                        </Box>
-                    </Stack>
-                </Box>
-                <NavTabs />
-            </Box>
+            <TherapeutHeader />
         </Page>
     )
 };
-
-function TabPanel(props) {
-    const { logedInPacient, selectedTherapeut } = useApp()
-    const therapeutPlaceholder = { availableBookingDates: [], available: true, firstName: '', lastName: '' }
-    const { availableBookingDates, available } = selectedTherapeut || { availableBookingDates: [], available: true }
-    const { children, navTabValue, index, ...other } = props;
-    const [value, setValue] = React.useState(0)
-    const [dateValue, setDateValue] = React.useState(availableBookingDates[0] ? new Date(availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
-    const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
-
-    const content = roleMatch ? (
-        <Container maxWidth="lg" sx={{ p: 2 }}>
-            <Grid container spacing={2} sx={{ flexDirection: { xs: 'column-reverse', md: 'row' } }}>
-                <Grid item xs={12} md={7}>
-                    {children}
-                </Grid>
-                <Grid item xs={12} md={5}>
-                    <TherapeutDetailsBookForm />
-                </Grid>
-            </Grid>
-        </Container>
-    ) : (
-        <Container maxWidth="lg" sx={{ p: 2 }}>
-            <Grid container spacing={2} sx={{ flexDirection: { xs: 'column-reverse', md: 'row' } }}>
-                <Grid item xs={12} md={7}>
-                    {children}
-                </Grid>
-                <Grid item xs={12} md={5}>
-                    <Card py={2}>
-                        <BookFreeDate
-                            selectedBookingDates={availableBookingDates}
-                            visible={value === 0}
-                            therapeutAvailable={available}
-                            setDateValue={setDateValue}
-                            dateValue={dateValue}
-                        />
-                        <DateTimeTabsSwitcher
-                            style={{ alignItems: 'center', py: 2 }}
-                            value={value}
-                            setValue={setValue}
-                            therapeut={selectedTherapeut ? selectedTherapeut : therapeutPlaceholder}
-                            dateValue={dateValue}
-                        />
-                    </Card>
-                </Grid>
-            </Grid>
-        </Container>
-    )
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={navTabValue !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {navTabValue === index && (
-                content
-            )}
-        </div>
-    );
-}
-
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
-function NavTabs() {
-    const [navTabValue, setNavTabValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setNavTabValue(newValue);
-    };
-
-    return (
-        <>
-            <Stack direction="row" justifyContent="center" sx={{ marginRight: { xs: 0, md: '50rem' }, marginLeft: { xs: 0, md: 0 } }}>
-                <Tabs sx={{ height: 0, width: 0 }} navTabValue={navTabValue} onChange={handleChange} aria-label="nav tabs example">
-                    <Tab label="Info"  {...a11yProps(0)} />
-                </Tabs>
-            </Stack>
-            <TabPanel navTabValue={navTabValue} index={0}>
-                <TherapeutInfoTab />
-            </TabPanel>
-        </>
-    );
-}
-
 
 export default TherapeutDetails;

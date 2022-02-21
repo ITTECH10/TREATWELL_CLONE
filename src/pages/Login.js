@@ -11,7 +11,7 @@ import { LoginForm } from '../components/authentication/login';
 import AuthSocial from '../components/authentication/AuthSocial';
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
-const LoginImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644329310/login-illustration_g4zbpl.jpg', ['w_1024'])
+const LoginImage = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1645180491/login-illustration_cj6p4b.jpg', ['w_1024'])
 
 // ----------------------------------------------------------------------
 

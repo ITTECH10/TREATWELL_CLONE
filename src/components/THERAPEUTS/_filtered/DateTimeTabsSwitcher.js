@@ -101,8 +101,6 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
                     setTherapies([...therapies, res.data.newTherapy])
                     setSelectedTherapeut(foundTherapeut)
 
-                    // CONSIDER LATER
-                    // const updatedLogedInPacient = {...logedInPacient, therapies: [...logedInPacient.therapies, res.data.newTherapy]}
                     getCurrentPacient()
                     setGeneralAlertOptions({
                         open: true,

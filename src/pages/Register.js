@@ -12,7 +12,7 @@ import { RegisterForm } from '../components/authentication/register';
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 // ----------------------------------------------------------------------
 
-const RegisterImage = manipulateCloudinaryImage('https://res.cloudinary.com/dnirsutla/image/upload/v1644329567/register_bo2m2j.jpg', ['w_1024'])
+const RegisterImage = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1645180812/register_cqrbag.jpg', ['w_1024'])
 
 const RootStyle = styled(Page)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {

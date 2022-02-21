@@ -6,8 +6,11 @@ import { Card, Stack, Container, Typography } from '@mui/material';
 import Page from '../components/Page';
 import { MHidden } from '../components/@material-extend';
 import { ResetPasswordForm } from '../components/authentication/resetPassword';
+// rest
+import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
 // ----------------------------------------------------------------------
+const optimizedResetPasswordImage = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1645180307/reset_password_hqwytq.jpg', ['w_1024'])
 
 const RootStyle = styled(Page)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {

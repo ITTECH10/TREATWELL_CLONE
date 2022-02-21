@@ -9,11 +9,8 @@ import { useApp } from './context/AppContext'
 import DashboardLayout from './layouts/dashboard';
 // ---------------------------------------------------------------------
 
-// const Login = lazy(() => import('./pages/Login'))
 import Login from './pages/Login'
 import Home from './pages/Home'
-// const Home = lazy(() => import('./pages/Home'))
-const LoginTherapeuts = lazy(() => import('./pages/LoginTherapeuts'))
 const Register = lazy(() => import('./pages/Register'))
 const FilteredTherapeuts = lazy(() => import('./pages/FilteredTherapeuts'))
 const TherapeutsNear = lazy(() => import('./pages/TherapeutsNear'))
@@ -55,7 +52,6 @@ export default function Router() {
     { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/privacy-policy', element: <PrivacyPolicy /> },
     { path: '/become-partner', element: <BecomePartner /> },
-    // { path: '/profile/therapies', element: <TherapeutMyTherapies /> },
     { path: '*', element: <NotFound /> }
   ]
 
@@ -77,7 +73,6 @@ export default function Router() {
     children: [
       { path: '/', element: <Navigate to="/home" /> },
       { path: '/login', element: <Login /> },
-      { path: '/authenticate/therapeuts', element: <LoginTherapeuts /> },
       { path: '/register', element: <Register /> },
       { path: '/forgotPassword', element: <ForgotPassword /> },
       { path: '/resetPassword/:token', element: <ResetPassword /> },

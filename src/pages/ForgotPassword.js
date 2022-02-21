@@ -6,8 +6,12 @@ import { Card, Stack, Container, Typography } from '@mui/material';
 import Page from '../components/Page';
 import { MHidden } from '../components/@material-extend';
 import ForgotPasswordForm from '../components/authentication/login/ForgotPasswordForm';
+// rest
+import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
 // ----------------------------------------------------------------------
+
+const optimizedForgotPasswordImage = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1645180291/forgot_password_woavug.jpg', ['w_1024'])
 
 const RootStyle = styled(Page)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
@@ -44,7 +48,7 @@ export default function ForgotPassword() {
                     <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                         Passwort vergessen?
                     </Typography>
-                    <img src="/static/illustrations/forgot_password.jpg" alt="Setze dein Passwort zurück" />
+                    <img src={optimizedForgotPasswordImage} alt="Setze dein Passwort zurück" />
                 </SectionStyle>
             </MHidden>
 

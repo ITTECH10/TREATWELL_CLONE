@@ -15,28 +15,18 @@ import Logo from '../../components/Logo'
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
     color: '#fff',
-    // backgroundColor: 'transparent',
-    position: 'fixed',
-    // [theme.breakpoints.up('lg')]: {
-    //     width: `calc(100% - ${DRAWER_WIDTH + 1}px)`
-    // }
+    position: 'fixed'
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
     display: 'flex',
-    justifyContent: 'space-between',
-    // minHeight: APPBAR_MOBILE,
-    [theme.breakpoints.up('lg')]: {
-        // minHeight: APPBAR_DESKTOP,
-        // padding: theme.spacing(0, 5)
-    }
+    justifyContent: 'space-between'
 }));
 
 export default function ButtonAppBar() {
     const navigate = useNavigate()
     const { authenticated, logout, logedInPacient, appLoading } = useApp()
 
-    // check if currently loged in user is a therapeut
     const isTherapeut = hasPermission(logedInPacient, actions.IS_THERAPEUT)
 
     const menuItems = !authenticated ? (

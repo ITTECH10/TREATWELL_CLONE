@@ -142,7 +142,7 @@ const HomeLandingPage = () => {
             <ImageBox
                 sx={
                     {
-                        backgroundImage: 'url("/static/illustrations/BildTitel1.jpg")',
+                        backgroundImage: `url(${notOptimizedLandingImage})`,
                         backgroundSize: 'cover',
                         backgroundPosition: { xs: 'right', md: 'top' },
                         opacity: .8

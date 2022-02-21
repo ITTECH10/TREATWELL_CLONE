@@ -1,7 +1,8 @@
 import { useApp } from '../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 // material
 import { Box } from '@mui/material';
 import Alert from './_reusable/Alert'
@@ -10,7 +11,15 @@ import Loader from './Loader'
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { appLoading } = useApp()
+  const { appLoading, logedInPacient, authenticated } = useApp()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
+      navigate('/privacy-policy')
+    }
+  }, [authenticated, logedInPacient])
+
   return (
     !appLoading ?
       <Box ref={ref} {...other}>

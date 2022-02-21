@@ -59,7 +59,7 @@ const TherapeutDetailsBookForm = () => {
             .then(res => {
                 setBtnLoading(false)
                 if (res.status === 200) {
-                    setLogedInPacient(res.data.therapeut)
+                    setLogedInPacient({ ...logedInPacient, availableBookingDates: res.data.therapeut.availableBookingDates })
                 }
             }).catch(err => {
                 console.log(err)
@@ -205,7 +205,7 @@ const StaticDatePickerLandscape = ({ setDateValue, dateValue, selectedBookingDat
                 openTo="day"
                 value={dateValue}
                 shouldDisableDate={disabledDays}
-                // disablePast
+                disablePast
                 // maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
                 onChange={(newValue) => {
                     setDateValue(newValue);

@@ -6,5 +6,5 @@ export const manipulateCloudinaryImage = (url, options = ['f_auto', 'q_70', 'w_5
         imageName = url.split('/')[7].split('.')[0]
     }
 
-    return `https://res.cloudinary.com/dnirsutla/image/upload/${options.join(',')}/${imageVersion}/${imageName}.jpg`
+    return `https://res.cloudinary.com/dt5o99tph/image/upload/${options.join(',')}/${imageVersion}/${imageName}.jpg`
 }
