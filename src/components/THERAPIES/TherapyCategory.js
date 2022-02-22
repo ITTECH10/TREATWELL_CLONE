@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,15 +9,22 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+const Logo = '/static/logo-white.svg'
+
 export default function TherapyCategory({ category }) {
     return (
         <Card sx={{ maxWidth: { xs: 'auto', md: 345 } }}>
-            <CardMedia
-                component="img"
-                height="140"
-                image={category.image}
-                alt="green iguana"
-            />
+            <Box sx={{ position: 'relative' }}>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    image={category.image}
+                    alt="green iguana"
+                />
+                <Box sx={{ width: 160, position: 'absolute', bottom: '.3rem', right: '.5rem' }}>
+                    <img style={{ height: '100%', width: '100%' }} src={Logo} alt="logo" />
+                </Box>
+            </Box>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {category.name}
