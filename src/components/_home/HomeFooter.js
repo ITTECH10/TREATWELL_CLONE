@@ -31,12 +31,19 @@ const generateListItems = [
     {
         id: 3,
         name: 'IMPRESSUM',
-        link: '/privacy-policy'
+        link: '/impressum'
     },
     {
         id: 4,
         name: 'DATENSCHUTZ',
-        link: '/privacy-policy'
+        link: 'https://drive.google.com/uc?export=download&id=1KED1sq3X1Gr4h-kDDKB23UGeORwhOnuw',
+        openOnNewPage: true
+    },
+    {
+        id: 5,
+        name: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN',
+        link: 'https://drive.google.com/uc?export=download&id=1Yer9C98lmrf_XSe_btn85PtMzYCBqU6A',
+        openOnNewPage: true
     }
 ]
 
@@ -84,7 +91,7 @@ const HomeFooter = () => {
                             generateListItems.map(listItem => {
                                 return <ListItem key={listItem.id}>
                                     <ListItemText
-                                        primary={<Link color="inherit" component={RouterLink} to={listItem.link}>{listItem.name}</Link>}
+                                        primary={<a style={{ color: 'inherit' }} target={listItem.openOnNewPage && '_blank'} href={listItem.link}>{listItem.name}</a>}
                                     />
                                 </ListItem>
                             })

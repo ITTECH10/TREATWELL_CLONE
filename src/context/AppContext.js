@@ -57,9 +57,6 @@ const AppContextProvider = ({ children }) => {
             .then(res => {
                 if (res.status === 200) {
                     setAppLoading(false)
-                    // if (!res.data.user.policiesAccepted) {
-                    //     navigate('/privacy-policy')
-                    // }
                     setLogedInPacient(res.data.user)
                 }
             })

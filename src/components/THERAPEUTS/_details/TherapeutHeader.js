@@ -11,7 +11,7 @@ import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryIm
 const TherapeutHeader = () => {
     const theme = useTheme()
     const { selectedTherapeut, logedInPacient } = useApp()
-    const { image, name, specializedIn, phone, location: therapeutLocation, ratingsAverage } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', location: '', ratingsAverage: 0 }
+    const { image, name, specializedIn, phone, location: therapeutLocation, ratingsAverage, ratingsQuantity } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', location: '', ratingsAverage: 0, ratingsQuantity: 0 }
     const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
 
     return (
@@ -27,7 +27,9 @@ const TherapeutHeader = () => {
                         <Typography variant="subtitle2">{specializedIn}</Typography>
                         <Typography variant="subtitle2">Location: {therapeutLocation}</Typography>
                         <Typography variant="subtitle2">Telefon: {phone}</Typography>
-                        <Typography variant="subtitle2">Bewertung: {Number(ratingsAverage).toFixed(1)}</Typography>
+                        {ratingsQuantity > 0 ?
+                            <Typography variant="subtitle2">Bewertung: {Number(ratingsAverage).toFixed(1)}</Typography> :
+                            <Typography variant="subtitle2">Noch keine bewertung.</Typography>}
                     </Box>
                 </Stack>
             </Box>

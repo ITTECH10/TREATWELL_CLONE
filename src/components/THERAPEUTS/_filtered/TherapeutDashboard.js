@@ -90,7 +90,7 @@ const TherapeutDashboard = ({ therapeut }) => {
                             therapeutAvailable={therapeut.available}
                             setDateValue={setDateValue}
                             dateValue={dateValue}
-                        /> : <Typography variant="h5">Dieser therapeut hat kein freies datum verfugbar...</Typography>}
+                        /> : <Typography variant="h5">Dieser Therapeut hat keine verfügbaren Termine...</Typography>}
                     {therapeut.availableBookingDates.length !== 0 &&
                         <DateTimeTabsSwitcher
                             value={value}

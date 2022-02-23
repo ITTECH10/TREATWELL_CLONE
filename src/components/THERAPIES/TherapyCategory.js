@@ -9,21 +9,19 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const Logo = '/static/logo-white.svg'
+const Logo = '/static/logo.svg'
 
 export default function TherapyCategory({ category }) {
     return (
         <Card sx={{ maxWidth: { xs: 'auto', md: 345 } }}>
-            <Box sx={{ position: 'relative' }}>
+            <Box>
                 <CardMedia
                     component="img"
                     height="140"
-                    image={category.image}
+                    image={Logo}
                     alt="green iguana"
+                    sx={{ objectFit: 'scale-down' }}
                 />
-                <Box sx={{ width: 160, position: 'absolute', bottom: '.3rem', right: '.5rem' }}>
-                    <img style={{ height: '100%', width: '100%' }} src={Logo} alt="logo" />
-                </Box>
             </Box>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

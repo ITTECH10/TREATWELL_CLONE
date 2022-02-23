@@ -177,7 +177,6 @@ const PrivacyPolicy = () => {
                                     Datenschutzerklärung vom 23. Mai 2018, die im Hinblick auf die neue DSGVO aktualisiert wurde
                                 </Typography>
                             </Box>
-                            <a href="https://drive.google.com/uc?export=download&id=1KED1sq3X1Gr4h-kDDKB23UGeORwhOnuw" target="_blank">Datenschutzerklärung herunterladen...</a>
                         </Box>
                         {authenticated ?
                             <Stack direction="row" spacing={1} justifyContent="flex-end" alignItems="center" my={1}>

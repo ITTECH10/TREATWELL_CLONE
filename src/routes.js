@@ -20,7 +20,8 @@ const TherapyCategories = lazy(() => import('./pages/TherapyCategories'))
 const BecomePartner = lazy(() => import('./pages/BecomePartner'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const Datenshutz = lazy(() => import('./pages/Datenshutz'))
+const Impressum = lazy(() => import('./pages/Impressum'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
@@ -36,7 +37,8 @@ export default function Router() {
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
     { path: '/therapies/categories', element: <TherapyCategories /> },
-    { path: '/privacy-policy', element: <PrivacyPolicy /> },
+    { path: '/datenshutz', element: <Datenshutz /> },
+    { path: '/impressum', element: <Impressum /> },
     { path: '/become-partner', element: <BecomePartner /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -50,7 +52,8 @@ export default function Router() {
     { path: '/therapeuts/:id', element: <TherapeutDetails /> },
     { path: '/profile/appointments', element: <MyAppointedTherapies /> },
     { path: '/therapies/categories', element: <TherapyCategories /> },
-    { path: '/privacy-policy', element: <PrivacyPolicy /> },
+    { path: '/datenshutz', element: <Datenshutz /> },
+    { path: '/impressum', element: <Impressum /> },
     { path: '/become-partner', element: <BecomePartner /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -81,7 +84,8 @@ export default function Router() {
       { path: '/therapeuts/near', element: <TherapeutsNear /> },
       { path: '/therapeuts/:id', element: <TherapeutDetails /> },
       { path: '/therapies/categories', element: <TherapyCategories /> },
-      { path: '/privacy-policy', element: <PrivacyPolicy /> },
+      { path: '/datenshutz', element: <Datenshutz /> },
+      { path: '/impressum', element: <Impressum /> },
       { path: '/become-partner', element: <BecomePartner /> },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> }

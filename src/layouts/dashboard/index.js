@@ -36,7 +36,7 @@ export default function DashboardLayout() {
 
   return (
     <RootStyle>
-      {pathname === '/privacy-policy' ? null : !dimensionsMatch && !appLoading ? <DashboardSwipeableDrawer /> : <DashboardAppBar />}
+      {pathname === '/impressum' || pathname === '/datenshutz' ? null : !dimensionsMatch && !appLoading ? <DashboardSwipeableDrawer /> : <DashboardAppBar />}
       <MainStyle>
         <Outlet />
       </MainStyle>

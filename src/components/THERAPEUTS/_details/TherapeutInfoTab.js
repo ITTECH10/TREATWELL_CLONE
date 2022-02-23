@@ -142,55 +142,49 @@ const TherapeutInfoTab = () => {
                     <Map lng={lng} lat={lat} />
                 </Box>
             </Box>
-            <Divider sx={{ mt: 2, mb: 1 }} />
-            <Box>
-                <Stack direction="row" alignItems="center" mb={1}>
-                    <IconButton color="primary">
-                        <StarIcon />
-                    </IconButton>
+            {reviews && reviews.length > 0 &&
+                <>
+                    <Divider sx={{ mt: 2, mb: 1 }} />
                     <Box>
-                        <Typography variant="subtitle1" >
-                            Abstimmungen
-                        </Typography>
+                        <Stack direction="row" alignItems="center" mb={1}>
+                            <IconButton color="primary">
+                                <StarIcon />
+                            </IconButton>
+                            <Box>
+                                <Typography variant="subtitle1" >
+                                    Abstimmungen
+                                </Typography>
+                            </Box>
+                        </Stack>
+                        <Box mx={2}>
+                            {reviews && reviews.map((review, index) => {
+                                return (
+                                    <>
+                                        <Stack direction="row" spacing={2} alignItems="center" key={review._id}>
+                                            <Stack alignItems="center">
+                                                <Typography variant="subtitle1" noWrap>
+                                                    {`${review.pacient.firstName} ${review.pacient.lastName}`}
+                                                </Typography>
+                                                <Box>
+                                                    <Rating
+                                                        value={review.rating}
+                                                        readOnly
+                                                    />
+                                                </Box>
+                                            </Stack>
+                                            <Typography noWrap sx={{ textOverflow: 'ellipsis' }}>
+                                                {review.review}
+                                            </Typography>
+                                        </Stack>
+                                        {index !== reviews.length - 1 && <Divider sx={{ mt: 2, mb: 1 }} />}
+                                    </>
+                                )
+                            })}
+                        </Box>
                     </Box>
-                </Stack>
-                <Box mx={2}>
-                    {reviews && reviews.map((review, index) => {
-                        return (
-                            <>
-                                <Stack direction="row" spacing={2} alignItems="center" key={review._id}>
-                                    <Stack alignItems="center">
-                                        <Typography variant="subtitle1" noWrap>
-                                            {`${review.pacient.firstName} ${review.pacient.lastName}`}
-                                        </Typography>
-                                        <Box>
-                                            <Rating
-                                                value={review.rating}
-                                                readOnly
-                                            />
-                                        </Box>
-                                    </Stack>
-                                    <Typography noWrap sx={{ textOverflow: 'ellipsis' }}>
-                                        {review.review}
-                                    </Typography>
-                                </Stack>
-                                {index !== reviews.length - 1 && <Divider sx={{ mt: 2, mb: 1 }} />}
-                            </>
-                        )
-                    })}
-                </Box>
-            </Box>
+                </>}
         </Card>
     )
 };
 
 export default TherapeutInfoTab;
-
-{/* <Stack direction="row" sx={{ ml: 5, mb: 1 }} spacing={2}>
-                    <Chip label="Ultraschall / Sonografie" />
-                    <Chip label="Echokardiografie / Herzecho" />
-                </Stack>
-                <Stack direction="row" sx={{ ml: 5 }} spacing={2}>
-                    <Chip label="Doppler-Ultraschall / Doppler-Sonografie" />
-                    <Chip label="24-Stunden-Langzeit-EKG" />
-                </Stack> */}
