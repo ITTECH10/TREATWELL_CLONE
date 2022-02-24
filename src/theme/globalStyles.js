@@ -15,6 +15,9 @@ export default function GlobalStyles() {
           padding: 0,
           boxSizing: 'border-box'
         },
+        '.PrivateDatePickerToolbar-penIcon': {
+          visibility: 'hidden'
+        },
         '::selection': {
           color: '#fff',
           background: theme.palette.primary.main

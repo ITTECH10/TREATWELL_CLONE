@@ -82,9 +82,9 @@ export default function CancelTherapyDialog({ therapyId, selectedTherapyDate, th
     return (
         <div>
             <Tooltip title="Therapie abbrechen">
-                <IconButton color="error" onClick={handleClickOpen}>
-                    <HistoryIcon />
-                </IconButton>
+                <Button color="error" onClick={handleClickOpen} endIcon={<HistoryIcon />}>
+                    Termin Stornieren
+                </Button>
             </Tooltip>
             <Dialog
                 open={open}
@@ -93,12 +93,12 @@ export default function CancelTherapyDialog({ therapyId, selectedTherapyDate, th
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Therapie abbrechen?"}
+                    {"Termin Stornieren?"}
                 </DialogTitle>
                 <DialogContent>
                     <Box component="form" onSubmit={handleSubmit}>
                         <DialogContentText id="alert-dialog-description">
-                            Sind Sie sicher, dass Sie diese Therapie abbrechen möchten?
+                            Sind Sie sicher, dass Sie dieses Termin abbrechen möchten?
                         </DialogContentText>
                         <DialogActions>
                             <Button

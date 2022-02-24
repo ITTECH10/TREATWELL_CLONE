@@ -1,7 +1,7 @@
 import React from 'react';
 import { useApp } from '../../../context/AppContext'
 // mui
-import { Box, Stack, Card, Button, Grid, Avatar, Typography, Rating } from '@mui/material'
+import { Box, Stack, Card, Button, Grid, Avatar, Typography, IconButton } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 //rest
@@ -10,17 +10,24 @@ import BookFreeDate from './BookFreeDate'
 import DateTimeTabsSwitcher from './DateTimeTabsSwitcher'
 import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 import AddReviewDialog from '../../REVIEWS/AddReviewDialog'
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
 
 const TherapeutDashboard = ({ therapeut }) => {
     const theme = useTheme()
+    const [open, setOpen] = React.useState(false)
     const { getOneTherapeut, authenticated } = useApp()
     const [value, setValue] = React.useState(0);
     const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
 
     const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
 
+    const calendarTogler = () => {
+        setOpen(prevState => !prevState)
+    }
+
     return (
-        <Card sx={{ py: 2, mb: 2 }} key={therapeut._id}>
+        <Card sx={{ py: 2, mb: 2, position: 'relative' }} key={therapeut._id}>
             <Grid container direction={{ xs: 'column', md: 'row' }}>
                 <Grid item xs={12} md={4} sx={{ pt: 2, px: 2 }}>
                     <Stack direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }}>
@@ -83,23 +90,28 @@ const TherapeutDashboard = ({ therapeut }) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={8}>
-                    {value === 0 && therapeut.availableBookingDates.length !== 0 ?
-                        <BookFreeDate
-                            selectedBookingDates={therapeut.availableBookingDates}
-                            visible={value === 0}
-                            therapeutAvailable={therapeut.available}
-                            setDateValue={setDateValue}
-                            dateValue={dateValue}
-                        /> : <Typography variant="h5">Dieser Therapeut hat keine verfügbaren Termine...</Typography>}
-                    {therapeut.availableBookingDates.length !== 0 &&
-                        <DateTimeTabsSwitcher
-                            value={value}
-                            setValue={setValue}
-                            therapeut={therapeut}
-                            dateValue={dateValue}
-                        />}
+                    {open ?
+                        <Box>
+                            <BookFreeDate
+                                selectedBookingDates={therapeut.availableBookingDates}
+                                visible={value === 0}
+                                therapeutAvailable={therapeut.available}
+                                setDateValue={setDateValue}
+                                dateValue={dateValue}
+                            />
+                            <DateTimeTabsSwitcher
+                                value={value}
+                                setValue={setValue}
+                                therapeut={therapeut}
+                                dateValue={dateValue}
+                            />
+                        </Box> : !open && therapeut.availableBookingDates.length === 0 && <Typography variant="h5">Dieser Therapeut hat keine verfügbaren Termine...</Typography>}
                 </Grid>
             </Grid>
+            {therapeut.availableBookingDates.length > 0 &&
+                <IconButton color={open ? 'error' : 'primary'} sx={{ position: 'absolute', right: '.5rem', top: '.5rem' }} onClick={calendarTogler}>
+                    {open ? <EventBusyIcon sx={{ fontSize: '1.7rem' }} /> : <EventAvailableIcon sx={{ fontSize: '1.7rem' }} />}
+                </IconButton>}
         </Card>
     )
 };

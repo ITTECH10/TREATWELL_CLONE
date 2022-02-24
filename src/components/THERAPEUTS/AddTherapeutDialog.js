@@ -17,6 +17,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import deLocale from 'date-fns/locale/de';
 // import DatePicker from '@mui/lab/DatePicker';
 // rest
 import { Calendar } from "react-multi-date-picker";
@@ -231,7 +232,7 @@ export default function AddPacientModal({ onlyIcon }) {
                         Um einen neuen Therapeuten hinzuzufügen, füllen Sie bitte die Informationen aus
                         unter
                     </DialogContentText>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
                         <Box
                             component="form"
                             onSubmit={handleSubmit}

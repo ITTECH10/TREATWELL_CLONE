@@ -7,6 +7,7 @@ import { useTheme } from '@mui/material/styles'
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
+import deLocale from 'date-fns/locale/de';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -107,11 +108,13 @@ const TherapeutDetailsBookForm = () => {
             </Stack>
             <Box p={2}>
                 {value === 0 &&
-                    <StaticDatePickerLandscape
-                        dateValue={dateValue}
-                        setDateValue={setDateValue}
-                        selectedBookingDates={selectedBookingDates}
-                    />}
+                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+                        <StaticDatePickerLandscape
+                            dateValue={dateValue}
+                            setDateValue={setDateValue}
+                            selectedBookingDates={selectedBookingDates}
+                        />
+                    </LocalizationProvider>}
                 {roleMatch &&
                     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered >
                         <Tab sx={{ fontSize: '.65rem' }} icon={<EventAvailableIcon />} onClick={() => navigateBackUsingTab()} label="Datum" />
@@ -199,7 +202,7 @@ const StaticDatePickerLandscape = ({ setDateValue, dateValue, selectedBookingDat
     };
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
             <StaticDatePicker
                 orientation="portrait"
                 openTo="day"

@@ -125,9 +125,9 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
         <Stack alignItems="flex-end" sx={{ ...style }}>
             <TabPanel value={value} index={1}>
                 <TabPanel value={value} index={1}>
-                    <Typography variant="subtitle1">
+                    <Typography variant="subtitle1" align="center">
                         {extractedBookingHours[0] && extractedBookingHours[0].length > 0 ?
-                            "Verfügbare Buchungszeiten für dieses Datum..."
+                            "Verfügbare Termine..."
                             : "Es gibt keine verfugbare Buchungszeiten für dieses Datum..."}
                     </Typography>
                     <List>
@@ -160,7 +160,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
             </TabPanel>
             <Tabs value={value} onChange={handleChange} >
                 <Tab sx={{ fontSize: '.65rem' }} icon={<EventAvailableIcon />} onClick={() => navigateBackUsingTab()} label="Datum" />
-                <Tab sx={{ fontSize: '.65rem' }} icon={<AccessAlarmsIcon />} label="Uhr" {...a11yProps(1)} disabled={therapeut.availableBookingDates.length === 0} />
+                <Tab sx={{ fontSize: '.65rem' }} icon={<AccessAlarmsIcon />} label="Uhrzeit" {...a11yProps(1)} disabled={therapeut.availableBookingDates.length === 0} />
             </Tabs>
         </Stack>
     )
