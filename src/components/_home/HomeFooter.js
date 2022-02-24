@@ -36,14 +36,12 @@ const generateListItems = [
     {
         id: 4,
         name: 'DATENSCHUTZ',
-        link: 'https://drive.google.com/uc?export=download&id=1KED1sq3X1Gr4h-kDDKB23UGeORwhOnuw',
-        openOnNewPage: true
+        link: '/datenshutz'
     },
     {
         id: 5,
         name: 'ALLGEMEINE GESCHÄFTSBEDINGUNGEN',
-        link: 'https://drive.google.com/uc?export=download&id=1Yer9C98lmrf_XSe_btn85PtMzYCBqU6A',
-        openOnNewPage: true
+        link: '/allgemeine-geschaftsbedingungen'
     }
 ]
 
@@ -64,7 +62,7 @@ const HomeFooter = () => {
                     <IconButton color="inherit" sx={{ cursor: 'auto' }}>
                         <PhoneIcon sx={{ fontSize: "3rem" }} />
                     </IconButton>
-                    <Typography variant="h4">030 91531353</Typography>
+                    <Typography variant="h4">030 22389838</Typography>
                 </Stack>
                 <Stack
                     sx={{ width: { xs: '100%', md: '50%' } }}

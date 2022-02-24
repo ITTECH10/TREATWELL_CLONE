@@ -36,7 +36,7 @@ const PrivacyPolicy = () => {
     }
 
     return (
-        <Page title="Impressum">
+        <Page title="Datenshutz">
             <Grid container>
                 <Grid sm={3} item />
                 <Grid sm={6} item>

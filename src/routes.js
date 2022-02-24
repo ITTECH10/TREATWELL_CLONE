@@ -22,6 +22,7 @@ const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const ResetPassword = lazy(() => import('./pages/ResetPassword'))
 const Datenshutz = lazy(() => import('./pages/Datenshutz'))
 const Impressum = lazy(() => import('./pages/Impressum'))
+const Agbs = lazy(() => import('./pages/Agbs'))
 const NotFound = lazy(() => import('./pages/Page404'))
 
 export default function Router() {
@@ -39,6 +40,7 @@ export default function Router() {
     { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/datenshutz', element: <Datenshutz /> },
     { path: '/impressum', element: <Impressum /> },
+    { path: '/allgemeine-geschaftsbedingungen', element: <Agbs /> },
     { path: '/become-partner', element: <BecomePartner /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -54,6 +56,7 @@ export default function Router() {
     { path: '/therapies/categories', element: <TherapyCategories /> },
     { path: '/datenshutz', element: <Datenshutz /> },
     { path: '/impressum', element: <Impressum /> },
+    { path: '/allgemeine-geschaftsbedingungen', element: <Agbs /> },
     { path: '/become-partner', element: <BecomePartner /> },
     { path: '*', element: <NotFound /> }
   ]
@@ -86,6 +89,7 @@ export default function Router() {
       { path: '/therapies/categories', element: <TherapyCategories /> },
       { path: '/datenshutz', element: <Datenshutz /> },
       { path: '/impressum', element: <Impressum /> },
+      { path: '/allgemeine-geschaftsbedingungen', element: <Agbs /> },
       { path: '/become-partner', element: <BecomePartner /> },
       { path: '404', element: <NotFound /> },
       { path: '*', element: <NotFound /> }

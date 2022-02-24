@@ -62,7 +62,6 @@ export default function BookTherapyDialog({ therapeut, date }) {
 
     return (
         <div>
-            {!authenticated && <Typography variant="subtitle2" color="error">Melden Sie sich an um einen Termin zu vereinbaren...</Typography>}
             {/* <Button variant="contained" onClick={handleClickOpen} disabled={!authenticated || !therapeut.available}>
                 Termin Vereinbaren
             </Button> */}
