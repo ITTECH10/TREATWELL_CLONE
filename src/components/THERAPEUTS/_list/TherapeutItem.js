@@ -66,10 +66,10 @@ const TherapeutItem = ({ fields, filteredTherapeuts, navigate }) => {
                                             variant="body2"
                                             color="text.primary"
                                         >
-                                            <Typography variant="subtitle2">Name: <span>{therapeut.name}</span></Typography>
-                                            <Typography variant="subtitle2">Heilpraktiker: {therapeut.specializedIn}</Typography>
+                                            <Typography variant="subtitle2">Name: <span>{`${therapeut.firstName} ${therapeut.lastName}`}</span></Typography>
+                                            <Typography variant="subtitle2">Beruf: {therapeut.specializedIn}</Typography>
                                             <Typography variant="subtitle2">Telefon: {therapeut.phone}</Typography>
-                                            <Typography variant="subtitle2">Schwerpunkt: Kardiologie ist mei...</Typography>
+                                            <Typography variant="subtitle2">Schwerpunkt: {therapeut.specializedMethods.map(el => <Typography variant="body2">{el}</Typography>)}</Typography>
                                         </Typography>
                                         {<Button size="small">Mehr Uber Mich</Button>}
                                     </React.Fragment>

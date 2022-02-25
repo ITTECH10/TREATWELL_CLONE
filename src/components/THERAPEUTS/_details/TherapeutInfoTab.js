@@ -17,7 +17,7 @@ import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryIm
 
 const TherapeutInfoTab = () => {
     const { selectedTherapeut, logedInPacient } = useApp()
-    const { images: practicePhotos, website, phone, email, address, locationCoordinates, reviews } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '', reviews: [] }
+    const { images: practicePhotos, website, phone, email, address, locationCoordinates, reviews, biography, specializedMethods, qualifications } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '', reviews: [], biography: '', specializedMethods: [], qualifications: '' }
     const lng = locationCoordinates && locationCoordinates.coordinates[0]
     const lat = locationCoordinates && locationCoordinates.coordinates[1]
     const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
@@ -55,7 +55,7 @@ const TherapeutInfoTab = () => {
                 </Stack>
                 <Box mx={2}>
                     <Typography variant="body2">
-                        Nulla pellentesque lacus vel odio consequat, a cursus nunc porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce sed odio vel sem molestie feugiat eu in dui. Nunc eleifend tristique eros eget venenatis. Proin vel rhoncus tortor. Nulla vel eros vel justo aliquam condimentum. Integer arcu mi, sollicitudin quis molestie rhoncus, luctus vel ante. Duis auctor, sem non viverra lobortis, nunc justo laoreet enim, et imperdiet dui ligula eu ipsum. Vestibulum ultricies lacinia magna, fermentum tristique neque blandit vitae. Morbi ac maximus quam, ut dictum enim. Sed dictum sed turpis et pellentesque. Integer tincidunt eleifend tellus sit amet finibus. Nunc convallis arcu ut orci condimentum facilisis. Nullam posuere eros quis nunc auctor scelerisque. Integer mattis mollis leo id faucibus.
+                        {biography}
                     </Typography>
                 </Box>
             </Box>
@@ -71,7 +71,11 @@ const TherapeutInfoTab = () => {
                 </Stack>
                 <Box mx={2}>
                     <Typography variant="body2">
-                        Nulla pellentesque lacus vel odio consequat, a cursus nunc porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce sed odio vel sem molestie feugiat eu in dui. Nunc eleifend tristique eros eget venenatis. Proin vel rhoncus tortor. Nulla vel eros vel justo aliquam condimentum. Integer arcu mi, sollicitudin quis molestie rhoncus, luctus vel ante.
+                        {specializedMethods.map((method, index) => {
+                            return <Typography variant="body2">
+                                {method}
+                            </Typography>
+                        })}
                     </Typography>
                 </Box>
             </Box>
@@ -89,26 +93,7 @@ const TherapeutInfoTab = () => {
                     <List dense sx={{ p: 0 }}>
                         <ListItem>
                             <ListItemText
-                                primary="Elementary School"
-                                secondary='Bonn 2009'
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Middle Medicine School"
-                                secondary='Bonn 2014'
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="College Degree"
-                                secondary='Berlin 2018'
-                            />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText
-                                primary="Masters Degree"
-                                secondary='Berlin 2020'
+                                primary={qualifications}
                             />
                         </ListItem>
                     </List>
@@ -127,7 +112,7 @@ const TherapeutInfoTab = () => {
                     </Box>
                 </Stack>
                 <Box mx={2}>
-                    <Button variant="text" sx={{ p: 0, mb: .5 }} href="https://google.com" target="_blank">
+                    <Button href={`https://${website}`} target="_blank" variant="text" sx={{ p: 0, mb: .5 }} >
                         {website}
                     </Button>
                     <Typography variant="subtitle1" mb={1}>
