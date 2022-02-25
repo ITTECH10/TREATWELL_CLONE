@@ -14,7 +14,7 @@ const HomeWelcomeVideo = () => {
                         component="video"
                         src="/static/videos/home-video.mp4"
                         controls
-                        poster="/static/videos/video-poster.png"
+                        poster="https://res.cloudinary.com/dt5o99tph/image/upload/v1645785731/video-poster_id9zio.png"
                         // autoPlay
                         // loop
                         sx={{ width: '100%', height: '100%' }}
