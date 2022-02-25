@@ -36,7 +36,7 @@ const HomeServiceBoxes = () => {
                         <Box>
                             <Typography align="center" variant="h5">Geprüfte Therapeuten</Typography>
                             <Typography>
-                                All unsere Mitglied-Therapeuten verfügen über einige Qualifikationen und ausreichend Erfahrung. Alle haben ihre Ausbildung wie auch Weiterbildungen in Deutschland absolviert.
+                                Alle unsere Mitglied-Therapeuten verfügen über einige Qualifikationen und ausreichend Erfahrung. Alle haben ihre Ausbildung wie auch Weiterbildungen in Deutschland absolviert.
                             </Typography>
                         </Box>
                     </Stack>

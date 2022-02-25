@@ -16,7 +16,7 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
 
   useEffect(() => {
     if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
-      navigate('/impressum')
+      navigate('/datenshutz')
     }
   }, [authenticated, logedInPacient])
 

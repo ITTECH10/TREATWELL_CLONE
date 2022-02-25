@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
                     setGeneralAlertOptions({
                         open: true,
                         severity: 'info',
-                        message: 'Vielen Dank, dass Sie unsere Impressum akzeptiert haben!',
+                        message: 'Vielen Dank, dass Sie unserer datenshutz akzeptiert haben!',
                         hideAfter: 5000
                     })
                 }

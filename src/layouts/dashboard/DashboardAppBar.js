@@ -36,7 +36,7 @@ export default function ButtonAppBar() {
             <Button color="inherit" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
             <Button color="inherit" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
             <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
-            <Button color="inherit" onClick={() => navigate('/register')}>Anmelden</Button>
+            <Button color="inherit" onClick={() => navigate('/register')}>Registrieren</Button>
         </Box>
     ) : isTherapeut ? (
         <Box>

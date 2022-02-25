@@ -32,7 +32,7 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                 onClick={handleClickOpen}
                 disabled={selectedHour.length === 0 || !authenticated}
             >
-                {!authenticated ? "Sie mussen zueerst anmelden!" : "Termin Vereinbaren"}
+                {!authenticated ? "Sie mussen zueerst registrieren!" : "Termin Vereinbaren"}
             </Button>
             <Dialog
                 open={open}

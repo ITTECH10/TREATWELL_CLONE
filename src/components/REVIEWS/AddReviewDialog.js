@@ -82,7 +82,7 @@ export default function AddReviewDialog({ therapeutId }) {
                 }}
             />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Abstimmung</DialogTitle>
+                <DialogTitle>Bewertung</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Sind Sie sicher, dass Sie diese Therapist mit

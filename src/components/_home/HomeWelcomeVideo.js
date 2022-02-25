@@ -14,6 +14,7 @@ const HomeWelcomeVideo = () => {
                         component="video"
                         src="/static/videos/home-video.mp4"
                         controls
+                        poster="/static/videos/video-poster.png"
                         // autoPlay
                         // loop
                         sx={{ width: '100%', height: '100%' }}

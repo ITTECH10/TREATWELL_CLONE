@@ -112,7 +112,7 @@ const HomeLandingPage = () => {
                     <Stack direction={{ xs: 'column', md: 'row' }} sx={{ width: '100%', order: { xs: 3, md: 1 } }}>
                         <TextField
                             name="query"
-                            placeholder="Name, Symptom, Dienst"
+                            placeholder="Name, Symptom, Therapie"
                             onChange={handleChange}
                             fullWidth
                             size={!match && 'small'}

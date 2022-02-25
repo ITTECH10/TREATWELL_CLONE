@@ -152,7 +152,7 @@ const TherapeutInfoTab = () => {
                             </IconButton>
                             <Box>
                                 <Typography variant="subtitle1" >
-                                    Abstimmungen
+                                    Bewertungen
                                 </Typography>
                             </Box>
                         </Stack>
