@@ -372,7 +372,7 @@ export default function AddPacientModal({ onlyIcon }) {
                                 name="address"
                                 required
                                 id="address"
-                                label="Addresse"
+                                label="Adresse"
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}

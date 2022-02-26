@@ -37,8 +37,20 @@ const TherapeutInfoTab = () => {
                     {practicePhotos.map(practicePhoto => {
                         const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_500'])
 
-                        return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
-                            <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
+                        // return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
+                        //     <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
+                        // </Box>
+                        return <Box
+                            sx={{
+                                height: 200,
+                                width: { xs: 'auto', md: 350 },
+                                overflow: 'hidden',
+                                background: `url(${optimizedPracticePhoto})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }}
+                        >
                         </Box>
                     })}
                 </Stack>
@@ -119,7 +131,7 @@ const TherapeutInfoTab = () => {
                         E-mail: {email}
                     </Typography>
                     <Typography variant="subtitle1" mb={1}>
-                        Addresse: {address}
+                        Adresse: {address}
                     </Typography>
                     <Typography variant="subtitle1" mb={1}>
                         Telefon: {phone}

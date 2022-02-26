@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useApp } from '../../context/AppContext'
 import { Marker, Popup } from 'react-map-gl'
 //mui
 import { Box, Avatar, Typography, IconButton, Stack, Button } from '@mui/material'
@@ -11,7 +10,6 @@ const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
 const NearTherapeut = ({ therapeut }) => {
     const navigate = useNavigate()
-    const { setTherapeuts } = useApp()
     const [showPopup, togglePopup] = useState(false)
     const { coordinates } = therapeut.locationCoordinates
     const [long, lat] = coordinates
@@ -20,8 +18,7 @@ const NearTherapeut = ({ therapeut }) => {
     const optimizedAvatarImage = manipulateCloudinaryImage(therapeut.image)
 
     const bookTherapyHandler = () => {
-        setTherapeuts([therapeut])
-        navigate('/therapeuts')
+        navigate(`/therapeuts/${therapeut._id}`)
     }
 
     return (
@@ -48,9 +45,11 @@ const NearTherapeut = ({ therapeut }) => {
                             <EmailIcon sx={{ fontSize: 20 }} />
                         </IconButton>
                     </Stack>
-                    <Typography variant="subtitle2">{therapeut.specializedIn}</Typography>
-                    <Typography variant="subtitle2">Name: {name}</Typography>
-                    <Typography variant="subtitle2">Telefon: {therapeut.phone}</Typography>
+                    <Box onClick={bookTherapyHandler}>
+                        <Typography variant="subtitle2">{therapeut.specializedIn}</Typography>
+                        <Typography variant="subtitle2">Name: {name}</Typography>
+                        <Typography variant="subtitle2">Telefon: {therapeut.phone}</Typography>
+                    </Box>
                     <Stack>
                         <Button
                             size="small"

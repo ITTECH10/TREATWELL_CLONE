@@ -29,7 +29,7 @@ const TherapeutHeader = () => {
                         <Typography variant="subtitle2">Telefon: {phone}</Typography>
                         {ratingsQuantity > 0 ?
                             <Typography variant="subtitle2">Bewertung: {Number(ratingsAverage).toFixed(1)}</Typography> :
-                            <Typography variant="subtitle2">Noch keine bewertung.</Typography>}
+                            <Typography variant="subtitle2">Noch keine Bewertung.</Typography>}
                     </Box>
                 </Stack>
             </Box>

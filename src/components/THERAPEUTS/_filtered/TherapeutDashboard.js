@@ -54,7 +54,7 @@ const TherapeutDashboard = ({ therapeut }) => {
                                     : <Typography
                                         variant="subtitle2"
                                     >
-                                        Noch keine bewertung.
+                                        Noch keine Bewertung.
                                     </Typography>}
                                 {authenticated &&
                                     <AddReviewDialog
@@ -73,10 +73,10 @@ const TherapeutDashboard = ({ therapeut }) => {
                             Standort: {therapeut.location}
                         </Typography>
                         <Typography variant="subtitle2">
-                            Addresse: {therapeut.address}
+                            Adresse: {therapeut.address}
                         </Typography>
                         <Typography variant="subtitle2">
-                            Schweerpunkte: {therapeut.specializedServices}
+                            Schwerpunkte: {therapeut.specializedServices}
                         </Typography>
                         <Typography mt={1} variant="subtitle1">
                             Methoden:
