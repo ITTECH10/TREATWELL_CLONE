@@ -18,6 +18,8 @@ axios.defaults.baseURL = 'https://gesundo24.herokuapp.com/api/v1'
 // axiosInstance.interceptors.request.use( async config => { config.baseURL=await getBaseUrl(); return config; }, error => Promise.reject(error) );
 // ----------------------------------------------------------------------
 
+console.log(process.env.REACT_APP_MAPBOX_TOKEN)
+
 ReactDOM.render(
   <BrowserRouter>
     <AppContextProvider>

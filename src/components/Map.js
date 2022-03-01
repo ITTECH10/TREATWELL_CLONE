@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-const token = 'pk.eyJ1IjoidHJlYXR3ZWxsMTAiLCJhIjoiY2t5bXd6dnVrMDF3NTJ2b3k0Y20zMDR5dCJ9.wIzLh0qg1SiCZ3mm8t9qug';
+const token = process.env.REACT_APP_MAPBOX_TOKEN
 const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
 const Map = ({ lng, lat }) => {
@@ -10,7 +10,7 @@ const Map = ({ lng, lat }) => {
 
     return (
         <ReactMapGL
-            mapStyle="mapbox://styles/mapbox/streets-v11"
+            mapStyle="mapbox://styles/mapbox/streets-v11?optimize=true"
             mapboxApiAccessToken={token} {...viewport}
             height="400px" width="100%"
             onViewportChange={setViewport}

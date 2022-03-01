@@ -3,6 +3,7 @@ import { useApp } from '../context/AppContext'
 import ReactMapGL from 'react-map-gl';
 import NearTherapeut from './_map/NearTherapeut'
 
+// secure later
 const token = 'pk.eyJ1IjoidHJlYXR3ZWxsMTAiLCJhIjoiY2t5bXd6dnVrMDF3NTJ2b3k0Y20zMDR5dCJ9.wIzLh0qg1SiCZ3mm8t9qug';
 
 const NearTherapeutsMap = () => {
@@ -19,7 +20,7 @@ const NearTherapeutsMap = () => {
 
     return (
         // MAP HEIGHT CALCULATED 100vh - (AppBar height = 64px + container top and bottom margin 32 + 32 = 64px)
-        <ReactMapGL mapStyle="mapbox://styles/mapbox/streets-v11" {...viewport} onViewportChange={setViewport}>
+        <ReactMapGL mapStyle="mapbox://styles/mapbox/streets-v11?optimize=true" {...viewport} onViewportChange={setViewport}>
             {therapeuts && therapeuts.map(therapeut => {
                 return <NearTherapeut
                     therapeut={therapeut}

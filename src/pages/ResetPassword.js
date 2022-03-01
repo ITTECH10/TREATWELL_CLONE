@@ -47,7 +47,7 @@ export default function Login() {
                     <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                         Setze dein Passwort zurück
                     </Typography>
-                    <img src="/static/illustrations/reset_password.jpg" alt="reset your password" />
+                    <img src={optimizedResetPasswordImage} alt="reset your password" />
                 </SectionStyle>
             </MHidden>
 

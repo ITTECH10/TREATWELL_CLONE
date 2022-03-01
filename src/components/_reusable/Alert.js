@@ -28,7 +28,7 @@ export default function Alerts() {
                 open={generalAlertOptions.open}
                 onClose={handleClose}
                 autoHideDuration={generalAlertOptions.hideAfter}
-                style={{ left: '50%', transform: 'translateX(-50%)' }}
+                sx={{ left: { xs: null, md: '50%' }, transform: { xs: 'none', md: 'translateX(-50%)' } }}
             >
                 <Alert onClose={handleClose} severity={generalAlertOptions.severity} sx={{ width: '100%' }}>
                     {generalAlertOptions.message}
