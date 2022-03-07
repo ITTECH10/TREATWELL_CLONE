@@ -49,7 +49,7 @@ const AppContextProvider = ({ children }) => {
                 setAppLoading(false)
                 console.log(err)
             })
-    }, [])
+    }, [navigate])
 
     const getCurrentPacient = useCallback(() => {
         setAppLoading(true)
@@ -83,7 +83,7 @@ const AppContextProvider = ({ children }) => {
                     window.location.reload()
                 }
             }).catch(err => console.error(err))
-    }, [setToken])
+    }, [setToken, navigate])
 
     const value = {
         authenticated,

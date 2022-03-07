@@ -18,7 +18,7 @@ const Map = ({ lng, lat }) => {
             latitude={lat}
         >
             <Marker latitude={lat ? lat : 50.078217} longitude={lng ? lng : 8.239761}>
-                <img src={ICON} />
+                <img src={ICON} alt="map-marker-icon" />
             </Marker>
         </ReactMapGL>
     );

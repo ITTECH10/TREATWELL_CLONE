@@ -21,7 +21,7 @@ const TherapeutDetails = () => {
         if (roleMatch && authenticated) {
             getOneTherapeut(therapeutId)
         }
-    }, [getOneTherapeut, role])
+    }, [getOneTherapeut, role, therapeutId, roleMatch, authenticated])
 
     return (
         <Page title="Therapeut Profile">

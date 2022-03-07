@@ -15,7 +15,8 @@ import Logo from '../../components/Logo'
 const RootStyle = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
     color: '#fff',
-    position: 'fixed'
+    position: 'fixed',
+    backgroundColor: theme.palette.background.paper
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -31,27 +32,27 @@ export default function ButtonAppBar() {
 
     const menuItems = !authenticated ? (
         <Box>
-            <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
-            <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
-            <Button color="inherit" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
-            <Button color="inherit" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
-            <Button color="inherit" onClick={() => navigate('/login')}>Login</Button>
-            <Button color="inherit" onClick={() => navigate('/register')}>Registrieren</Button>
+            <Button color="primary" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="primary" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
+            <Button color="primary" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
+            <Button color="primary" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
+            <Button color="primary" onClick={() => navigate('/login')}>Login</Button>
+            <Button color="primary" onClick={() => navigate('/register')}>Registrieren</Button>
         </Box>
     ) : isTherapeut ? (
         <Box>
-            <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
-            <Button color="inherit" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
-            <Button color="inherit" onClick={() => logout()}>Log out</Button>
+            <Button color="primary" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="primary" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
+            <Button color="primary" onClick={() => logout()}>Log out</Button>
         </Box>
     ) : (
         <Box>
-            <Button color="inherit" onClick={() => navigate('/home')}>Home</Button>
-            <Button color="inherit" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
-            <Button color="inherit" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
-            <Button color="inherit" onClick={() => navigate('/profile/appointments')}>Meine Therapien</Button>
-            <Button color="inherit" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
-            <Button color="inherit" onClick={() => logout()}>Abmelden</Button>
+            <Button color="primary" onClick={() => navigate('/home')}>Home</Button>
+            <Button color="primary" onClick={() => navigate('/become-partner')}>Partner Werden</Button>
+            <Button color="primary" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
+            <Button color="primary" onClick={() => navigate('/profile/appointments')}>Meine Therapien</Button>
+            <Button color="primary" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
+            <Button color="primary" onClick={() => logout()}>Abmelden</Button>
         </Box>
     )
 

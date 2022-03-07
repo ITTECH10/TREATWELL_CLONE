@@ -24,7 +24,7 @@ const NearTherapeut = ({ therapeut }) => {
     return (
         <Box onClick={() => togglePopup(true)}>
             <Marker latitude={lat} longitude={long} offsetLeft={-10} offsetTop={5}>
-                <img src={ICON} />
+                <img src={ICON} alt="map-marker-icon" />
             </Marker>
             {showPopup && <Popup
                 latitude={lat}

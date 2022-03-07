@@ -12,7 +12,6 @@ import Rating from '@mui/material/Rating';
 
 // rest
 import Map from '../../Map'
-import { hasPermission, actions } from '../../../utils/DataProviders/ROLES/permissions'
 import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 
 const TherapeutInfoTab = () => {
@@ -20,7 +19,6 @@ const TherapeutInfoTab = () => {
     const { images: practicePhotos, website, phone, email, address, locationCoordinates, reviews, biography, specializedMethods, qualifications } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '', reviews: [], biography: '', specializedMethods: [], qualifications: '' }
     const lng = locationCoordinates && locationCoordinates.coordinates[0]
     const lat = locationCoordinates && locationCoordinates.coordinates[1]
-    const roleMatch = hasPermission(logedInPacient, actions.IS_THERAPEUT)
 
     return (
         <Card sx={{ p: 2 }}>

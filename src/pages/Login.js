@@ -8,7 +8,6 @@ import AuthLayout from '../layouts/AuthLayout';
 import Page from '../components/Page';
 import { MHidden } from '../components/@material-extend';
 import { LoginForm } from '../components/authentication/login';
-import AuthSocial from '../components/authentication/AuthSocial';
 import { manipulateCloudinaryImage } from '../utils/manipulateCloudinaryImage'
 
 const LoginImage = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1645180491/login-illustration_cj6p4b.jpg', ['w_1024'])

@@ -12,16 +12,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import deLocale from 'date-fns/locale/de';
-// import DatePicker from '@mui/lab/DatePicker';
 // rest
-import { Calendar } from "react-multi-date-picker";
-import TimePicker from "react-multi-date-picker/plugins/analog_time_picker";
 import { generatePassword } from '../../utils/helpers'
 import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
@@ -75,7 +71,6 @@ const initialFields = {
     firstName: '',
     lastName: '',
     age: '',
-    availableBookingDates: '',
     email: '',
     phone: '',
     address: '',
@@ -94,20 +89,16 @@ const initialFields = {
 
 const password = generatePassword()
 
-export default function AddPacientModal({ onlyIcon }) {
+export default function AddTherapeutModal({ onlyIcon }) {
     const [open, setOpen] = useState(false)
     const [btnLoading, setBtnLoading] = useState(false)
     const { setGeneralAlertOptions, therapeuts, setTherapeuts } = useApp()
     const [fields, setFields] = useState(initialFields)
-    const [value, setValue] = useState([]);
-    const [openCalendar, setOpenCalendar] = useState(false)
-    const availableBookingDates = value.map(el => new Date(`${el.year}/${el.month.number}/${el.day} ${el.hour}:${el.minute}:${el.second}`))
 
     const formData = new FormData()
     formData.append('firstName', fields.firstName)
     formData.append('lastName', fields.lastName)
     formData.append('age', fields.age)
-    formData.append('availableBookingDates', availableBookingDates)
     formData.append('email', fields.email)
     formData.append('password', password)
     formData.append('confirmPassword', password)
@@ -209,10 +200,6 @@ export default function AddPacientModal({ onlyIcon }) {
         })
     }
 
-    // const calendarVisibilityHandler = () => {
-    //     setOpenCalendar(prevState => !prevState)
-    // }
-
     return (
         <>
             {onlyIcon ?
@@ -266,26 +253,7 @@ export default function AddPacientModal({ onlyIcon }) {
                                 >
                                     {fields.bulk !== '' ? 'Ändere Praxis Bilder' : 'Praxis Fotos hinzufügen'}
                                 </Button>
-                                {/* <Tooltip title="Dodaj slobodne termine...">
-                                    <IconButton color="primary" onClick={calendarVisibilityHandler}>
-                                        <EventAvailableIcon />
-                                    </IconButton>
-                                </Tooltip> */}
                             </Stack>
-                            {openCalendar &&
-                                <Box sx={{ mt: 2, position: 'absolute', top: '10.5rem', right: '2rem', zIndex: 10000 }}>
-                                    <Calendar
-                                        name="availableBookingDates"
-                                        minDate={new Date()}
-                                        maxDate={new Date(new Date().setMonth(new Date().getMonth() + 2))}
-                                        format="MM/DD/YYYY HH:mm"
-                                        value={value}
-                                        onChange={setValue}
-                                        on
-                                        plugins={[<TimePicker />]}
-                                    />
-                                </Box>
-                            }
                             <TextField
                                 name="firstName"
                                 required
@@ -412,7 +380,6 @@ export default function AddPacientModal({ onlyIcon }) {
                                 id="add-therapeut-specialized-methods"
                                 options={specializedMethodsOptions}
                                 getOptionLabel={(option) => option.label}
-                                // defaultValue={[specializedMethodsOptions[13]]}
                                 onChange={(event, newValue) => {
                                     setFields({
                                         ...fields,
@@ -460,7 +427,6 @@ export default function AddPacientModal({ onlyIcon }) {
                                     variant="contained"
                                     color="primary"
                                     type="submit"
-                                // disabled={Object.values(fields).some(field => field === '')}
                                 >
                                     {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fertig'}
                                 </Button>

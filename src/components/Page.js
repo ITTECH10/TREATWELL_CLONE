@@ -18,7 +18,7 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
     if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
       navigate('/datenshutz')
     }
-  }, [authenticated, logedInPacient])
+  }, [authenticated, logedInPacient, navigate])
 
   return (
     !appLoading ?

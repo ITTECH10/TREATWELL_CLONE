@@ -54,7 +54,7 @@ const TherapeutDashboard = ({ therapeut }) => {
                                     : <Typography
                                         variant="subtitle2"
                                     >
-                                        Noch keine Bewertung.
+                                        Noch keine Bewertung
                                     </Typography>}
                                 {authenticated &&
                                     <AddReviewDialog

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../context/AppContext'
 // mui
-import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
@@ -10,7 +9,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LoginIcon from '@mui/icons-material/Login';
@@ -24,7 +22,6 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import { hasPermission, actions } from '../../utils/DataProviders/ROLES/permissions'
 
 export default function DashboardSwipeableDrawer() {
-    const theme = useTheme();
     const navigate = useNavigate()
     const { authenticated, logout, logedInPacient } = useApp()
     const [state, setState] = React.useState({

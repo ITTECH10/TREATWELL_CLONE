@@ -1,20 +1,20 @@
 import React from 'react';
 // mui
-import { Box, Card, CardMedia, Typography, Stack, IconButton } from '@mui/material'
+import { Box, Card, CardMedia, Stack, IconButton } from '@mui/material'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 const HomeWelcomeVideo = () => {
     return (
         // fix later margin appropriatelly
-        <Box px={3} pb={3}>
+        <Box pb={3} px={2}>
             <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
                 <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' }, height: { xs: 300, md: 'auto' } }}>
                     <CardMedia
                         component="video"
                         src="/static/videos/home-video.mp4"
                         controls
-                        poster="https://res.cloudinary.com/dt5o99tph/image/upload/v1645785731/video-poster_id9zio.png"
+                        poster="https://res.cloudinary.com/dt5o99tph/image/upload/v1646655218/video-poster_nskuiv.png"
                         // autoPlay
                         // loop
                         sx={{ width: '100%', height: '100%' }}

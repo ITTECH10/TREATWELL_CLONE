@@ -1,15 +1,12 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 //mui
-import { Stack, Box, Typography, IconButton, List, ListItem, ListItemText, Link, Divider } from '@mui/material'
+import { Stack, Box, Typography, IconButton, List, ListItem, ListItemText, Divider } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 //rest
-const Icon1 = '/static/illustrations/lipoweg-icon-4.png'
-const Icon2 = '/static/illustrations/lipoweg-icon-5.png'
 const Logo = '/static/logo-white.svg'
 
 const generateListItems = [

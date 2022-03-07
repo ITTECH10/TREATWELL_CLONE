@@ -7,7 +7,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTheme } from '@mui/material/styles'
@@ -15,13 +14,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function BookTherapyDialog({ therapeut, date }) {
     const [btnLoading, setBtnLoading] = useState(false)
-    const { authenticated, setGeneralAlertOptions, getCurrentPacient, therapies, setTherapies } = useApp()
+    const { setGeneralAlertOptions, getCurrentPacient, therapies, setTherapies } = useApp()
     const [open, setOpen] = useState(false);
     const theme = useTheme()
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
 
     const handleClose = () => {
         setOpen(false);
