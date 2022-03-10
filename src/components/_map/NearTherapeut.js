@@ -1,16 +1,22 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Marker, Popup } from 'react-map-gl'
+import { useApp } from '../../context/AppContext'
 //mui
 import { Box, Avatar, Typography, IconButton, Stack, Button } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email';
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
+//others
 import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
+import PopupContactTherapet from './PopupContactTherapet'
 
 const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
 const NearTherapeut = ({ therapeut }) => {
     const navigate = useNavigate()
+    const { authenticated } = useApp()
     const [showPopup, togglePopup] = useState(false)
+    const [open, setOpen] = useState(false)
     const { coordinates } = therapeut.locationCoordinates
     const [long, lat] = coordinates
     const name = `${therapeut.firstName} ${therapeut.lastName}`
@@ -53,7 +59,7 @@ const NearTherapeut = ({ therapeut }) => {
                     <Stack>
                         <Button
                             size="small"
-                            sx={{ p: 0 }}
+                            sx={{ p: 0, textTransform: 'lowercase', mb: .4, '&:hover': { backgroundColor: 'transparent' } }}
                             variant="text"
                             href={`https://${therapeut.website}`}
                             target="_blank"
@@ -64,9 +70,16 @@ const NearTherapeut = ({ therapeut }) => {
                             variant="contained"
                             size="small"
                             onClick={bookTherapyHandler}
+                            endIcon={<BookOnlineIcon />}
+                            disabled={!authenticated}
                         >
-                            Termin Vereinbaren
+                            Termin vereinbaren
                         </Button>
+                        <PopupContactTherapet
+                            popupContactTherapeutOpen={open}
+                            setPopupContactTherapeutOpen={setOpen}
+                            therapeutId={therapeut._id}
+                        />
                     </Stack>
                 </Box>
             </Popup>}

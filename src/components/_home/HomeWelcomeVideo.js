@@ -1,6 +1,6 @@
 import React from 'react';
 // mui
-import { Box, Card, CardMedia, Stack, IconButton } from '@mui/material'
+import { Box, Card, CardMedia, Stack, IconButton, Typography } from '@mui/material'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
@@ -20,7 +20,8 @@ const HomeWelcomeVideo = () => {
                         sx={{ width: '100%', height: '100%' }}
                     />
                 </Card>
-                <Box sx={{ width: { xs: '100%', md: '45%' }, ml: { xs: 0, md: 2 }, p: { xs: 2, md: 0 } }}>
+                <Box sx={{ position: 'relative', width: { xs: '100%', md: '45%' }, ml: { xs: 0, md: 2 }, p: { xs: 2, md: 0 } }}>
+                    <Typography variant="h6" sx={{ textAlign: 'center', position: 'absolute', top: '7.7rem' }}>Folgen Sie uns auf Facebook und Instagram für neueste Angebote und Informationen!</Typography>
                     <Stack direction="row" justifyContent="center" alignItems="center" sx={{ height: '100%' }}>
                         <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#3b5998' }}>
                             <FacebookIcon sx={{ fontSize: '6rem' }} />

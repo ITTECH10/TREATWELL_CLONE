@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext'
 //////////////////////////
 import Page from '../components/Page'
 import { actions } from '../utils/DataProviders/ActionButtonItems'
-import { SpeedDialIcon, useMediaQuery } from '@mui/material';
+import { SpeedDialIcon, useMediaQuery, Divider } from '@mui/material';
 import { useTheme } from '@mui/material/styles'
 import ActionButton from '../components/_reusable/ActionButton'
 import { isAdmin } from '../utils/DataProviders/ROLES/permissions'
@@ -34,38 +34,46 @@ const Home = () => {
                 title="SO FUNKTIONIERT GESUNDO24"
                 titleVariant={match ? 'subtitle1' : 'subtitle2'}
                 style={{
-                    height: match ? '3rem' : '2.5rem',
+                    height: match ? '2rem' : '2.5rem',
                     width: '100%',
                     color: theme.palette.background.paper,
                     backgroundColor: theme.palette.primary.main,
-                    my: 3
+                    my: 1.5,
+                    // mt: ,
+                    borderRadius: 0
                 }}
             />
+            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 1.5 }} />
             <HomeWelcomeVideo />
+            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 2 }} />
             <HomeTrendingNews />
             <HomeBanner
                 title="WERFEN SIE EINEN BLICK AUF IHRE VORTEILE"
                 titleVariant={match ? 'subtitle1' : 'subtitle2'}
                 style={{
-                    height: match ? '3rem' : '2.5rem',
+                    height: match ? '2rem' : '2.5rem',
                     width: '100%',
                     color: theme.palette.background.paper,
                     backgroundColor: theme.palette.primary.main,
-                    mt: 3
+                    mt: 1.5,
+                    borderRadius: 0
                 }}
             />
+            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', my: 1.5 }} />
             <HomeServiceBoxes />
             <HomeBanner
                 title="IHRE VORTEILE ALS THERAPEUT"
                 titleVariant={match ? 'subtitle1' : 'subtitle2'}
                 style={{
-                    height: match ? '3rem' : '2.5rem',
+                    height: match ? '2rem' : '2.5rem',
                     width: '100%',
                     color: theme.palette.background.paper,
                     backgroundColor: theme.palette.primary.main,
-                    my: 3
+                    my: 1.5,
+                    borderRadius: 0
                 }}
             />
+            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 1.5 }} />
             <HomeTherapeutAdvantages />
             <HomeFooter />
             {
