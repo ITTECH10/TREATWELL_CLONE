@@ -2,8 +2,6 @@ import { Link as RouterLink } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 import { Box, Card, Link, Container, Typography } from '@mui/material';
-// layouts
-import AuthLayout from '../layouts/AuthLayout';
 // components
 import Page from '../components/Page';
 import { MHidden } from '../components/@material-extend';
@@ -44,12 +42,6 @@ const ContentStyle = styled('div')(({ theme }) => ({
 export default function Register() {
   return (
     <RootStyle title="Register | Minimal-UI">
-      <AuthLayout>
-        <Link underline="none" variant="subtitle2" component={RouterLink} to="/home">
-          Home
-        </Link>
-      </AuthLayout>
-
       <MHidden width="mdDown">
         <SectionStyle>
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
@@ -65,13 +57,7 @@ export default function Register() {
             <Typography variant="h4" gutterBottom>
               Erstellen Sie kostenfrei Ihr persönliches Konto und verwalten Sie bequem Ihre Termine!
             </Typography>
-            {/* <Typography sx={{ color: 'text.secondary' }}>
-              Free forever. No credit card needed.
-            </Typography> */}
           </Box>
-
-          {/* <AuthSocial /> */}
-
           <RegisterForm />
 
           <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
