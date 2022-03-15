@@ -9,7 +9,7 @@ const HomeWelcomeVideo = () => {
         // fix later margin appropriatelly
         <Box pb={3} px={2}>
             <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
-                <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' }, height: { xs: 300, md: 'auto' } }}>
+                <Card sx={{ borderRadius: '0', width: { xs: '100%', md: '55%' }, height: 'auto' }}>
                     <CardMedia
                         component="video"
                         src="/static/videos/home-video.mp4"
@@ -20,14 +20,14 @@ const HomeWelcomeVideo = () => {
                         sx={{ width: '100%', height: '100%' }}
                     />
                 </Card>
-                <Box sx={{ position: 'relative', width: { xs: '100%', md: '45%' }, ml: { xs: 0, md: 2 }, p: { xs: 2, md: 0 } }}>
-                    <Typography variant="h6" sx={{ textAlign: 'center', position: 'absolute', top: '7.7rem' }}>Folgen Sie uns auf Facebook und Instagram für neueste Angebote und Informationen!</Typography>
-                    <Stack direction="row" justifyContent="center" alignItems="center" sx={{ height: '100%' }}>
+                <Box sx={{ width: { xs: '100%', md: '45%' }, ml: { xs: 0, md: 2 }, p: { xs: 2, md: 0 } }}>
+                    <Stack direction="row" justifyContent="center" alignItems="center" sx={{ height: { xs: 230, md: '100%' }, position: 'relative' }}>
+                        <Typography variant="h6" sx={{ textAlign: 'center', position: 'absolute', width: '100%', mb: { xs: '10rem', md: '9rem' } }}>Folgen Sie uns auf Facebook und Instagram für neueste Angebote und Informationen!</Typography>
                         <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#3b5998' }}>
-                            <FacebookIcon sx={{ fontSize: '6rem' }} />
+                            <FacebookIcon sx={{ fontSize: { xs: '4rem', md: '6rem' } }} />
                         </IconButton>
                         <IconButton href="https://instagram.com" target="_blank" sx={{ color: '#8a3ab9' }}>
-                            <InstagramIcon sx={{ fontSize: '6rem' }} />
+                            <InstagramIcon sx={{ fontSize: { xs: '4rem', md: '6rem' } }} />
                         </IconButton>
                     </Stack>
                 </Box>

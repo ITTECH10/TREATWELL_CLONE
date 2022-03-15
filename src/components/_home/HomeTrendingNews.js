@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles'
 import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
 
 const TrendingLeaf = '/static/icons/trending-leaf.png'
-const ImageOne = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1646653258/therapeut-of-the-month_uc8ctp.jpg', ['w_2000'])
+const ImageOne = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1647337468/portrait-cheerful-male-doctor-dressed-uniform_s60zzh.jpg', ['w_2000'])
 const ImageTwo = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1646653258/therapy-of-the-month_tjdanr.jpg', ['w_2000'])
 const ImageThree = manipulateCloudinaryImage('https://res.cloudinary.com/dt5o99tph/image/upload/v1646653260/back-pain_eha6zn.jpg', ['w_2000'])
 

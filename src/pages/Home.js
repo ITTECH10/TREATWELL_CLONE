@@ -43,9 +43,22 @@ const Home = () => {
                     borderRadius: 0
                 }}
             />
-            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 1.5 }} />
+            <Divider sx={{ borderColor: theme.palette.primary.main, borderBottomWidth: '2px', width: '100%', mx: 'auto', mb: 1.5 }} />
             <HomeWelcomeVideo />
-            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 2 }} />
+            <HomeBanner
+                title="POTREBAN TEKST..."
+                titleVariant={match ? 'subtitle1' : 'subtitle2'}
+                style={{
+                    height: match ? '2rem' : '2.5rem',
+                    width: '100%',
+                    color: theme.palette.background.paper,
+                    backgroundColor: theme.palette.primary.main,
+                    mb: 1.5,
+                    // mt: ,
+                    borderRadius: 0
+                }}
+            />
+            <Divider sx={{ borderColor: theme.palette.primary.main, borderBottomWidth: '2px', width: '100%', mx: 'auto', mb: 2 }} />
             <HomeTrendingNews />
             <HomeBanner
                 title="WERFEN SIE EINEN BLICK AUF IHRE VORTEILE"
@@ -59,7 +72,7 @@ const Home = () => {
                     borderRadius: 0
                 }}
             />
-            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', my: 1.5 }} />
+            <Divider sx={{ borderColor: theme.palette.primary.main, borderBottomWidth: '2px', width: '100%', mx: 'auto', my: 1.5 }} />
             <HomeServiceBoxes />
             <HomeBanner
                 title="IHRE VORTEILE ALS THERAPEUT"
@@ -73,7 +86,7 @@ const Home = () => {
                     borderRadius: 0
                 }}
             />
-            <Divider sx={{ borderColor: theme.palette.primary.main, width: 220, mx: 'auto', mb: 1.5 }} />
+            <Divider sx={{ borderColor: theme.palette.primary.main, borderBottomWidth: '2px', width: '100%', mx: 'auto', mb: 1.5 }} />
             <HomeTherapeutAdvantages />
             <HomeFooter />
             {

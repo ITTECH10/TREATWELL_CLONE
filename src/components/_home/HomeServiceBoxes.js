@@ -99,7 +99,7 @@ const HomeServiceBoxes = () => {
                         <Box>
                             <Typography align="center" variant="h5">Leidenschaft</Typography>
                             <Typography>
-                                Wir haben große Leidenschaft für unsere Beruf "Heilpraktiker" und üben diesen mit Leib und Seele aus. Wir hoffen, mit dieser Plattform auch Ihre Leidenschaft für Naturheilkunde zum Leben zu erwecken.
+                                Wir haben große Leidenschaft für unseren Beruf "Heilpraktiker" und üben diesen mit Leib und Seele aus. Wir hoffen, mit dieser Plattform auch Ihre Leidenschaft für Naturheilkunde zum Leben zu erwecken.
                             </Typography>
                         </Box>
                     </Stack>
