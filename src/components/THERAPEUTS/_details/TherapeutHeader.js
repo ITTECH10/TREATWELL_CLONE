@@ -13,6 +13,7 @@ const TherapeutHeader = () => {
     const { selectedTherapeut, logedInPacient } = useApp()
     const { image, name, specializedIn, phone, location: therapeutLocation, ratingsAverage, ratingsQuantity } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', location: '', ratingsAverage: 0, ratingsQuantity: 0 }
     const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_1500'])
+    // const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_200', 'c_thumb', 'g_face', 'h_200'])
 
     return (
         <Box sx={{ width: '100%', position: 'relative' }}>

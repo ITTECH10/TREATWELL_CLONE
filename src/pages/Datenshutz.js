@@ -178,15 +178,6 @@ const PrivacyPolicy = () => {
                                 </Typography>
                             </Box>
                         </Box>
-                        {authenticated ?
-                            <Stack direction="row" spacing={1} justifyContent="flex-end" alignItems="center" my={1}>
-                                <Button variant="contained" color='error' onClick={logout}>Ich bin nicht einverstanden</Button>
-                                <Button variant="contained" color='primary' onClick={acceptPoliciesHandler}>Ich stimme zu</Button>
-                            </Stack> :
-                            <Button sx={{ mt: 1 }} variant="contained" onClick={() => navigate('/')}>
-                                Gehe Zurück
-                            </Button>
-                        }
                     </Paper>
                 </Grid>
                 <Grid sm={3} item />

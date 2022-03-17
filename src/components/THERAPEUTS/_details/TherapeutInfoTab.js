@@ -122,7 +122,7 @@ const TherapeutInfoTab = () => {
                     </Box>
                 </Stack>
                 <Box mx={2}>
-                    <Button href={`https://${website}`} target="_blank" variant="text" sx={{ p: 0, mb: .5 }} >
+                    <Button href={`${!website.startsWith('https') ? `https://${website}` : website}`} target="_blank" variant="text" sx={{ p: 0, mb: .5, textTransform: 'lowercase' }} >
                         {website}
                     </Button>
                     <Typography variant="subtitle1" mb={1}>

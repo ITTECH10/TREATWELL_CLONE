@@ -20,7 +20,7 @@ const TherapeutDashboard = ({ therapeut }) => {
     const [value, setValue] = React.useState(0);
     const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
 
-    const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image)
+    const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image, ['w_200', 'h_200', 'c_thumb', 'g_face'])
 
     const calendarTogler = () => {
         setOpen(prevState => !prevState)

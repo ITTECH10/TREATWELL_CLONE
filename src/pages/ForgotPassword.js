@@ -59,7 +59,8 @@ export default function ForgotPassword() {
                             Ihres E-Mail ...
                         </Typography>
                         <Typography sx={{ color: 'text.secondary' }}>
-                            Mach dir keine Sorgen! Sie müssen lediglich die mit Ihrem Konto verknüpfte E-Mail-Adresse eingeben.</Typography>
+                            Kein Problem! Gib hier deine E-Mail-Adresse ein und wir schicken dir ein neues Passwort zu.
+                        </Typography>
                     </Stack>
                     <ForgotPasswordForm />
                 </ContentStyle>

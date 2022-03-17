@@ -102,7 +102,7 @@ export default function LoginForm() {
                     variant="contained"
                     loading={isSubmitting}
                 >
-                    {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortzetzen'}
+                    {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortsetzen'}
                 </LoadingButton>
             </Form>
         </FormikProvider>

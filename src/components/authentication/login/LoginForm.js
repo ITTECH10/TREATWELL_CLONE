@@ -122,7 +122,7 @@ export default function LoginForm() {
         loading={btnLoading}
         disabled={Object.values(fields).some(field => field === '')}
       >
-        {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortzetzen'}
+        {btnLoading ? <CircularProgress style={{ color: '#fff' }} size={24} /> : 'Fortsetzen'}
       </LoadingButton>
     </Box>
   );

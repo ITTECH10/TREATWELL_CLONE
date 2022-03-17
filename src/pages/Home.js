@@ -46,7 +46,7 @@ const Home = () => {
             <Divider sx={{ borderColor: theme.palette.primary.main, borderBottomWidth: '2px', width: '100%', mx: 'auto', mb: 1.5 }} />
             <HomeWelcomeVideo />
             <HomeBanner
-                title="POTREBAN TEKST..."
+                title=""
                 titleVariant={match ? 'subtitle1' : 'subtitle2'}
                 style={{
                     height: match ? '2rem' : '2.5rem',

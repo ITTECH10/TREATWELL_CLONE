@@ -14,11 +14,11 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
   const { appLoading, logedInPacient, authenticated } = useApp()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
-      navigate('/datenshutz')
-    }
-  }, [authenticated, logedInPacient, navigate])
+  // useEffect(() => {
+  //   if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
+  //     navigate('/datenshutz')
+  //   }
+  // }, [authenticated, logedInPacient, navigate])
 
   return (
     !appLoading ?

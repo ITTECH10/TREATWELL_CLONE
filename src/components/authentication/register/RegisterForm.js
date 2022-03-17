@@ -3,7 +3,7 @@ import { useApp } from '../../../context/AppContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 // material
-import { Stack, TextField, InputAdornment, IconButton, Box } from '@mui/material';
+import { Stack, TextField, InputAdornment, IconButton, Box, Checkbox, FormGroup, FormControlLabel } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // rest
 import { Icon } from '@iconify/react';
@@ -16,7 +16,8 @@ const initialValues = {
   lastName: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  policiesAccepted: false
 }
 
 export default function RegisterForm() {
@@ -25,6 +26,8 @@ export default function RegisterForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState()
   const [btnLoading, setBtnLoading] = useState(false)
+
+  console.log(fields)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -120,6 +123,13 @@ export default function RegisterForm() {
           }}
         />
 
+        <FormGroup style={{ alignItems: 'flex-start' }}>
+          <FormControlLabel labelPlacement="end" control={<Checkbox checked={fields.policiesAccepted} onChange={() => setFields({
+            ...fields,
+            policiesAccepted: !fields.policiesAccepted
+          })} />} label="Datenschutzbestimmungen" />
+        </FormGroup>
+
         <LoadingButton
           fullWidth
           size="large"
@@ -128,7 +138,7 @@ export default function RegisterForm() {
           loading={btnLoading}
           disabled={Object.values(fields).some(field => field === '')}
         >
-          Fortzetzen
+          Fortsetzen
         </LoadingButton>
       </Stack>
     </Box>
