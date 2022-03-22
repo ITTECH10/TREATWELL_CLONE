@@ -35,9 +35,8 @@ jobs:
     - name: SFTP Deploy to App Folder
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        host: 'host244.checkdomain.de'
+        server: 'host244.checkdomain.de'
         port: 21
-        agent: ''
         username: 'onhnkzyt8'
         password: 'Berlin2022$$.'
         localPath: './build/'
