@@ -83,7 +83,7 @@ const AppContextProvider = ({ children }) => {
                     window.location.reload()
                 }
             }).catch(err => console.error(err))
-    }, [setToken, navigate])
+    }, [setToken])
 
     const value = {
         authenticated,

@@ -8,11 +8,14 @@ import TherapeutDashboard from '../components/THERAPEUTS/_filtered/TherapeutDash
 
 const FilteredTherapeuts = () => {
     const { therapeuts } = useApp()
+
+    console.log(therapeuts)
+
     return (
         <Page title="Rezultati Pretrage">
             <Container maxWidth="lg" p={2}>
                 <Typography my={2} variant="h4" align="center">
-                    {therapeuts.length > 0 ? 'Buchen Sie den passenden Spezialisten online.' : 'Noch keine therapeute.'}
+                    {therapeuts.length > 0 ? 'Buchen Sie den passenden Spezialisten online.' : 'Noch keine Therapeuten.'}
                 </Typography>
                 {
                     therapeuts.length > 0 && therapeuts.map(therapeut => {
