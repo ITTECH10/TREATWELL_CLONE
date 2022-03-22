@@ -86,7 +86,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
         }
 
         const data = {
-            appointedAt: new Date(`${new Date(dateValue).toLocaleDateString()} ${selectedHour.split('h')[0] + ':00'}`),
+            appointedAt: new Date(`${new Date(dateValue).toDateString()} ${selectedHour.split('h')[0] + ':00'}`),
             name: foundTherapeut.specializedServices,
             category: foundTherapeut.specializedIn,
             therapeut: foundTherapeut._id,

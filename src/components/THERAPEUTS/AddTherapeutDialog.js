@@ -107,6 +107,7 @@ export default function AddTherapeutModal({ onlyIcon }) {
     formData.append('website', fields.website)
     formData.append('specializedIn', fields.specializedIn)
     formData.append('specializedServices', fields.specializedServices)
+    formData.append('specializedMethods', fields.specializedMethods)
     formData.append('location', fields.location)
     formData.append('longitude', fields.longitude)
     formData.append('latitude', fields.latitude)
@@ -120,11 +121,11 @@ export default function AddTherapeutModal({ onlyIcon }) {
         })
     }
 
-    if (fields.specializedMethods.length > 0) {
-        fields.specializedMethods.forEach((method, index) => {
-            formData.append('specializedMethods', method.label)
-        })
-    }
+    // if (fields.specializedMethods.length > 0) {
+    //     fields.specializedMethods.forEach((method, index) => {
+    //         formData.append('specializedMethods', method.label)
+    //     })
+    // }
 
     // for (var values of formData.values()) {
     //     console.log(values);
@@ -375,7 +376,17 @@ export default function AddTherapeutModal({ onlyIcon }) {
                                 variant="standard"
                                 onChange={handleChange}
                             />
-                            <Autocomplete
+                            <TextField
+                                margin="dense"
+                                name="specializedMethods"
+                                required
+                                id="specializedMethods"
+                                label="Specialized Methods"
+                                fullWidth
+                                variant="standard"
+                                onChange={handleChange}
+                            />
+                            {/* <Autocomplete
                                 multiple
                                 id="add-therapeut-specialized-methods"
                                 options={specializedMethodsOptions}
@@ -395,7 +406,7 @@ export default function AddTherapeutModal({ onlyIcon }) {
                                         label="Specialized Methods"
                                     />
                                 )}
-                            />
+                            /> */}
                             <TextField
                                 margin="dense"
                                 name="qualifications"
