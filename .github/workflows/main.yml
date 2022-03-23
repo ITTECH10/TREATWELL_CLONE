@@ -33,12 +33,11 @@ jobs:
       run: CI=false && npm run build --if-present
     
     - name: SFTP Deploy to App Folder
-      uses: Creepios/sftp-action@v1.0.3
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        host: 'host244.checkdomain.de'
+        server: 'host244.checkdomain.de'
         port: 21
-        agent: ''
-        username: 'u96548892-app'
-        password: 'Berlin2022$$.'
-        localPath: './build/'
-        remotePath: './'
+        username: 'onhnkzyt8'
+        password: ${{ secrets.ftp_password }}
+        local-dir: './build/'
+        server-dir: './'
