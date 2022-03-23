@@ -4,7 +4,7 @@ import ReactMapGL from 'react-map-gl';
 import NearTherapeut from './_map/NearTherapeut'
 
 // secure later
-const token = 'pk.eyJ1IjoidHJlYXR3ZWxsMTAiLCJhIjoiY2t5bXd6dnVrMDF3NTJ2b3k0Y20zMDR5dCJ9.wIzLh0qg1SiCZ3mm8t9qug';
+const token = process.env.REACT_APP_MAPBOX_TOKEN
 
 const NearTherapeutsMap = () => {
     const { therapeuts } = useApp()
