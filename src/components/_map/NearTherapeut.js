@@ -61,7 +61,7 @@ const NearTherapeut = ({ therapeut }) => {
                             size="small"
                             sx={{ p: 0, textTransform: 'lowercase', mb: .4, '&:hover': { backgroundColor: 'transparent' } }}
                             variant="text"
-                            href={`https://${therapeut.website}`}
+                            href={`${therapeut && !therapeut.website.startsWith('https') ? `https://${therapeut.website}` : therapeut.website}`}
                             target="_blank"
                         >
                             Webseite: {therapeut.website}
