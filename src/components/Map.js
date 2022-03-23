@@ -11,7 +11,8 @@ const Map = ({ lng, lat }) => {
     return (
         <ReactMapGL
             mapStyle="mapbox://styles/mapbox/streets-v11?optimize=true"
-            mapboxApiAccessToken={token} {...viewport}
+            mapboxApiAccessToken='pk.eyJ1IjoidHJlYXR3ZWxsMTAiLCJhIjoiY2t5bXd6dnVrMDF3NTJ2b3k0Y20zMDR5dCJ9.wIzLh0qg1SiCZ3mm8t9qug'
+            {...viewport}
             height="400px" width="100%"
             onViewportChange={setViewport}
             longitude={lng}
