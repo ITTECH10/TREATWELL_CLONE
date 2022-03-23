@@ -20,6 +20,8 @@ const TherapeutInfoTab = () => {
     const lng = locationCoordinates && locationCoordinates.coordinates[0]
     const lat = locationCoordinates && locationCoordinates.coordinates[1]
 
+    console.log(practicePhotos)
+
     return (
         <Card sx={{ p: 2 }}>
             {practicePhotos.length > 0 &&

@@ -12,10 +12,12 @@ const defaultAvatar = '/static/illustrations/defaultAvatar.svg'
 
 const TherapeutHeader = () => {
     const theme = useTheme()
-    const { selectedTherapeut, logedInPacient } = useApp()
+    const { selectedTherapeut, logedInPacient, authenticated } = useApp()
     const { image, name, specializedIn, phone, location: therapeutLocation, ratingsAverage, ratingsQuantity } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', location: '', ratingsAverage: 0, ratingsQuantity: 0 }
     const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['q_80'])
     // const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_200', 'c_thumb', 'g_face', 'h_200'])
+
+    console.log(image)
 
     return (
         <Box sx={{ width: '100%', position: 'relative' }}>
@@ -26,7 +28,7 @@ const TherapeutHeader = () => {
                             image ? <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} /> 
                             : <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={defaultAvatar} />
                         }
-                        <UpdateTherapeutInfoDialog />
+                       {authenticated && logedInPacient && (logedInPacient.role === 'therapeut' || logedInPacient.role === 'admin') && <UpdateTherapeutInfoDialog />}
                     </Box>
                     <Box>
                         <Typography variant="h4">{name}</Typography>

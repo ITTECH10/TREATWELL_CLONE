@@ -106,6 +106,7 @@ export default function UpdateTherapeutInfoDialog() {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
+                        <strong>HINWEIS: Die maximale Größe eines Bildes beträgt 10 MB!</strong> <br />
                         Um Ihre Profilinformationen zu ändern, füllen Sie das folgende Formular aus.
                     </DialogContentText>
                     <Box component="form" onSubmit={handleSubmit}>
