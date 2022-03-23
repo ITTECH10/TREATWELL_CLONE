@@ -22,6 +22,7 @@ const TherapeutInfoTab = () => {
 
     return (
         <Card sx={{ p: 2 }}>
+            {practicePhotos.length > 0 &&
             <Box>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <IconButton color="primary">
@@ -52,8 +53,8 @@ const TherapeutInfoTab = () => {
                         </Box>
                     })}
                 </Stack>
-            </Box>
             <Divider sx={{ mt: 2, mb: 1 }} />
+            </Box>}
             <Box>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <IconButton color="primary">
