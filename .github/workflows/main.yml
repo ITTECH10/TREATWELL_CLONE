@@ -39,5 +39,5 @@ jobs:
         port: 21
         username: 'onhnkzyt8'
         password: 'Berlin2022$$.'
-        localPath: './build/'
-        remotePath: './'
+        local-dir: './build/'
+        server-dir: './'
