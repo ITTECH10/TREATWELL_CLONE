@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useTheme } from '@mui/material/styles'
 import { LoadingButton } from '@mui/lab';
 
-export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, selectedHour, therapeutName, loading, open, setOpen }) {
+export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, selectedDate, selectedHour, therapeutName, loading, open, setOpen }) {
     const { authenticated } = useApp()
     const theme = useTheme()
 
@@ -69,7 +69,9 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                         <span style={{ color: theme.palette.primary.main, fontWeight: 'bold', margin: '0 3px' }}>
                             {therapeutName}
                         </span>
-                        beim <span style={{ color: theme.palette.primary.main, fontWeight: 'bold', marginLeft: '3px' }}>
+                        am <span style={{ color: theme.palette.primary.main, fontWeight: 'bold', marginLeft: '3px' }}>
+                            {selectedDate.toLocaleDateString('de-DE')}
+                        </span> um <span style={{ color: theme.palette.primary.main, fontWeight: 'bold', marginLeft: '3px' }}>
                             {selectedHour}
                         </span> buchen möchten?
                     </DialogContentText>

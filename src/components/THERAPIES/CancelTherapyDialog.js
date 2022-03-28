@@ -103,7 +103,7 @@ export default function CancelTherapyDialog({ therapyId, selectedTherapyDate, th
                 <DialogContent>
                     <Box component="form" onSubmit={handleSubmit}>
                         <DialogContentText id="alert-dialog-description">
-                            Sind Sie sicher, dass Sie dieses Termin abbrechen möchten?
+                            Sind Sie sicher, dass Sie diesen Termin stornieren möchten?
                         </DialogContentText>
                         <DialogActions>
                             <Button
