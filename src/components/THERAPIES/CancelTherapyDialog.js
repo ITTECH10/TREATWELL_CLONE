@@ -74,7 +74,13 @@ export default function CancelTherapyDialog({ therapyId, selectedTherapyDate, th
                 }
             }).catch(err => {
                 setBtnLoading(false)
-                console.log(err.response)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
+                // console.log(err.response)
             })
     }
 

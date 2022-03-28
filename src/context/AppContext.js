@@ -33,7 +33,15 @@ const AppContextProvider = ({ children }) => {
             if (res.status === 200) {
                 setTherapeuts(res.data.therapeuts)
             }
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            // console.log(err.response)
+            setGeneralAlertOptions({
+                open: true,
+                severity: 'error',
+                message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                hideAfter: 5000
+            })
+        })
     }, [])
 
     const getOneTherapeut = useCallback((id) => {
@@ -47,7 +55,13 @@ const AppContextProvider = ({ children }) => {
                 }
             }).catch(err => {
                 setAppLoading(false)
-                console.log(err)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
+                // console.log(err)
             })
     }, [navigate])
 
@@ -62,7 +76,13 @@ const AppContextProvider = ({ children }) => {
             })
             .catch(err => {
                 setAppLoading(false)
-                console.log(err)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
+                // console.log(err)
             })
     }, [])
 

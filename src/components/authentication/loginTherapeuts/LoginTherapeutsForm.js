@@ -14,8 +14,7 @@ import {
     TextField,
     CircularProgress,
     IconButton,
-    InputAdornment,
-    Link
+    InputAdornment
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
@@ -23,7 +22,7 @@ import { LoadingButton } from '@mui/lab';
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
-    const { setToken, setAuthenticated } = useApp()
+    const { setToken, setAuthenticated, setGeneralAlertOptions } = useApp()
     const navigate = useNavigate()
     const [btnLoading, setBtnLoading] = useState(false)
 
@@ -50,7 +49,15 @@ export default function LoginForm() {
                         setToken(res.data.token)
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    // console.log(err.response)
+                    setGeneralAlertOptions({
+                        open: true,
+                        severity: 'error',
+                        message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                        hideAfter: 5000
+                    })
+                })
         }
     });
 

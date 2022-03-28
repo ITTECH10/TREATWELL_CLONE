@@ -113,7 +113,13 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
                 }
             }).catch(err => {
                 setBtnLoading(false)
-                console.log(err)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
+                // console.log(err)
             })
     }
 

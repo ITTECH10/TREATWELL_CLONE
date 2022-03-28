@@ -171,7 +171,7 @@ export default function AddTherapeutModal({ onlyIcon }) {
             }
         }).catch(err => {
             setBtnLoading(false)
-            console.log(err)
+            // console.log(err)
         })
     }
 

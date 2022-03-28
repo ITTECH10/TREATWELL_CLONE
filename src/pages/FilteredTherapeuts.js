@@ -9,8 +9,6 @@ import TherapeutDashboard from '../components/THERAPEUTS/_filtered/TherapeutDash
 const FilteredTherapeuts = () => {
     const { therapeuts } = useApp()
 
-    console.log(therapeuts)
-
     return (
         <Page title="Rezultati Pretrage">
             <Container maxWidth="lg" p={2}>

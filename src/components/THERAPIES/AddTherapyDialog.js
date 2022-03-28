@@ -80,7 +80,13 @@ export default function AddAppointmentModal({ appointedAt }) {
                     })
                 }
             }).catch(err => {
-                console.log(err)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
+                // console.log(err)
             })
     }
 

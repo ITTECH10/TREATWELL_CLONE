@@ -41,7 +41,7 @@ const hours = [
 
 const TherapeutDetailsBookForm = () => {
     const theme = useTheme()
-    const { setLogedInPacient, logedInPacient, selectedTherapeut } = useApp()
+    const { setLogedInPacient, logedInPacient, selectedTherapeut, setGeneralAlertOptions } = useApp()
     const roleMatch = hasPermission(logedInPacient, actions.ADD_BOOKING_DATES)
     const { availableBookingDates } = selectedTherapeut || logedInPacient || { availableBookingDates: [] }
     const [dateValue, setDateValue] = React.useState(new Date());
@@ -63,7 +63,13 @@ const TherapeutDetailsBookForm = () => {
                     setLogedInPacient({ ...logedInPacient, availableBookingDates: res.data.therapeut.availableBookingDates })
                 }
             }).catch(err => {
-                console.log(err)
+                // console.log(err)
+                setGeneralAlertOptions({
+                    open: true,
+                    severity: 'error',
+                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    hideAfter: 5000
+                })
                 setBtnLoading(false)
             })
     }

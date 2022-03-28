@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
                     })
                 }
             }).catch(err => {
-                console.log(err.response)
+                // console.log(err.response)
                 setGeneralAlertOptions({
                     open: true,
                     severity: 'error',

@@ -27,8 +27,6 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState()
   const [btnLoading, setBtnLoading] = useState(false)
 
-  console.log(fields)
-
   const handleSubmit = e => {
     e.preventDefault()
 
@@ -47,7 +45,7 @@ export default function RegisterForm() {
         setGeneralAlertOptions({
           open: true,
           severity: 'error',
-          message: `${err.response.data.message}`,
+          message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
           hideAfter: 5000
         })
       })

@@ -53,7 +53,7 @@ const BecomePartner = () => {
                     navigate('/')
                 }
             }).catch(err => {
-                console.log(err)
+                // console.log(err)
                 setBtnLoading(false)
                 setGeneralAlertOptions({
                     open: true,

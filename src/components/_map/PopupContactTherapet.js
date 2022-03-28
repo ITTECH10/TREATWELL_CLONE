@@ -57,7 +57,7 @@ export default function PopupContactTherapet({ popupContactTherapeutOpen, setPop
                     })
                 }
             }).catch(err => {
-                console.log(err.response)
+                // console.log(err.response)
                 setBtnLoading(false)
                 setGeneralAlertOptions({
                     open: true,
