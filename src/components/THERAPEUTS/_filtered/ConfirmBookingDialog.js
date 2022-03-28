@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useApp } from '../../../context/AppContext'
 // mui
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -24,16 +25,35 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
 
     return (
         <div>
-            <Button
-                sx={{ mt: 1 }}
-                variant="contained"
-                fullWidth
-                size="large"
-                onClick={handleClickOpen}
-                disabled={selectedHour.length === 0 || !authenticated}
-            >
-                {!authenticated ? "Sie mussen zueerst registrieren!" : "Termin Vereinbaren"}
-            </Button>
+            {authenticated ?
+                <Button
+                    variant="contained"
+                    fullWidth
+                    size="large"
+                    onClick={handleClickOpen}
+                    disabled={selectedHour.length === 0 || !authenticated}
+                >
+                    Termin Vereinbaren
+                </Button> :
+                <Stack spacing={1} direction={{ xs: 'column', md: 'row' }} mt={1}>
+                    <Button
+                        variant="contained"
+                        fullWidth
+                        size="large"
+                        href="/register"
+                    >
+                        Registrieren
+                    </Button>
+                    <Button
+                        variant="contained"
+                        fullWidth
+                        size="large"
+                        href="/login"
+                    >
+                        Anmelden
+                    </Button>
+                </Stack>
+            }
             <Dialog
                 open={open}
                 onClose={handleClose}
