@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import axios from 'axios'
 //mui
@@ -26,6 +27,7 @@ const BecomePartner = () => {
     const { setGeneralAlertOptions } = useApp()
     const [fields, setFields] = useState(initialFields)
     const [btnLoading, setBtnLoading] = useState(false)
+    const navigate = useNavigate()
 
     const handleChange = e => {
         setFields({
@@ -48,6 +50,7 @@ const BecomePartner = () => {
                         severity: 'success',
                         hideAfter: 5000
                     })
+                    navigate('/')
                 }
             }).catch(err => {
                 console.log(err)
