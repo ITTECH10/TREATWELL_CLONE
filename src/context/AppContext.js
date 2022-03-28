@@ -38,7 +38,7 @@ const AppContextProvider = ({ children }) => {
             setGeneralAlertOptions({
                 open: true,
                 severity: 'error',
-                message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                message: err.response ? `${err.response.data.message}` : 'Server fehler...',
                 hideAfter: 5000
             })
         })
@@ -58,7 +58,7 @@ const AppContextProvider = ({ children }) => {
                 setGeneralAlertOptions({
                     open: true,
                     severity: 'error',
-                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    message: err.response ? `${err.response.data.message}` : 'Server fehler...',
                     hideAfter: 5000
                 })
                 // console.log(err)
@@ -79,7 +79,7 @@ const AppContextProvider = ({ children }) => {
                 setGeneralAlertOptions({
                     open: true,
                     severity: 'error',
-                    message: err.response.data.message ? `${err.response.data.message}` : 'Server fehler...',
+                    message: err.response ? `${err.response.data.message}` : 'Server fehler...',
                     hideAfter: 5000
                 })
                 // console.log(err)
