@@ -16,7 +16,6 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CircularProgress from '@mui/material/CircularProgress';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import deLocale from 'date-fns/locale/de';
 // rest
 import { generatePassword } from '../../utils/helpers'
 import { Icon } from '@iconify/react';
@@ -220,7 +219,7 @@ export default function AddTherapeutModal({ onlyIcon }) {
                         Um einen neuen Therapeuten hinzuzufügen, füllen Sie bitte die Informationen aus
                         unter
                     </DialogContentText>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <Box
                             component="form"
                             onSubmit={handleSubmit}
