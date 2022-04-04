@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import deLocale from 'date-fns/locale/de';
 
 import { Typography } from '@mui/material'
 
@@ -13,7 +12,7 @@ const BookFreeDate = ({ selectedBookingDates, visible, therapeutAvailable, setDa
     };
 
     const content = therapeutAvailable && visible ? (
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
                 allowSameDateSelection
                 orientation={{ xs: 'portrait', md: 'landscape' }}
