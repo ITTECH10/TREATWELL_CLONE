@@ -58,7 +58,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <ContactMailIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Partner Werden" />
+                <ListItemText primary="Partner werden" />
             </ListItem>
             <ListItem button onClick={() => navigate('/therapeuts/near')}>
                 <ListItemIcon>
@@ -97,7 +97,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <ContactMailIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Partner Werden" />
+                <ListItemText primary="Partner werden" />
             </ListItem>
             <ListItem button onClick={() => logout()}>
                 <ListItemIcon>
@@ -130,7 +130,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <ContactMailIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Partner Werden" />
+                <ListItemText primary="Partner werden" />
             </ListItem>
             <ListItem button onClick={() => navigate('/therapeuts/near')}>
                 <ListItemIcon>

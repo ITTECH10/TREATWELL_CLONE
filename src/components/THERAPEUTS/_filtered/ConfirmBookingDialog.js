@@ -33,7 +33,7 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                     onClick={handleClickOpen}
                     disabled={selectedHour.length === 0 || !authenticated}
                 >
-                    Termin Vereinbaren
+                    Termin <p style={{ textTransform: 'lowercase' }}>&nbsp; vereinbaren</p>
                 </Button> :
                 <Stack spacing={1} direction={{ xs: 'column', md: 'row' }} mt={1}>
                     <Button

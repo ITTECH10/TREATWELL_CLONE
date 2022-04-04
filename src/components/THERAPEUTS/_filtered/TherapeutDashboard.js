@@ -18,7 +18,12 @@ const TherapeutDashboard = ({ therapeut }) => {
     const [open, setOpen] = React.useState(false)
     const { getOneTherapeut, authenticated } = useApp()
     const [value, setValue] = React.useState(0);
-    const [dateValue, setDateValue] = React.useState(therapeut.availableBookingDates[0] ? new Date(therapeut.availableBookingDates.sort((a, b) => new Date(a.date) - new Date(b.date))[0].date) : new Date());
+
+    const closestAvailableBookingDate = therapeut.availableBookingDates[0] ?
+        new Date(therapeut.availableBookingDates.flatMap(availableDate => availableDate.date)
+            .sort((a, b) => new Date(a) - new Date(b))[0]) : new Date()
+
+    const [dateValue, setDateValue] = React.useState(closestAvailableBookingDate);
 
     const optimizedTherapeutAvatarImage = manipulateCloudinaryImage(therapeut.image, ['w_200', 'h_200', 'c_thumb', 'g_face'])
 

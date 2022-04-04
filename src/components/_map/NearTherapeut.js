@@ -73,7 +73,7 @@ const NearTherapeut = ({ therapeut }) => {
                             endIcon={<BookOnlineIcon />}
                             disabled={!authenticated}
                         >
-                            Termin vereinbaren
+                            Termin <p style={{ textTransform: 'lowercase' }}>&nbsp;vereinbaren</p>
                         </Button>
                         <PopupContactTherapet
                             popupContactTherapeutOpen={open}

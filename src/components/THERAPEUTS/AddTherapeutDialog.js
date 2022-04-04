@@ -278,7 +278,6 @@ export default function AddTherapeutModal({ onlyIcon }) {
                             />
                             <TextField
                                 name="age"
-                                required
                                 margin="dense"
                                 id="age"
                                 label="Alter"

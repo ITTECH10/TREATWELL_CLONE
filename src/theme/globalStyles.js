@@ -47,6 +47,23 @@ export default function GlobalStyles() {
           float: 'right',
           height: 'auto'
         },
+        '.mapboxgl-marker': {
+          zIndex: 10
+        },
+        '.mapboxgl-popup': {
+          zIndex: 20
+        },
+        '.book-calendar': {
+          border: 'none !important',
+          width: '100% !important',
+          padding: '0 !important'
+        },
+        '.book-calendar-panel': {
+          width: '100% !important'
+        },
+        '.rmdp-panel-body li': {
+          backgroundColor: `${theme.palette.primary.main} !important`
+        },
         '.rmdp-analog-clock': {
           backgroundColor: `${theme.palette.primary.main} !important`,
           border: 'none !important',

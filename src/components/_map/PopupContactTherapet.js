@@ -78,7 +78,7 @@ export default function PopupContactTherapet({ popupContactTherapeutOpen, setPop
                 onClick={handleClickOpen}
                 disabled={!authenticated}
             >
-                Rückruf erwünscht
+                Rückruf <p style={{ textTransform: 'lowercase' }}>&nbsp; erwünscht</p>
             </Button>
             <Dialog open={popupContactTherapeutOpen} onClose={handleClose}>
                 <DialogTitle>Rückruf erwünscht</DialogTitle>
