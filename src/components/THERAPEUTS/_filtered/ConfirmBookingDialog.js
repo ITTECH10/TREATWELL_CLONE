@@ -90,7 +90,7 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                         type="submit"
                         loading={loading}
                     >
-                        Ich bin sicher
+                        Ich <p style={{ textTransform: 'lowercase' }}>&nbsp;bin sicher</p>
                     </LoadingButton>
                 </DialogActions>
             </Dialog>

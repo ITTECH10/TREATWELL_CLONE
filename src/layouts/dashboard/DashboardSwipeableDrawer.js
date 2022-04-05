@@ -124,7 +124,7 @@ export default function DashboardSwipeableDrawer() {
                 <ListItemIcon>
                     <ListAltIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText primary="Meine Therapien" />
+                <ListItemText primary="Meine Termine" />
             </ListItem>
             <ListItem button onClick={() => navigate('/become-partner')}>
                 <ListItemIcon>

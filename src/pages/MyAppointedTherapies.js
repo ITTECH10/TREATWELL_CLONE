@@ -12,7 +12,7 @@ export default function MyAppointedTherapies() {
     const { therapies: myTherapies } = (logedInPacient && logedInPacient) || []
 
     return (
-        <Page title="Meine Therapien">
+        <Page title="Meine Termine">
             <Box sx={{ height: 'calc(100vh - 80px)', p: 2 }}>
                 {myTherapies && myTherapies.length === 0 ? <Typography align="center" variant="h5">Sie haben noch keine gebuchten Termine...</Typography> :
                     <Stack direction="row" sx={{ flexWrap: 'wrap' }}>

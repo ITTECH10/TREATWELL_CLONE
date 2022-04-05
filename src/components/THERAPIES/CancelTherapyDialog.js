@@ -119,7 +119,7 @@ export default function CancelTherapyDialog({ therapyId, selectedTherapyDate, th
                                 variant="contained"
                                 color="error"
                                 autoFocus>
-                                Ich bin sicher!
+                                Ich <p style={{ textTransform: 'lowercase' }}>&nbsp;bin sicher!</p>
                             </LoadingButton>
                         </DialogActions>
                     </Box>

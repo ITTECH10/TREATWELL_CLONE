@@ -50,7 +50,7 @@ export default function ButtonAppBar() {
             <Button color="primary" onClick={() => navigate('/home')}>Home</Button>
             <Button color="primary" onClick={() => navigate('/become-partner')}>Partner <p style={{ textTransform: 'lowercase' }}>&nbsp;werden</p></Button>
             <Button color="primary" onClick={() => navigate('/therapies/categories')}>Therapien</Button>
-            <Button color="primary" onClick={() => navigate('/profile/appointments')}>Meine Therapien</Button>
+            <Button color="primary" onClick={() => navigate('/profile/appointments')}>Meine Termine</Button>
             <Button color="primary" onClick={() => navigate('/therapeuts/near')}>Standorte</Button>
             <Button color="primary" onClick={() => logout()}>Abmelden</Button>
         </Box>
