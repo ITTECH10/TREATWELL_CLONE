@@ -1,39 +1,39 @@
 import React from 'react';
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { useApp } from '../context/AppContext'
+// import axios from 'axios'
+// import { useNavigate } from 'react-router-dom'
+// import { useApp } from '../context/AppContext'
 // mui
-import { Grid, Paper, Button, Stack, Typography, Box } from '@mui/material'
+import { Grid, Paper, Typography, Box } from '@mui/material'
 // rest
 import Page from '../components/Page'
 
 const PrivacyPolicy = () => {
-    const { logout, setGeneralAlertOptions, authenticated, setLogedInPacient, logedInPacient } = useApp()
-    const navigate = useNavigate()
+    // const { setGeneralAlertOptions, setLogedInPacient, logedInPacient } = useApp()
+    // const navigate = useNavigate()
 
-    const acceptPoliciesHandler = () => {
-        axios('/users/accept-policies')
-            .then(res => {
-                if (res.status === 200) {
-                    navigate('/')
-                    setLogedInPacient({ ...logedInPacient, policiesAccepted: true })
-                    setGeneralAlertOptions({
-                        open: true,
-                        severity: 'info',
-                        message: 'Vielen Dank, dass Sie unseren Datenshutz akzeptiert haben!',
-                        hideAfter: 5000
-                    })
-                }
-            }).catch(err => {
-                // console.log(err.response)
-                setGeneralAlertOptions({
-                    open: true,
-                    severity: 'error',
-                    message: 'Beim Akzeptieren Ihrer Anfrage ist etwas schief gelaufen, wenden Sie sich bitte an unseren Kundenservice!',
-                    hideAfter: 5000
-                })
-            })
-    }
+    // const acceptPoliciesHandler = () => {
+    //     axios('/users/accept-policies')
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 navigate('/')
+    //                 setLogedInPacient({ ...logedInPacient, policiesAccepted: true })
+    //                 setGeneralAlertOptions({
+    //                     open: true,
+    //                     severity: 'info',
+    //                     message: 'Vielen Dank, dass Sie unseren Datenshutz akzeptiert haben!',
+    //                     hideAfter: 5000
+    //                 })
+    //             }
+    //         }).catch(err => {
+    //             // console.log(err.response)
+    //             setGeneralAlertOptions({
+    //                 open: true,
+    //                 severity: 'error',
+    //                 message: 'Beim Akzeptieren Ihrer Anfrage ist etwas schief gelaufen, wenden Sie sich bitte an unseren Kundenservice!',
+    //                 hideAfter: 5000
+    //             })
+    //         })
+    // }
 
     return (
         <Page title="Datenshutz">

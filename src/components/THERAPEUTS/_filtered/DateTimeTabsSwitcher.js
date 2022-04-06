@@ -159,6 +159,7 @@ const DateTimeTabsSwitcher = ({ value, setValue, therapeut, dateValue, style }) 
                         selectedDate={dateValue}
                         bookingTimeSelectionHandler={bookingTimeSelectionHandler}
                         therapeutName={`${therapeut.firstName} ${therapeut.lastName}`}
+                        therapeutId={therapeut._id}
                         loading={btnLoading}
                         setOpen={setDialogOpen}
                         open={dialogOpen}

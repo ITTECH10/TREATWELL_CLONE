@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useTheme } from '@mui/material/styles'
 import { LoadingButton } from '@mui/lab';
 
-export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, selectedDate, selectedHour, therapeutName, loading, open, setOpen }) {
+export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, selectedDate, selectedHour, therapeutId, therapeutName, loading, open, setOpen }) {
     const { authenticated } = useApp()
     const theme = useTheme()
 
@@ -22,6 +22,12 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
     const handleClose = () => {
         setOpen(false);
     };
+
+    const idPersistenceHandler = () => {
+        if (!authenticated) {
+            localStorage.setItem('navigateToTherapeutId', therapeutId)
+        }
+    }
 
     return (
         <div>
@@ -49,6 +55,7 @@ export default function ConfirmBookingDialog({ bookingTimeSelectionHandler, sele
                         fullWidth
                         size="large"
                         href="/login"
+                        onClick={idPersistenceHandler}
                     >
                         Anmelden
                     </Button>

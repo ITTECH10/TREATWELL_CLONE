@@ -13,12 +13,20 @@ import Loader from './Loader'
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
   const { appLoading, logedInPacient, authenticated } = useApp()
   const navigate = useNavigate()
+  const navigateToTherapeutId = localStorage.navigateToTherapeutId && localStorage.navigateToTherapeutId
 
   // useEffect(() => {
   //   if (authenticated && (logedInPacient && !logedInPacient.policiesAccepted)) {
   //     navigate('/datenshutz')
   //   }
   // }, [authenticated, logedInPacient, navigate])
+
+  useEffect(() => {
+    if (navigateToTherapeutId && logedInPacient && logedInPacient.role !== 'therapeut' && authenticated) {
+      navigate(`/therapeuts/${navigateToTherapeutId}`)
+      localStorage.removeItem('navigateToTherapeutId')
+    }
+  }, [])
 
   return (
     !appLoading ?
