@@ -34,7 +34,7 @@ const TherapeutInfoTab = () => {
                     </Stack>
                     <Stack mx={{ xs: 0, md: 2 }} direction={{ xs: 'column', md: 'row' }} spacing={2}>
                         {practicePhotos.map(practicePhoto => {
-                            const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_1000', 'h_1000', 'q_85', 'c_fill', 'g_auto:classic', 'r_15'])
+                            const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_1200', 'h_1000', 'q_85', 'c_fill', 'g_auto:classic', 'r_15'])
 
                             // return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
                             //     <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
