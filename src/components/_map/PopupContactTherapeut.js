@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+
 import axios from 'axios'
 import { useApp } from '../../context/AppContext'
 // mui
@@ -20,6 +22,7 @@ const initialFields = {
 }
 
 export default function PopupContactTherapet({ popupContactTherapeutOpen, setPopupContactTherapeutOpen, therapeutId }) {
+    const navigate = useNavigate()
     const [fields, setFields] = useState(initialFields)
     const [btnLoading, setBtnLoading] = useState(false)
     const { logedInPacient, authenticated, setGeneralAlertOptions } = useApp()
@@ -68,6 +71,16 @@ export default function PopupContactTherapet({ popupContactTherapeutOpen, setPop
             })
     }
 
+    const recallRequestedHandler = () => {
+        if (authenticated) {
+            handleClickOpen()
+        }
+
+        if (!authenticated) {
+            navigate('/login')
+        }
+    }
+
     return (
         <div>
             <Button
@@ -75,10 +88,9 @@ export default function PopupContactTherapet({ popupContactTherapeutOpen, setPop
                 size="small"
                 sx={{ mt: .5, width: '100%' }}
                 endIcon={<PhoneCallbackIcon />}
-                onClick={handleClickOpen}
-                disabled={!authenticated}
+                onClick={recallRequestedHandler}
             >
-                Rückruf <p style={{ textTransform: 'lowercase' }}>&nbsp; erwünscht</p>
+                Rückruf erwünscht
             </Button>
             <Dialog open={popupContactTherapeutOpen} onClose={handleClose}>
                 <DialogTitle>Rückruf erwünscht</DialogTitle>

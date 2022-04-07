@@ -8,7 +8,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import BookOnlineIcon from '@mui/icons-material/BookOnline';
 //others
 import { manipulateCloudinaryImage } from '../../utils/manipulateCloudinaryImage'
-import PopupContactTherapet from './PopupContactTherapet'
+import PopupContactTherapeut from './PopupContactTherapeut'
 
 const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
@@ -24,7 +24,13 @@ const NearTherapeut = ({ therapeut }) => {
     const optimizedAvatarImage = manipulateCloudinaryImage(therapeut.image)
 
     const bookTherapyHandler = () => {
-        navigate(`/therapeuts/${therapeut._id}`)
+        if (!authenticated) {
+            navigate('/login')
+        }
+
+        if (authenticated) {
+            navigate(`/therapeuts/${therapeut._id}`)
+        }
     }
 
     return (
@@ -59,23 +65,22 @@ const NearTherapeut = ({ therapeut }) => {
                     <Stack>
                         <Button
                             size="small"
-                            sx={{ p: 0, textTransform: 'lowercase', mb: .4, '&:hover': { backgroundColor: 'transparent' } }}
+                            sx={{ p: 0, mb: .4, '&:hover': { backgroundColor: 'transparent' } }}
                             variant="text"
                             href={`${therapeut && !therapeut.website.startsWith('https') ? `https://${therapeut.website}` : therapeut.website}`}
                             target="_blank"
                         >
-                            Webseite: {therapeut.website}
+                            webseite: {therapeut.website}
                         </Button>
                         <Button
                             variant="contained"
                             size="small"
                             onClick={bookTherapyHandler}
                             endIcon={<BookOnlineIcon />}
-                            disabled={!authenticated}
                         >
-                            Termin <p style={{ textTransform: 'lowercase' }}>&nbsp;vereinbaren</p>
+                            Termin vereinbaren
                         </Button>
-                        <PopupContactTherapet
+                        <PopupContactTherapeut
                             popupContactTherapeutOpen={open}
                             setPopupContactTherapeutOpen={setOpen}
                             therapeutId={therapeut._id}

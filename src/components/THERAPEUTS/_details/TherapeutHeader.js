@@ -14,8 +14,8 @@ const TherapeutHeader = () => {
     const theme = useTheme()
     const { selectedTherapeut, logedInPacient, authenticated } = useApp()
     const { image, name, specializedIn, phone, location: therapeutLocation, ratingsAverage, ratingsQuantity } = selectedTherapeut || logedInPacient || { image: '', name: '', specializedIn: '', phone: '', location: '', ratingsAverage: 0, ratingsQuantity: 0 }
-    const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['q_80'])
-    // const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_200', 'c_thumb', 'g_face', 'h_200'])
+    // const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['q_80'])
+    const manipulatedAvatarImage = manipulateCloudinaryImage(image, ['w_200', 'c_fill', 'g_face', 'h_200'])
 
     return (
         <Box sx={{ width: '100%', position: 'relative' }}>
@@ -23,10 +23,10 @@ const TherapeutHeader = () => {
                 <Stack direction="row" spacing={1} sx={{ position: 'relative', top: '2rem' }}>
                     <Box sx={{ height: 135, width: 135, position: 'relative', marginLeft: { xs: 2, md: 0 } }}>
                         {
-                            image ? <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} /> 
-                            : <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={defaultAvatar} />
+                            image ? <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={manipulatedAvatarImage} />
+                                : <img style={{ height: '100%', width: '100%', borderRadius: 10 }} alt="avatar" src={defaultAvatar} />
                         }
-                       {authenticated && logedInPacient && (logedInPacient.role === 'therapeut') && <UpdateTherapeutInfoDialog />}
+                        {authenticated && logedInPacient && (logedInPacient.role === 'therapeut') && <UpdateTherapeutInfoDialog />}
                     </Box>
                     <Box>
                         <Typography variant="h4">{name}</Typography>

@@ -32,7 +32,7 @@ const HomeTrendingNews = () => {
                         }}>
                             <Stack alignItems="center" px={2}>
                                 <Typography variant="h3" sx={{ color: theme.palette.background.paper, fontWeight: 400, textAlign: 'center' }}>
-                                    Heilpraktiker des monats
+                                    Heilpraktiker des Monats
                                 </Typography>
                                 <Button sx={{
                                     backgroundColor: 'transparent',
@@ -42,7 +42,7 @@ const HomeTrendingNews = () => {
                                 }}
                                     variant="contained"
                                     size="large">
-                                    Mehr Lesen
+                                    Mehr lesen
                                 </Button>
                             </Stack>
                         </Stack>
@@ -58,7 +58,7 @@ const HomeTrendingNews = () => {
                         }}>
                             <Stack alignItems="center" px={2}>
                                 <Typography variant="h3" sx={{ color: theme.palette.background.paper, fontWeight: 400, textAlign: 'center' }}>
-                                    Therapie des monats
+                                    Therapie des Monats
                                 </Typography>
                                 <Button sx={{
                                     backgroundColor: 'transparent',
@@ -68,7 +68,7 @@ const HomeTrendingNews = () => {
                                 }}
                                     variant="contained"
                                     size="large">
-                                    Mehr Lesen
+                                    Mehr lesen
                                 </Button>                            </Stack>
                         </Stack>
                     </Grid>
@@ -83,7 +83,7 @@ const HomeTrendingNews = () => {
                         }}>
                             <Stack alignItems="center" px={2}>
                                 <Typography variant="h3" sx={{ color: theme.palette.background.paper, fontWeight: 400, textAlign: 'center' }}>
-                                    Good to know "rückenschmenen" hier gratis downloaden
+                                    Good to know "Rückenschmerzen" hier gratis downloaden
                                 </Typography>
                                 <Button sx={{
                                     backgroundColor: 'transparent',
@@ -93,7 +93,7 @@ const HomeTrendingNews = () => {
                                 }}
                                     variant="contained"
                                     size="large">
-                                    Mehr Lesen
+                                    Mehr lesen
                                 </Button>                            </Stack>
                         </Stack>
                     </Grid>

@@ -23,38 +23,38 @@ const TherapeutInfoTab = () => {
     return (
         <Card sx={{ p: 2 }}>
             {practicePhotos.length > 0 &&
-            <Box>
-                <Stack direction="row" alignItems="center" spacing={1}>
-                    <IconButton color="primary">
-                        <CollectionsIcon />
-                    </IconButton>
-                    <Typography variant="subtitle1">
-                        Praxis Photos
-                    </Typography>
-                </Stack>
-                <Stack mx={{ xs: 0, md: 2 }} direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                    {practicePhotos.map(practicePhoto => {
-                        const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_500'])
+                <Box>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <IconButton color="primary">
+                            <CollectionsIcon />
+                        </IconButton>
+                        <Typography variant="subtitle1">
+                            Praxis Photos
+                        </Typography>
+                    </Stack>
+                    <Stack mx={{ xs: 0, md: 2 }} direction={{ xs: 'column', md: 'row' }} spacing={2}>
+                        {practicePhotos.map(practicePhoto => {
+                            const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_1000', 'h_1000', 'q_85', 'c_fill', 'g_auto:classic', 'r_15'])
 
-                        // return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
-                        //     <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
-                        // </Box>
-                        return <Box
-                            sx={{
-                                height: 200,
-                                width: { xs: 'auto', md: 350 },
-                                overflow: 'hidden',
-                                background: `url(${optimizedPracticePhoto})`,
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'center'
-                            }}
-                        >
-                        </Box>
-                    })}
-                </Stack>
-            <Divider sx={{ mt: 2, mb: 1 }} />
-            </Box>}
+                            // return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
+                            //     <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
+                            // </Box>
+                            return <Box
+                                sx={{
+                                    height: 200,
+                                    width: { xs: 'auto', md: 350 },
+                                    overflow: 'hidden',
+                                    background: `url(${optimizedPracticePhoto})`,
+                                    backgroundSize: 'contain',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'center'
+                                }}
+                            >
+                            </Box>
+                        })}
+                    </Stack>
+                    <Divider sx={{ mt: 2, mb: 1 }} />
+                </Box>}
             <Box>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <IconButton color="primary">
@@ -123,7 +123,7 @@ const TherapeutInfoTab = () => {
                     </Box>
                 </Stack>
                 <Box mx={2}>
-                    <Button href={`${website && !website.startsWith('https') ? `https://${website}` : website}`} target="_blank" variant="text" sx={{ p: 0, mb: .5, textTransform: 'lowercase' }} >
+                    <Button href={`${website && !website.startsWith('https') ? `https://${website}` : website}`} target="_blank" variant="text" sx={{ p: 0, mb: .5 }} >
                         {website}
                     </Button>
                     <Typography variant="subtitle1" mb={1}>

@@ -99,7 +99,7 @@ export default function AddAppointmentModal({ appointedAt }) {
                 // startIcon={<Icon icon={plusFill} />}
                 onClick={handleClickOpen}
             >
-                Termin <p style={{ textTransform: 'lowercase' }}>&nbsp;vereinbaren</p>
+                Termin vereinbaren
             </Button>
 
             <Dialog open={open} onClose={handleClose}>
