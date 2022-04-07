@@ -10,12 +10,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import EventNoteIcon from '@mui/icons-material/EventNote';
+// import EventNoteIcon from '@mui/icons-material/EventNote';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import deLocale from 'date-fns/locale/de';
 /////////////////////////////
 
 const initialFields = {
@@ -108,7 +109,7 @@ export default function AddAppointmentModal({ appointedAt }) {
                     <DialogContentText>
                         Um einen neuen Termin zu vereinbaren, füllen Sie bitte die folgenden Informationen aus.
                     </DialogContentText>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
                         <Box
                             component="form"
                             onSubmit={handleSubmit}

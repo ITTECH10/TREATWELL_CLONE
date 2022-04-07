@@ -21,7 +21,7 @@ const initialFields = {
     description: ''
 }
 
-export default function PopupContactTherapet({ popupContactTherapeutOpen, setPopupContactTherapeutOpen, therapeutId }) {
+export default function PopupContactTherapeut({ popupContactTherapeutOpen, setPopupContactTherapeutOpen, therapeutId }) {
     const navigate = useNavigate()
     const [fields, setFields] = useState(initialFields)
     const [btnLoading, setBtnLoading] = useState(false)
@@ -71,27 +71,37 @@ export default function PopupContactTherapet({ popupContactTherapeutOpen, setPop
             })
     }
 
-    const recallRequestedHandler = () => {
-        if (authenticated) {
-            handleClickOpen()
-        }
+    // const recallRequestedHandler = () => {
+    //     if (authenticated) {
+    //         handleClickOpen()
+    //     }
 
-        if (!authenticated) {
-            navigate('/login')
-        }
-    }
+    //     if (!authenticated) {
+    //         navigate('/login')
+    //     }
+    // }
 
     return (
         <div>
-            <Button
-                variant="contained"
-                size="small"
-                sx={{ mt: .5, width: '100%' }}
-                endIcon={<PhoneCallbackIcon />}
-                onClick={recallRequestedHandler}
-            >
-                Rückruf erwünscht
-            </Button>
+            {authenticated ?
+                <Button
+                    variant="contained"
+                    size="small"
+                    sx={{ mt: .5, width: '100%' }}
+                    endIcon={<PhoneCallbackIcon />}
+                    onClick={handleClickOpen}
+                >
+                    Rückruf erwünscht
+                </Button> :
+                <Button
+                    variant="contained"
+                    size="small"
+                    sx={{ mt: .5, width: '100%' }}
+                    href="/login"
+                >
+                    Anmelden
+                </Button>
+            }
             <Dialog open={popupContactTherapeutOpen} onClose={handleClose}>
                 <DialogTitle>Rückruf erwünscht</DialogTitle>
                 <DialogContent>

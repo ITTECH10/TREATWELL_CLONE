@@ -72,14 +72,24 @@ const NearTherapeut = ({ therapeut }) => {
                         >
                             webseite: {therapeut.website}
                         </Button>
-                        <Button
-                            variant="contained"
-                            size="small"
-                            onClick={bookTherapyHandler}
-                            endIcon={<BookOnlineIcon />}
-                        >
-                            Termin vereinbaren
-                        </Button>
+                        {authenticated ?
+                            <Button
+                                variant="contained"
+                                size="small"
+                                onClick={bookTherapyHandler}
+                                endIcon={<BookOnlineIcon />}
+                            >
+                                Termin vereinbaren
+                            </Button>
+                            :
+                            <Button
+                                variant="contained"
+                                size="small"
+                                href="/register"
+                            >
+                                Registrieren
+                            </Button>
+                        }
                         <PopupContactTherapeut
                             popupContactTherapeutOpen={open}
                             setPopupContactTherapeutOpen={setOpen}
