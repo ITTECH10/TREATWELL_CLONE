@@ -20,10 +20,10 @@ export default function App() {
   const urlProtocol = window.location.href.split(':')[0]
 
   useEffect(() => {
-    if (urlProtocol === 'http' || urlProtocol === 'www') {
+    if (urlProtocol === 'http') {
       window.location.replace('https://gesundo24.de')
     }
-  }, [urlProtocol])
+  }, [])
 
   // ONLY RUN IF WE ARE AUTHENTICATED, AND WE CAN ONLY
   // BECOME AUTHENTICATED WITH A VALID TOKEN
