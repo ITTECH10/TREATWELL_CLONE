@@ -20,7 +20,7 @@ export default function App() {
   const urlProtocol = window.location.href.split(':')
 
   useEffect(() => {
-    if (urlProtocol[0] === 'http' || urlProtocol[1] === 'www') {
+    if ((urlProtocol[0] === 'http' || urlProtocol[1] === 'www') && urlProtocol[1] !== '//localhost') {
       window.location.replace('https://gesundo24.de')
     }
   }, [])

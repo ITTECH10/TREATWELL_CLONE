@@ -34,6 +34,7 @@ const AppContextProvider = ({ children }) => {
                 setTherapeuts(res.data.therapeuts)
             }
         }).catch(err => {
+            // console.log(err.response)
             setGeneralAlertOptions({
                 open: true,
                 severity: 'error',
