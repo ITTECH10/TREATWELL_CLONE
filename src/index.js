@@ -13,8 +13,8 @@ import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://localhost:8000/api/v1'
-// axios.defaults.baseURL = 'https://gesundo24.herokuapp.com/api/v1'
+// axios.defaults.baseURL = 'http://localhost:8000/api/v1'
+axios.defaults.baseURL = 'https://gesundo24.herokuapp.com/api/v1'
 // ----------------------------------------------------------------------
 
 ReactDOM.render(
