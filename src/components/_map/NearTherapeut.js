@@ -14,7 +14,7 @@ const ICON = '/static/icons/mapbox-marker-icon-red.svg'
 
 const NearTherapeut = ({ therapeut }) => {
     const navigate = useNavigate()
-    const { authenticated } = useApp()
+    const { authenticated, setGeneralAlertOptions } = useApp()
     const [showPopup, togglePopup] = useState(false)
     const [open, setOpen] = useState(false)
     const { coordinates } = therapeut.locationCoordinates
@@ -25,7 +25,12 @@ const NearTherapeut = ({ therapeut }) => {
 
     const bookTherapyHandler = () => {
         if (!authenticated) {
-            navigate('/login')
+            setGeneralAlertOptions({
+                open: true,
+                message: 'Sie mussen zuerst anmelden oder registrieren!',
+                hideAfter: 2000,
+                severity: 'warning'
+            })
         }
 
         if (authenticated) {
@@ -72,24 +77,14 @@ const NearTherapeut = ({ therapeut }) => {
                         >
                             webseite: {therapeut.website}
                         </Button>
-                        {authenticated ?
-                            <Button
-                                variant="contained"
-                                size="small"
-                                onClick={bookTherapyHandler}
-                                endIcon={<BookOnlineIcon />}
-                            >
-                                Termin vereinbaren
-                            </Button>
-                            :
-                            <Button
-                                variant="contained"
-                                size="small"
-                                href="/register"
-                            >
-                                Registrieren
-                            </Button>
-                        }
+                        <Button
+                            variant="contained"
+                            size="small"
+                            onClick={bookTherapyHandler}
+                            endIcon={<BookOnlineIcon />}
+                        >
+                            Termin vereinbaren
+                        </Button>
                         <PopupContactTherapeut
                             popupContactTherapeutOpen={open}
                             setPopupContactTherapeutOpen={setOpen}

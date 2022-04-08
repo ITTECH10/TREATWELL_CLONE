@@ -71,37 +71,32 @@ export default function PopupContactTherapeut({ popupContactTherapeutOpen, setPo
             })
     }
 
-    // const recallRequestedHandler = () => {
-    //     if (authenticated) {
-    //         handleClickOpen()
-    //     }
+    const recallRequestedHandler = () => {
+        if (authenticated) {
+            handleClickOpen()
+        }
 
-    //     if (!authenticated) {
-    //         navigate('/login')
-    //     }
-    // }
+        if (!authenticated) {
+            setGeneralAlertOptions({
+                open: true,
+                message: 'Sie mussen zuerst anmelden oder registrieren!',
+                hideAfter: 2000,
+                severity: 'warning'
+            })
+        }
+    }
 
     return (
         <div>
-            {authenticated ?
-                <Button
-                    variant="contained"
-                    size="small"
-                    sx={{ mt: .5, width: '100%' }}
-                    endIcon={<PhoneCallbackIcon />}
-                    onClick={handleClickOpen}
-                >
-                    Rückruf erwünscht
-                </Button> :
-                <Button
-                    variant="contained"
-                    size="small"
-                    sx={{ mt: .5, width: '100%' }}
-                    href="/login"
-                >
-                    Anmelden
-                </Button>
-            }
+            <Button
+                variant="contained"
+                size="small"
+                sx={{ mt: .5, width: '100%' }}
+                endIcon={<PhoneCallbackIcon />}
+                onClick={recallRequestedHandler}
+            >
+                Rückruf erwünscht
+            </Button>
             <Dialog open={popupContactTherapeutOpen} onClose={handleClose}>
                 <DialogTitle>Rückruf erwünscht</DialogTitle>
                 <DialogContent>
