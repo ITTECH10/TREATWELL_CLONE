@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../../../context/AppContext'
 // mui
 import { Card, Typography, Box, Stack, IconButton, Divider, List, ListItem, ListItemText, Button } from '@mui/material'
@@ -12,13 +12,21 @@ import Rating from '@mui/material/Rating';
 
 // rest
 import Map from '../../Map'
+import Gallery from '../../Gallery'
 import { manipulateCloudinaryImage } from '../../../utils/manipulateCloudinaryImage'
 
 const TherapeutInfoTab = () => {
+    const [dialogOpen, setDialogOpen] = useState(false)
+    const [selectedGalleryImage, setSelectedGalleryImage] = useState(false)
     const { selectedTherapeut, logedInPacient } = useApp()
     const { images: practicePhotos, website, phone, email, address, locationCoordinates, reviews, biography, specializedMethods, qualifications } = selectedTherapeut || logedInPacient || { images: [], website: '', phone: '', email: '', address: '', reviews: [], biography: '', specializedMethods: [], qualifications: '' }
     const lng = locationCoordinates && locationCoordinates.coordinates[0]
     const lat = locationCoordinates && locationCoordinates.coordinates[1]
+
+    const galleryImageHandler = (image) => {
+        setDialogOpen(true)
+        setSelectedGalleryImage(image)
+    }
 
     return (
         <Card sx={{ p: 2 }}>
@@ -36,23 +44,30 @@ const TherapeutInfoTab = () => {
                         {practicePhotos.map(practicePhoto => {
                             const optimizedPracticePhoto = manipulateCloudinaryImage(practicePhoto, ['w_1200', 'h_1000', 'q_85', 'c_fill', 'g_auto:classic', 'r_15'])
 
-                            // return <Box sx={{ height: 200, width: { xs: 'auto', md: 350 }, borderRadius: 1, overflow: 'hidden' }}>
-                            //     <img src={optimizedPracticePhoto} style={{ height: '100%', width: '100%' }} />
-                            // </Box>
-                            return <Box
-                                sx={{
-                                    height: 200,
-                                    width: { xs: 'auto', md: 350 },
-                                    overflow: 'hidden',
-                                    background: `url(${optimizedPracticePhoto})`,
-                                    backgroundSize: 'contain',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center'
-                                }}
-                            >
-                            </Box>
+                            return (
+                                <>
+                                    <Box
+                                        sx={{
+                                            height: 200,
+                                            width: { xs: 'auto', md: 350 },
+                                            overflow: 'hidden',
+                                            background: `url(${optimizedPracticePhoto})`,
+                                            backgroundSize: 'contain',
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundPosition: 'center'
+                                        }}
+                                        onClick={() => galleryImageHandler(practicePhoto)}
+                                    >
+                                    </Box>
+                                </>
+                            )
                         })}
                     </Stack>
+                    <Gallery
+                        dialogOpen={dialogOpen}
+                        setDialogOpen={setDialogOpen}
+                        image={selectedGalleryImage}
+                    />
                     <Divider sx={{ mt: 2, mb: 1 }} />
                 </Box>}
             <Box>
