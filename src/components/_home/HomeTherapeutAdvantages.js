@@ -57,7 +57,7 @@ const HomeTherapeutAdvantages = () => {
                             <Box sx={{
                                 height: '100%',
                                 width: '100%',
-                                backgroundImage: 'url(https://res.cloudinary.com/dt5o99tph/image/upload/v1645798638/dkwvjo2qgzexsdh8rogz.jpg)',
+                                backgroundImage: 'url(https://res.cloudinary.com/dt5o99tph/image/upload/v1649338355/twkvwx7jjwmau2pnutoo.jpg)',
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat',
                                 backgroundPosition: 'top',
