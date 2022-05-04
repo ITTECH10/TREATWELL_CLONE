@@ -56,7 +56,7 @@ export default function ForgotPassword() {
                 <ContentStyle>
                     <Stack sx={{ my: 1 }}>
                         <Typography variant="h4" gutterBottom>
-                            Ihres E-Mail ...
+                            Passwort vergessen...
                         </Typography>
                         <Typography sx={{ color: 'text.secondary' }}>
                             Kein Problem! Gib hier deine E-Mail-Adresse ein und wir schicken dir ein neues Passwort zu.
